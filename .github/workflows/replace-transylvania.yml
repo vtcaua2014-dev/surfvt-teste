@@ -1,0 +1,67 @@
+name: Substituir Transylvania pela captura nova
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/replace-transylvania.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Baixar exatamente o HTML da captura nova
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 5 --retry-delay 2 --connect-timeout 20 --max-time 120 --silent --show-error "https://gjteste.vercel.app/transylvania?original" -o /tmp/transylvania-original.html
+          echo "139bceacd532d5204817cd0d16b323ee708a680953e4ec226de7c4f5ce049323  /tmp/transylvania-original.html" | sha256sum --check
+      - name: Adaptar o HTML ao GitHub Pages e a build em sete partes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          html = Path("/tmp/transylvania-original.html").read_text(encoding="utf-8")
+          old_base = '<base href="/transylvania/">'
+          assert html.count(old_base) == 1, "Base URL diferente da captura"
+          html = html.replace(old_base, '<base href="./">', 1)
+
+          old_parts = 'var P=["Build/miamiSiteBuild.data.unityweb.part0","Build/miamiSiteBuild.data.unityweb.part1"];'
+          new_parts = 'var P=[' + ','.join(f'"Build/miamiSiteBuild.data.unityweb.part{i}"' for i in range(7)) + '];'
+          assert html.count(old_parts) == 1, "Lista de partes diferente da captura"
+          html = html.replace(old_parts, new_parts, 1)
+
+          # No Github Pages, a URL padrão sem query deve iniciar o mesmo modo ?original da captura.
+          flag = r'window.GJ_ORIGINAL=/[?&](original\b|mode=original\b)/.test(location.search);'
+          assert html.count(flag) == 1, "Flag de modo diferente da captura"
+          html = html.replace(flag, r'window.GJ_ORIGINAL=/[?&](original\b|mode=original\b)/.test(location.search)||location.search==="";', 1)
+
+          Path("index.html").write_text(html, encoding="utf-8")
+          print("Página original atualizada:", len(html.encode("utf-8")), "bytes")
+          PY
+          test -f Build/miamiSiteBuild.loader.js
+          for i in 0 1 2 3 4 5 6; do
+            test -s "Build/miamiSiteBuild.data.unityweb.part$i"
+          done
+      - name: Confirmar sintaxe e publicar na branch main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "O index.html ja esta atualizado."
+          else
+            git commit -m "Replace Transylvania page with latest captured original"
+            git push origin HEAD:main
+          fi
