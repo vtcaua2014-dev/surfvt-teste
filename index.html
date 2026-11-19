@@ -1,115 +1,147 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-  <meta charset="utf-8">
-  <base href="./">
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no">
-  <meta name="theme-color" content="#000000">
-  <title>Transylvania — Subway Surf</title>
-  <link rel="icon" href="./TemplateData/favicon.ico">
-  <style>
-    *{box-sizing:border-box}
-    html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#050505;color:white;font-family:system-ui,Arial,sans-serif}
-    #stage{position:relative;margin:auto;width:100vw;height:100dvh;max-width:100vw}
-    canvas{display:block;width:100%;height:100%;touch-action:none;outline:none}
-    #loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;background:#080808;z-index:4}
-    .brand{font-weight:700;font-size:clamp(28px,5vw,56px);letter-spacing:-.05em}
-    .place{font-size:17px;font-weight:500;color:#ccc}
-    .bar{width:min(80vw,320px);height:9px;background:#292929;border-radius:12px;overflow:hidden}
-    #fill{width:0;height:100%;background:#e6e6e6;transition:width .1s ease}
-    #status{font-size:13px;color:#bbb;text-align:center;padding:0 24px;max-width:440px}
-    #error{max-width:520px;margin-top:15px;background:#341518;border:1px solid #994954;border-radius:10px;padding:15px;display:none;white-space:pre-wrap;font-size:13px;overflow-wrap:anywhere}
-    #full{position:absolute;bottom:14px;right:14px;border:1px solid #7778;color:white;background:#1118;padding:8px 11px;cursor:pointer;border-radius:9px;z-index:3}
-    @media (max-width:500px){#full{display:none}}
-  </style>
-</head>
-<body>
-  <div id="stage">
-    <canvas id="unity-canvas" tabindex="0"></canvas>
-    <button id="full" type="button">Tela cheia</button>
-    <div id="loading">
-      <div class="brand">Subway Surf</div>
-      <div class="place">Transylvania</div>
-      <div class="bar"><div id="fill"></div></div>
-      <div id="status" aria-live="polite">Preparando o jogo…</div>
-      <div id="error" role="alert"></div>
-    </div>
-  </div>
-  <script>
-    window.GJ_ORIGINAL = /[?&](original(?:&|$)|mode=original(?:&|$))/.test(location.search);
-    window.GJ_NOCOINSEE = /[?&](nocoinsee(?:&|$)|mode=nocoinsee(?:&|$))/i.test(location.search);
-    const buildPath = "./Build/";
-    const canvas = document.getElementById("unity-canvas");
-    const loading = document.getElementById("loading");
-    const status = document.getElementById("status");
-    const fill = document.getElementById("fill");
-    const error = document.getElementById("error");
-    const PIECES = 7;
-    const DATA_SIZE = 126534900;
-    const unityConfig = {
-      dataUrl: buildPath + "miamiSiteBuild.data.unityweb",
-      frameworkUrl: buildPath + "miamiSiteBuild.framework.js.unityweb",
-      codeUrl: buildPath + "miamiSiteBuild.wasm.unityweb",
-      streamingAssetsUrl: "StreamingAssets",
-      companyName: "Kiloo Games",
-      productName: "Subway Surf",
-      productVersion: "1.105.0",
-      webglContextAttributes: {antialias:false,preserveDrawingBuffer:false,powerPreference:"high-performance"},
-      showBanner: function(message,type){if(type==="error") showError(message);else console.warn(message)}
-    };
-    function showError(message){
-      error.style.display="block";
-      error.textContent = message;
-      status.textContent="Não foi possível iniciar.";
-      console.error(message);
-    }
-    function loadScript(url){
-      return new Promise((resolve,reject)=>{
-        const element=document.createElement("script");
-        element.src=url;
-        element.onload=resolve;
-        element.onerror=()=>reject(new Error("Erro ao carregar: "+url));
-        document.head.appendChild(element);
-      });
-    }
-    async function getData(){
-      const parts=[];
-      let total=0;
-      for(let i=0;i<PIECES;i++){
-        const url=buildPath+"miamiSiteBuild.data.unityweb.part"+i;
-        status.textContent="Baixando dados do jogo ("+(i+1)+"/"+PIECES+")…";
-        const response=await fetch(url);
-        if(!response.ok) throw new Error(url+" → HTTP "+response.status);
-        const part=await response.arrayBuffer();
-        if(part.byteLength===0) throw new Error("Parte vazia: "+url);
-        parts.push(part);total+=part.byteLength;
-        fill.style.width=Math.floor(total / DATA_SIZE * 100)+"%";
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head><base href="./"><script>window.GJ_ORIGINAL=/[?&](original\b|mode=original\b)/.test(location.search)||location.search==="";window.GJ_NOCOINSEE=/[?&](nocoinsee\b|mode=nocoinsee\b)/i.test(location.search);</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="theme-color" content="#000000">
+    <title>Subway Surf</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <!-- Save do site: precisam rodar antes do jogo abrir -->
+    <style>
+      html, body {
+        margin: 0; padding: 0; width: 100%; height: 100%;
+        overflow: hidden; background: #000;
+        /* celular: sem rolar, sem zoom de pinça, sem seleção, sem menu de toque longo */
+        touch-action: none; overscroll-behavior: none;
+        -webkit-user-select: none; user-select: none;
+        -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent;
       }
-      if(total!==DATA_SIZE) throw new Error("Dados incompletos: "+total+" de "+DATA_SIZE+" bytes");
-      return URL.createObjectURL(new Blob(parts,{type:"application/octet-stream"}));
-    }
-    async function main(){
-      let objectUrl;
-      try{
-        const [url]=await Promise.all([getData(),loadScript(buildPath+"miamiSiteBuild.loader.js")]);
-        objectUrl=url;
-        unityConfig.dataUrl=url;
-        status.textContent="Iniciando Unity WebGL…";
-        fill.style.width="0%";
-        const instance=await createUnityInstance(canvas,unityConfig,p=>{fill.style.width=Math.round(p*100)+"%"});
-        window.unityInstance=instance;
-        loading.style.display="none";
-        canvas.focus();
-      }catch(err){showError(err && err.message ? err.message : String(err));}
-      finally{if(objectUrl)URL.revokeObjectURL(objectUrl);}
-    }
-    canvas.addEventListener("pointerdown",()=>canvas.focus());
-    document.getElementById("full").addEventListener("click",()=>{
-      const root=document.documentElement;
-      if(document.fullscreenElement)document.exitFullscreen();
-      else if(root.requestFullscreen)root.requestFullscreen().catch(()=>{});
-    });
-    main();
-  </script>
-</body>
+      body { position: fixed; inset: 0; }
+      /* o jogo é em pé: no celular ocupa a tela toda; em tela larga fica no meio, no máximo 3:4 */
+      #gj-box {
+        position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+        height: 100%; width: min(100%, 75vh);
+        height: 100dvh; width: min(100vw, 75dvh);
+      }
+      /* tela cheia (F11 ou botão): o jogo ocupa a tela inteira, larga */
+      body.gj-full #gj-box { width: 100vw; height: 100vh; width: 100dvw; height: 100dvh; }
+      /* computador: o jogo ocupa a janela inteira, largo (janela normal e tela cheia) */
+      body.gj-desktop #gj-box { width: 100vw; height: 100vh; width: 100dvw; height: 100dvh; }
+      #unity-canvas { display: block; width: 100%; height: 100%; background: #000; outline: none; touch-action: none; }
+      /* carregamento: o mesmo de antes (logo da Unity + barra), do TemplateData/style.css */
+      #unity-loading-bar { display: block; }
+      #gj-error {
+        display: none; position: absolute; left: 8%; right: 8%; top: 40%; padding: 14px;
+        background: #b00020; color: #fff; font: 15px/1.4 sans-serif; text-align: center; border-radius: 8px;
+      }
+    </style>
+  <script>(function(){var P=["Build/miamiSiteBuild.data.unityweb.part0","Build/miamiSiteBuild.data.unityweb.part1","Build/miamiSiteBuild.data.unityweb.part2","Build/miamiSiteBuild.data.unityweb.part3","Build/miamiSiteBuild.data.unityweb.part4","Build/miamiSiteBuild.data.unityweb.part5","Build/miamiSiteBuild.data.unityweb.part6"];var F=window.fetch;window.fetch=function(i,o){var u=typeof i==='string'?i:(i&&i.url)||'';if(/miamiSiteBuild\.data\.unityweb(\?|#|$)/.test(u)){return Promise.all(P.map(function(p){return F(p).then(function(r){if(!r.ok)throw new Error('falha ao baixar '+p);return r.arrayBuffer();});})).then(function(b){return new Response(new Blob(b),{status:200,headers:{'Content-Type':'application/octet-stream'}});});}return F.apply(this,arguments);};})();</script></head>
+  <body>
+    <div id="gj-box">
+      <canvas id="unity-canvas" tabindex="-1"></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
+        </div>
+      </div>
+      <div id="gj-error"></div>
+    </div>
+    <script>
+      (function () {
+        var canvas = document.getElementById("unity-canvas");
+        var fill = document.getElementById("unity-progress-bar-full");
+        var loading = document.getElementById("unity-loading-bar");
+        var errorBox = document.getElementById("gj-error");
+        var mobile = /iPhone|iPad|iPod|Android|Mobile/i.test(navigator.userAgent) ||
+          (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+        window.gjIsMobile = mobile;
+        // tem que ser antes do jogo abrir: ele se ajusta bem entre tamanhos largos, mas não de "em pé" para largo
+        if (!mobile) document.body.classList.add("gj-desktop");
+
+        // proteção: dificulta copiar/abrir o inspetor (não impede 100%, mas atrapalha quem quer roubar a build)
+        document.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+        document.addEventListener("dragstart", function (e) { e.preventDefault(); });
+        document.addEventListener("keydown", function (e) {
+          var k = e.key || "";
+          var block = e.keyCode === 123 /* F12 */
+            || ((e.ctrlKey || e.metaKey) && e.shiftKey && /^[IJCiJc]$/.test(k))   /* Ctrl/Cmd+Shift+I/J/C */
+            || ((e.ctrlKey || e.metaKey) && /^[Uu]$/.test(k) && !e.shiftKey)       /* Ctrl/Cmd+U (ver código) */
+            || ((e.ctrlKey || e.metaKey) && /^[Ss]$/.test(k));                     /* Ctrl/Cmd+S (salvar página) */
+          if (block) { e.preventDefault(); e.stopPropagation(); return false; }
+        }, true);
+        document.addEventListener("touchmove", function (e) { e.preventDefault(); }, { passive: false });
+        // devolve o foco ao jogo ao tocar/clicar (teclado volta a funcionar)
+        canvas.addEventListener("pointerdown", function () { canvas.focus(); });
+
+        // tela cheia: pela API (botão/Unity) ou pelo F11 do navegador (janela do tamanho do monitor)
+        function updateFull() {
+          var api = !!(document.fullscreenElement || document.webkitFullscreenElement);
+          // F11: a janela fica do tamanho do monitor. Compara também em pixels reais (zoom do navegador / escala
+          // do Windows mudam o innerWidth) e pela media query de tela cheia do navegador.
+          var dpr = window.devicePixelRatio || 1;
+          var f11 = !mobile && (
+            (window.innerHeight >= screen.height - 4 && window.innerWidth >= screen.width - 4) ||
+            (window.outerHeight >= screen.height - 4 && window.outerWidth >= screen.width - 4 &&
+              window.innerHeight * dpr >= window.outerHeight * dpr - 8 && window.outerHeight - window.innerHeight < 8) ||
+            (window.matchMedia && window.matchMedia("(display-mode: fullscreen)").matches));
+          document.body.classList.toggle("gj-full", api || f11);
+        }
+        // F11 no jogo: entra em tela cheia de verdade (o jogo ocupa o monitor inteiro, largo)
+        document.addEventListener("keydown", function (e) {
+          if (e.keyCode !== 122 || mobile) return;
+          e.preventDefault();
+          if (document.fullscreenElement || document.webkitFullscreenElement) {
+            (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+          } else {
+            var el = document.documentElement;
+            var p = (el.requestFullscreen || el.webkitRequestFullscreen).call(el);
+            if (p && p.catch) p.catch(function () {});
+          }
+        }, true);
+        window.addEventListener("resize", updateFull);
+        document.addEventListener("fullscreenchange", updateFull);
+        document.addEventListener("webkitfullscreenchange", updateFull);
+        updateFull();
+
+        var buildUrl = "Build";
+        var config = {
+          dataUrl: buildUrl + "/miamiSiteBuild.data.unityweb",
+          frameworkUrl: buildUrl + "/miamiSiteBuild.framework.js.unityweb",
+          codeUrl: buildUrl + "/miamiSiteBuild.wasm.unityweb",
+          streamingAssetsUrl: "StreamingAssets",
+          companyName: "Kiloo Games",
+          productName: "Subway Surf",
+          productVersion: "1.105.0",
+          // menos trabalho por quadro: sem anti-aliasing, e pede a placa de vídeo forte
+          webglContextAttributes: { antialias: false, preserveDrawingBuffer: false, powerPreference: "high-performance" },
+          showBanner: function (msg, type) { if (type === "error") showError(msg); else console.warn(msg); }
+        };
+
+        function showError(msg) {
+          loading.style.display = "none";
+          errorBox.textContent = msg;
+          errorBox.style.display = "block";
+        }
+
+        var script = document.createElement("script");
+        script.src = buildUrl + "/miamiSiteBuild.loader.js";
+        script.onload = function () {
+          createUnityInstance(canvas, config, function (progress) {
+            fill.style.width = (100 * progress) + "%";
+          }).then(function (instance) {
+            window.unityInstance = instance;
+            loading.style.display = "none";
+            canvas.focus();
+          }).catch(showError);
+        };
+        script.onerror = function () { showError("Não foi possível carregar o jogo. Recarregue a página."); };
+        document.body.appendChild(script);
+      })();
+    </script>
+  </body>
 </html>
