@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <base href="./">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#000000">
+  <title>Transylvania — Subway Surf</title>
+  <link rel="icon" href="./TemplateData/favicon.ico">
+  <style>
+    *{box-sizing:border-box}
+    html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#050505;color:white;font-family:system-ui,Arial,sans-serif}
+    #stage{position:relative;margin:auto;width:100vw;height:100dvh;max-width:100vw}
+    canvas{display:block;width:100%;height:100%;touch-action:none;outline:none}
+    #loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;background:#080808;z-index:4}
+    .brand{font-weight:700;font-size:clamp(28px,5vw,56px);letter-spacing:-.05em}
+    .place{font-size:17px;font-weight:500;color:#ccc}
+    .bar{width:min(80vw,320px);height:9px;background:#292929;border-radius:12px;overflow:hidden}
+    #fill{width:0;height:100%;background:#e6e6e6;transition:width .1s ease}
+    #status{font-size:13px;color:#bbb;text-align:center;padding:0 24px;max-width:440px}
+    #error{max-width:520px;margin-top:15px;background:#341518;border:1px solid #994954;border-radius:10px;padding:15px;display:none;white-space:pre-wrap;font-size:13px;overflow-wrap:anywhere}
+    #full{position:absolute;bottom:14px;right:14px;border:1px solid #7778;color:white;background:#1118;padding:8px 11px;cursor:pointer;border-radius:9px;z-index:3}
+    @media (max-width:500px){#full{display:none}}
+  </style>
+</head>
+<body>
+  <div id="stage">
+    <canvas id="unity-canvas" tabindex="0"></canvas>
+    <button id="full" type="button">Tela cheia</button>
+    <div id="loading">
+      <div class="brand">Subway Surf</div>
+      <div class="place">Transylvania</div>
+      <div class="bar"><div id="fill"></div></div>
+      <div id="status" aria-live="polite">Preparando o jogo…</div>
+      <div id="error" role="alert"></div>
+    </div>
+  </div>
+  <script>
+    window.GJ_ORIGINAL = /[?&](original(?:&|$)|mode=original(?:&|$))/.test(location.search);
+    window.GJ_NOCOINSEE = /[?&](nocoinsee(?:&|$)|mode=nocoinsee(?:&|$))/i.test(location.search);
+    const buildPath = "./Build/";
+    const canvas = document.getElementById("unity-canvas");
+    const loading = document.getElementById("loading");
+    const status = document.getElementById("status");
+    const fill = document.getElementById("fill");
+    const error = document.getElementById("error");
+    const PIECES = 7;
+    const DATA_SIZE = 126534900;
+    const unityConfig = {
+      dataUrl: buildPath + "miamiSiteBuild.data.unityweb",
+      frameworkUrl: buildPath + "miamiSiteBuild.framework.js.unityweb",
+      codeUrl: buildPath + "miamiSiteBuild.wasm.unityweb",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "Kiloo Games",
+      productName: "Subway Surf",
+      productVersion: "1.105.0",
+      webglContextAttributes: {antialias:false,preserveDrawingBuffer:false,powerPreference:"high-performance"},
+      showBanner: function(message,type){if(type==="error") showError(message);else console.warn(message)}
+    };
+    function showError(message){
+      error.style.display="block";
+      error.textContent = message;
+      status.textContent="Não foi possível iniciar.";
+      console.error(message);
+    }
+    function loadScript(url){
+      return new Promise((resolve,reject)=>{
+        const element=document.createElement("script");
+        element.src=url;
+        element.onload=resolve;
+        element.onerror=()=>reject(new Error("Erro ao carregar: "+url));
+        document.head.appendChild(element);
+      });
+    }
+    async function getData(){
+      const parts=[];
+      let total=0;
+      for(let i=0;i<PIECES;i++){
+        const url=buildPath+"miamiSiteBuild.data.unityweb.part"+i;
+        status.textContent="Baixando dados do jogo ("+(i+1)+"/"+PIECES+")…";
+        const response=await fetch(url);
+        if(!response.ok) throw new Error(url+" → HTTP "+response.status);
+        const part=await response.arrayBuffer();
+        if(part.byteLength===0) throw new Error("Parte vazia: "+url);
+        parts.push(part);total+=part.byteLength;
+        fill.style.width=Math.floor(total / DATA_SIZE * 100)+"%";
+      }
+      if(total!==DATA_SIZE) throw new Error("Dados incompletos: "+total+" de "+DATA_SIZE+" bytes");
+      return URL.createObjectURL(new Blob(parts,{type:"application/octet-stream"}));
+    }
+    async function main(){
+      let objectUrl;
+      try{
+        const [url]=await Promise.all([getData(),loadScript(buildPath+"miamiSiteBuild.loader.js")]);
+        objectUrl=url;
+        unityConfig.dataUrl=url;
+        status.textContent="Iniciando Unity WebGL…";
+        fill.style.width="0%";
+        const instance=await createUnityInstance(canvas,unityConfig,p=>{fill.style.width=Math.round(p*100)+"%"});
+        window.unityInstance=instance;
+        loading.style.display="none";
+        canvas.focus();
+      }catch(err){showError(err && err.message ? err.message : String(err));}
+      finally{if(objectUrl)URL.revokeObjectURL(objectUrl);}
+    }
+    canvas.addEventListener("pointerdown",()=>canvas.focus());
+    document.getElementById("full").addEventListener("click",()=>{
+      const root=document.documentElement;
+      if(document.fullscreenElement)document.exitFullscreen();
+      else if(root.requestFullscreen)root.requestFullscreen().catch(()=>{});
+    });
+    main();
+  </script>
+</body>
+</html>
