@@ -1,0 +1,68 @@
+name: Importar Transylvania WebGL
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/import-build.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  importar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Baixar arquivos públicos da build Unity
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE="https://gjteste.vercel.app/transylvania"
+          mkdir -p Build TemplateData tmp-assets
+          download() {
+            local remote="$1"
+            local dest="$2"
+            echo "Obtendo: $remote"
+            curl --fail --location --retry 5 --retry-delay 3 --connect-timeout 30 --max-time 600 --silent --show-error "$BASE/$remote" --output "$dest"
+            test -s "$dest"
+          }
+          download "Build/miamiSiteBuild.loader.js" "Build/miamiSiteBuild.loader.js"
+          download "Build/miamiSiteBuild.framework.js.unityweb" "Build/miamiSiteBuild.framework.js.unityweb"
+          download "Build/miamiSiteBuild.wasm.unityweb" "Build/miamiSiteBuild.wasm.unityweb"
+          download "TemplateData/favicon.ico" "TemplateData/favicon.ico"
+          download "TemplateData/style.css" "TemplateData/style.css"
+          download "TemplateData/unity-logo-dark.png" "TemplateData/unity-logo-dark.png"
+          download "TemplateData/progress-bar-full-dark.png" "TemplateData/progress-bar-full-dark.png"
+          download "TemplateData/progress-bar-empty-dark.png" "TemplateData/progress-bar-empty-dark.png"
+          download "Build/miamiSiteBuild.data.unityweb.part0" "tmp-assets/original-0"
+          download "Build/miamiSiteBuild.data.unityweb.part1" "tmp-assets/original-1"
+          printf '%s  %s\n' \
+            '8df7f2fa7db7279b5446cb1fd4a6e1af286d68f2a91dff380654ca41d9eb8125' 'tmp-assets/original-0' \
+            'ac94f22229110423fb884d558ad8aa90e36375e93df6f99f092e3b48b59ea17d' 'tmp-assets/original-1' | sha256sum --check
+          printf '%s  %s\n' \
+            '68bbcc00cdf5569c33fa495f147b3a261f40b5d95f8b17939920fa71ee753138' 'Build/miamiSiteBuild.loader.js' \
+            'ea4a6f9104bc82a75c873c60d21885268971be04af78460820b88a5227d0ca15' 'Build/miamiSiteBuild.framework.js.unityweb' \
+            'd2279da14cd70a86fc634f6a93bcace468de9e70de915d594985703e9c0ba2e0' 'Build/miamiSiteBuild.wasm.unityweb' | sha256sum --check
+          cat tmp-assets/original-0 tmp-assets/original-1 > tmp-assets/data.unityweb
+          test "$(wc -c < tmp-assets/data.unityweb)" -eq 126534900
+          split -b 20971520 -d -a 1 tmp-assets/data.unityweb Build/miamiSiteBuild.data.unityweb.part
+          test "$(find Build -name 'miamiSiteBuild.data.unityweb.part*' | wc -l)" -eq 7
+          touch .nojekyll
+          rm -rf tmp-assets
+      - name: Enviar arquivos da build para main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Build TemplateData .nojekyll
+          if git diff --cached --quiet; then
+            echo "Nenhuma mudança"
+          else
+            git commit -m "Import Unity WebGL build assets in Pages-compatible parts"
+            git push origin HEAD:main
+          fi
