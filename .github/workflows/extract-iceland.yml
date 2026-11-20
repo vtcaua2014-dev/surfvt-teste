@@ -25,13 +25,34 @@ jobs:
       - name: Checkout original SurfVT14 Iceland files
         uses: actions/checkout@v4
         with:
-          repository: vtcaua2014-dev/surfvt
+          repository: vtcaua2014-dev/surfvt14
           ref: main
           path: source
           lfs: true
+          persist-credentials: false
           sparse-checkout: |
             public/maps/iceland/build/iceland
           sparse-checkout-cone-mode: true
+
+      - name: Validate public Iceland source bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          ASSET="source/public/maps/iceland/build/iceland/iceland.alt.data.unityweb"
+          test -s "$ASSET"
+          echo "Iceland data file:"
+          ls -lh "$ASSET"
+          sha256sum "$ASSET"
+          python - "$ASSET" <<'PY'
+          import os,sys
+          p=sys.argv[1]
+          with open(p,"rb") as f: head=f.read(160)
+          if head.startswith(b"version https://git-lfs.github.com/spec"):
+              raise SystemExit("Git LFS pointer instead of Iceland build bytes")
+          if os.stat(p).st_size < 1024*1024:
+              raise SystemExit("Iceland data file unexpectedly small")
+          print("Archive prefix:",head[:24].hex())
+          PY
 
       - name: Python for Unity asset decoding
         uses: actions/setup-python@v5
@@ -41,7 +62,7 @@ jobs:
       - name: Install extraction dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install "UnityPy>=1.20,<2" Brotli Pillow
+          python -m pip install "UnityPy==1.25.3" Brotli Pillow
 
       - name: Inspect Iceland Unity data and export assets
         id: extract
@@ -50,7 +71,7 @@ jobs:
           python site/scripts/extract_iceland.py \
             --source source/public/maps/iceland/build/iceland/iceland.alt.data.unityweb \
             --output site/iceland/extracted \
-            --max-mb 55
+            --max-mb 80
 
       - name: Publish extraction inventory and recovered assets
         shell: bash
