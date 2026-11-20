@@ -1,0 +1,4010 @@
+{
+  "map": "Iceland",
+  "origin": "vtcaua2014-dev/surfvt/public/maps/iceland/build/iceland/iceland.alt.data.unityweb",
+  "unityVersion": "2019.2.0f1",
+  "generatedAt": "2026-11-20T14:00:27.823857+00:00",
+  "status": "extracted",
+  "rawFiles": [
+    {
+      "path": "Resources/unity_default_resources",
+      "bytes": 3414996
+    },
+    {
+      "path": "Managed/mono/2.0/machine.config",
+      "bytes": 27625
+    },
+    {
+      "path": "Il2CppData/Metadata/global-metadata.dat",
+      "bytes": 6420088
+    },
+    {
+      "path": "boot.config",
+      "bytes": 123
+    },
+    {
+      "path": "data.unity3d",
+      "bytes": 15223427
+    },
+    {
+      "path": "resources.resource",
+      "bytes": 332823
+    },
+    {
+      "path": "sharedassets1.resource",
+      "bytes": 2446530
+    }
+  ],
+  "objectsByType": {
+    "Material": 128,
+    "Texture2D": 148,
+    "Mesh": 358,
+    "Sprite": 3
+  },
+  "assets": [
+    {
+      "type": "Material",
+      "name": "1.117_Iceland_environmentRails",
+      "file": null,
+      "priority": 40,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "1.117_Iceland_trainLight",
+      "file": null,
+      "priority": 40,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "1.117_Iceland_Skyline",
+      "file": null,
+      "priority": 30,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "1.117_Iceland_environment",
+      "file": null,
+      "priority": 30,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "1.117_Iceland_environmentGlass",
+      "file": null,
+      "priority": 30,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "1.117_Iceland_environmentIce",
+      "file": null,
+      "priority": 30,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "1.117_Iceland_environmentMetal",
+      "file": null,
+      "priority": 30,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "1.117_Iceland_environmentWater",
+      "file": null,
+      "priority": 30,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "1.117_Iceland_guard_texture",
+      "file": null,
+      "priority": 30,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "1.117_Iceland_snow",
+      "file": null,
+      "priority": 30,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "1.117_Iceland_train",
+      "file": null,
+      "priority": 30,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "1.117_Iceland_trainGlass",
+      "file": null,
+      "priority": 30,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "1.117_Iceland_trainSimple",
+      "file": null,
+      "priority": 30,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "1.117_Iceland_trainStart",
+      "file": null,
+      "priority": 30,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "1.117_Iceland_train_low",
+      "file": null,
+      "priority": 30,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Texture2D",
+      "name": "1.117_Iceland_environment",
+      "file": "textures/1.117_Iceland_environment_61.png",
+      "bytes": 175140,
+      "width": 512,
+      "height": 512,
+      "priority": 30
+    },
+    {
+      "type": "Texture2D",
+      "name": "1.117_Iceland_train_start",
+      "file": "textures/1.117_Iceland_train_start_59.png",
+      "bytes": 424453,
+      "width": 1024,
+      "height": 1024,
+      "priority": 30
+    },
+    {
+      "type": "Texture2D",
+      "name": "1.117_Iceland_trains",
+      "file": "textures/1.117_Iceland_trains_63.png",
+      "bytes": 88170,
+      "width": 512,
+      "height": 512,
+      "priority": 30
+    },
+    {
+      "type": "Texture2D",
+      "name": "1.117_Iceland_trainsLow",
+      "file": "textures/1.117_Iceland_trainsLow_52.png",
+      "bytes": 86285,
+      "width": 512,
+      "height": 512,
+      "priority": 30
+    },
+    {
+      "type": "Material",
+      "name": "1.117_Iceland_LavaScroll",
+      "file": null,
+      "priority": 20,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "1.117_Iceland_smoke",
+      "file": null,
+      "priority": 20,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "1.117_Iceland_waterSplash_Alpha",
+      "file": null,
+      "priority": 20,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Mesh",
+      "name": "iceland_idle_ears",
+      "file": "meshes/iceland_idle_ears_230.obj",
+      "bytes": 9066,
+      "priority": 20
+    },
+    {
+      "type": "Mesh",
+      "name": "iceland_idle_head",
+      "file": "meshes/iceland_idle_head_225.obj",
+      "bytes": 38218,
+      "priority": 20
+    },
+    {
+      "type": "Mesh",
+      "name": "iceland_idle_mesh",
+      "file": "meshes/iceland_idle_mesh_218.obj",
+      "bytes": 71710,
+      "priority": 20
+    },
+    {
+      "type": "Mesh",
+      "name": "station_platforms",
+      "file": "meshes/station_platforms_143.obj",
+      "bytes": 55931,
+      "priority": 20
+    },
+    {
+      "type": "Mesh",
+      "name": "train_light",
+      "file": "meshes/train_light_126.obj",
+      "bytes": 384,
+      "priority": 20
+    },
+    {
+      "type": "Texture2D",
+      "name": "1.117_Iceland_enemies",
+      "file": "textures/1.117_Iceland_enemies_64.png",
+      "bytes": 162942,
+      "width": 512,
+      "height": 512,
+      "priority": 20
+    },
+    {
+      "type": "Texture2D",
+      "name": "1.117_Iceland_scrollingLava",
+      "file": "textures/1.117_Iceland_scrollingLava_65.png",
+      "bytes": 5721,
+      "width": 64,
+      "height": 128,
+      "priority": 20
+    },
+    {
+      "type": "Texture2D",
+      "name": "1.117_Iceland_waterReflection",
+      "file": "textures/1.117_Iceland_waterReflection_62.png",
+      "bytes": 12490,
+      "width": 512,
+      "height": 256,
+      "priority": 20
+    },
+    {
+      "type": "Material",
+      "name": "0.00_effects_tex_mat_lightSignal_green",
+      "file": null,
+      "priority": 10,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "0.00_effects_tex_mat_lightSignal_red",
+      "file": null,
+      "priority": 10,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "GenericAtlas",
+      "file": null,
+      "priority": 10,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "HighResAtlas",
+      "file": null,
+      "priority": 10,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "HighResCountriesAtlas",
+      "file": null,
+      "priority": 10,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "LowResAtlas",
+      "file": null,
+      "priority": 10,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "board_snowboard_tex_mat",
+      "file": null,
+      "priority": 10,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "sky",
+      "file": null,
+      "priority": 10,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Mesh",
+      "name": "Dizzytrail",
+      "file": "meshes/Dizzytrail_188.obj",
+      "bytes": 24127,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "board_snowboard_base",
+      "file": "meshes/board_snowboard_base_174.obj",
+      "bytes": 40804,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "board_snowboard_baseFeet",
+      "file": "meshes/board_snowboard_baseFeet_214.obj",
+      "bytes": 34665,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "board_snowboard_doubleJump",
+      "file": "meshes/board_snowboard_doubleJump_191.obj",
+      "bytes": 43686,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "board_snowboard_superJump",
+      "file": "meshes/board_snowboard_superJump_204.obj",
+      "bytes": 61958,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "board_star_starTrail",
+      "file": "meshes/board_star_starTrail_207.obj",
+      "bytes": 11918,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "board_sunset_pinkTrail",
+      "file": "meshes/board_sunset_pinkTrail_192.obj",
+      "bytes": 22661,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "celebration_background",
+      "file": "meshes/celebration_background_78.obj",
+      "bytes": 8264,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "ground",
+      "file": "meshes/ground_68.obj",
+      "bytes": 3223,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "ground_shadow_mid",
+      "file": "meshes/ground_shadow_mid_85.obj",
+      "bytes": 3057,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "ground_shadow_short_end",
+      "file": "meshes/ground_shadow_short_end_158.obj",
+      "bytes": 2427,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "ground_shadow_short_start",
+      "file": "meshes/ground_shadow_short_start_157.obj",
+      "bytes": 2424,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "lightSignal",
+      "file": "meshes/lightSignal_111.obj",
+      "bytes": 64944,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "lightSignal_light_green",
+      "file": "meshes/lightSignal_light_green_74.obj",
+      "bytes": 392,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "lightSignal_light_red",
+      "file": "meshes/lightSignal_light_red_81.obj",
+      "bytes": 388,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "polySurface19",
+      "file": "meshes/polySurface19_162.obj",
+      "bytes": 50632,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "polySurface2",
+      "file": "meshes/polySurface2_10205.obj",
+      "bytes": 64859,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "polySurface20",
+      "file": "meshes/polySurface20_185.obj",
+      "bytes": 55166,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "polySurface9",
+      "file": "meshes/polySurface9_80.obj",
+      "bytes": 90309,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "skyplane0x20",
+      "file": "meshes/skyplane0x20_98.obj",
+      "bytes": 3901,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "station_end",
+      "file": "meshes/station_end_138.obj",
+      "bytes": 148235,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "station_mid",
+      "file": "meshes/station_mid_139.obj",
+      "bytes": 327284,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "station_start",
+      "file": "meshes/station_start_137.obj",
+      "bytes": 213028,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "track",
+      "file": "meshes/track_90.obj",
+      "bytes": 41843,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "track_gates",
+      "file": "meshes/track_gates_154.obj",
+      "bytes": 263001,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "track_gates_shadow",
+      "file": "meshes/track_gates_shadow_156.obj",
+      "bytes": 295312,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "track_shadow_end",
+      "file": "meshes/track_shadow_end_95.obj",
+      "bytes": 38016,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "track_shadow_mid",
+      "file": "meshes/track_shadow_mid_93.obj",
+      "bytes": 34115,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "track_shadow_short_end",
+      "file": "meshes/track_shadow_short_end_161.obj",
+      "bytes": 20589,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "track_shadow_short_start",
+      "file": "meshes/track_shadow_short_start_159.obj",
+      "bytes": 19810,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "track_shadow_start",
+      "file": "meshes/track_shadow_start_92.obj",
+      "bytes": 36231,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "train_cargo",
+      "file": "meshes/train_cargo_105.obj",
+      "bytes": 117511,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "train_cargo_low",
+      "file": "meshes/train_cargo_low_130.obj",
+      "bytes": 27120,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "train_ramp",
+      "file": "meshes/train_ramp_99.obj",
+      "bytes": 151209,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "train_ramp_low",
+      "file": "meshes/train_ramp_low_134.obj",
+      "bytes": 52625,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "train_shadow",
+      "file": "meshes/train_shadow_124.obj",
+      "bytes": 563,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "train_standard",
+      "file": "meshes/train_standard_102.obj",
+      "bytes": 146731,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "train_standard_low",
+      "file": "meshes/train_standard_low_128.obj",
+      "bytes": 30510,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "train_start",
+      "file": "meshes/train_start_73.obj",
+      "bytes": 1636,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "train_sub",
+      "file": "meshes/train_sub_96.obj",
+      "bytes": 154319,
+      "priority": 10
+    },
+    {
+      "type": "Mesh",
+      "name": "train_sub_low",
+      "file": "meshes/train_sub_low_132.obj",
+      "bytes": 30568,
+      "priority": 10
+    },
+    {
+      "type": "Sprite",
+      "name": "background_frame_blur",
+      "file": "sprites/background_frame_blur_714.png",
+      "bytes": 463,
+      "width": 35,
+      "height": 13,
+      "priority": 10
+    },
+    {
+      "type": "Texture2D",
+      "name": "GenericAtlas",
+      "file": "textures/GenericAtlas_9.png",
+      "bytes": 59446,
+      "width": 512,
+      "height": 512,
+      "priority": 10
+    },
+    {
+      "type": "Texture2D",
+      "name": "HighResAtlas",
+      "file": "textures/HighResAtlas_115.png",
+      "bytes": 1076764,
+      "width": 2048,
+      "height": 1024,
+      "priority": 10
+    },
+    {
+      "type": "Texture2D",
+      "name": "HighResCountriesAtlas",
+      "file": "textures/HighResCountriesAtlas_151.png",
+      "bytes": 101516,
+      "width": 1024,
+      "height": 1024,
+      "priority": 10
+    },
+    {
+      "type": "Texture2D",
+      "name": "LowResAtlas",
+      "file": "textures/LowResAtlas_153.png",
+      "bytes": 415243,
+      "width": 1024,
+      "height": 512,
+      "priority": 10
+    },
+    {
+      "type": "Texture2D",
+      "name": "Snow",
+      "file": "textures/Snow_66.png",
+      "bytes": 537,
+      "width": 32,
+      "height": 32,
+      "priority": 10
+    },
+    {
+      "type": "Texture2D",
+      "name": "UnitySplash-HolographicTrackingLoss",
+      "file": "textures/UnitySplash-HolographicTrackingLoss_15000.png",
+      "bytes": 1147,
+      "width": 32,
+      "height": 32,
+      "priority": 10
+    },
+    {
+      "type": "Texture2D",
+      "name": "background_frame_blur",
+      "file": "textures/background_frame_blur_112.png",
+      "bytes": 463,
+      "width": 35,
+      "height": 13,
+      "priority": 10
+    },
+    {
+      "type": "Texture2D",
+      "name": "background_glow_award",
+      "file": "textures/background_glow_award_132.png",
+      "bytes": 26232,
+      "width": 256,
+      "height": 256,
+      "priority": 10
+    },
+    {
+      "type": "Texture2D",
+      "name": "background_glow_smb_straight",
+      "file": "textures/background_glow_smb_straight_90.png",
+      "bytes": 885,
+      "width": 32,
+      "height": 32,
+      "priority": 10
+    },
+    {
+      "type": "Texture2D",
+      "name": "background_sticker_medium_mask",
+      "file": "textures/background_sticker_medium_mask_113.png",
+      "bytes": 1977,
+      "width": 114,
+      "height": 114,
+      "priority": 10
+    },
+    {
+      "type": "Texture2D",
+      "name": "board_snowboard_tex",
+      "file": "textures/board_snowboard_tex_140.png",
+      "bytes": 2306,
+      "width": 64,
+      "height": 64,
+      "priority": 10
+    },
+    {
+      "type": "Texture2D",
+      "name": "celebration_background",
+      "file": "textures/celebration_background_51.png",
+      "bytes": 114,
+      "width": 64,
+      "height": 1,
+      "priority": 10
+    },
+    {
+      "type": "Texture2D",
+      "name": "img_track",
+      "file": "textures/img_track_154.png",
+      "bytes": 42270,
+      "width": 480,
+      "height": 156,
+      "priority": 10
+    },
+    {
+      "type": "Texture2D",
+      "name": "railRamp",
+      "file": "textures/railRamp_56.png",
+      "bytes": 150,
+      "width": 16,
+      "height": 32,
+      "priority": 10
+    },
+    {
+      "type": "Texture2D",
+      "name": "trail",
+      "file": "textures/trail_93.png",
+      "bytes": 26414,
+      "width": 256,
+      "height": 256,
+      "priority": 10
+    },
+    {
+      "type": "Texture2D",
+      "name": "trail2",
+      "file": "textures/trail2_123.png",
+      "bytes": 17246,
+      "width": 256,
+      "height": 256,
+      "priority": 10
+    },
+    {
+      "type": "Texture2D",
+      "name": "trailAlpha",
+      "file": "textures/trailAlpha_76.png",
+      "bytes": 19732,
+      "width": 256,
+      "height": 256,
+      "priority": 10
+    },
+    {
+      "type": "Material",
+      "name": "0.00_Generic_effects_tex_mat",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "0.00_Generic_effects_tex_mat_shadow",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "Default-Diffuse",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "Font_Material",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "Font_Material",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "Font_Material",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "Font_Material",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "FrameDebuggerRenderTargetDisplay",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "TestProfilePic",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "avatar_additive_LOD0",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "avatar_additive_LOD1",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "avatar_additive_LOD2",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "avatar_default_LOD0",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "avatar_default_LOD1",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "avatar_default_LOD2",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "avatar_shine_LOD0",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "avatar_shine_LOD1",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "avatar_shine_LOD2",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "board_bigKahuna_tex_mat",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "board_bouncer_tex_mat",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "board_daredevil_tex_mat",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "board_default_tex_mat",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "board_greatWhite_tex_mat",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "board_hotRod_tex_mat",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "board_londonExtra_tex_mat",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "board_lowrider_tex_mat",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "board_lumberjack_tex_mat",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "board_monster_tex_mat",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "board_rioV3_tex_mat",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "board_scoot_tex_mat",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "board_skullfire_tex_mat",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "board_star_tex_mat",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "board_starterpack_tex_mat",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "board_sunset_tex_mat",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "board_superhero_tex_mat",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "board_teleporter_tex_mat",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "board_windglider_tex_mat",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "effects_tex_mat_unlit",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "effects_tex_mat_amsterdam_prop",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "effects_tex_mat_glow_gold",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "effects_tex_mat_mystery",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "material_effect_paintSpray",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "missionStarburst",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "myst",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "props_tex_mat",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "props_tex_mat_dailyLetterOffset",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "smb_star",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "ssBlurred",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Material",
+      "name": "star",
+      "file": null,
+      "priority": 0,
+      "note": "Material identified; shader and texture links require scene reconstruction."
+    },
+    {
+      "type": "Mesh",
+      "name": "A",
+      "file": "meshes/A_238.obj",
+      "bytes": 9833,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "A_Golden",
+      "file": "meshes/A_Golden_279.obj",
+      "bytes": 9872,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "A_UI",
+      "file": "meshes/A_UI_202.obj",
+      "bytes": 17377,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "B",
+      "file": "meshes/B_239.obj",
+      "bytes": 11847,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "B_Golden",
+      "file": "meshes/B_Golden_280.obj",
+      "bytes": 11892,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "B_UI",
+      "file": "meshes/B_UI_189.obj",
+      "bytes": 18329,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "C",
+      "file": "meshes/C_240.obj",
+      "bytes": 13415,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "C_Golden",
+      "file": "meshes/C_Golden_281.obj",
+      "bytes": 13463,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "C_UI",
+      "file": "meshes/C_UI_171.obj",
+      "bytes": 24509,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "Capsule",
+      "file": "meshes/Capsule_10208.obj",
+      "bytes": 88873,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "Cube",
+      "file": "meshes/Cube_10202.obj",
+      "bytes": 1106,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "Cylinder",
+      "file": "meshes/Cylinder_10206.obj",
+      "bytes": 8622,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "D",
+      "file": "meshes/D_241.obj",
+      "bytes": 7698,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "D_Golden",
+      "file": "meshes/D_Golden_282.obj",
+      "bytes": 7739,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "E",
+      "file": "meshes/E_242.obj",
+      "bytes": 8955,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "E_Golden",
+      "file": "meshes/E_Golden_283.obj",
+      "bytes": 9001,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "F",
+      "file": "meshes/F_243.obj",
+      "bytes": 8186,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "F_Golden",
+      "file": "meshes/F_Golden_284.obj",
+      "bytes": 8223,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "G",
+      "file": "meshes/G_244.obj",
+      "bytes": 11154,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "G_Golden",
+      "file": "meshes/G_Golden_285.obj",
+      "bytes": 11182,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "H",
+      "file": "meshes/H_245.obj",
+      "bytes": 10203,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "H_Golden",
+      "file": "meshes/H_Golden_286.obj",
+      "bytes": 10253,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "HeadMesh",
+      "file": "meshes/HeadMesh_356.obj",
+      "bytes": 2498,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "HollowStar",
+      "file": "meshes/HollowStar_271.obj",
+      "bytes": 2441,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "I",
+      "file": "meshes/I_246.obj",
+      "bytes": 4737,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "I_Golden",
+      "file": "meshes/I_Golden_287.obj",
+      "bytes": 4772,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "Icosphere",
+      "file": "meshes/Icosphere_10211.obj",
+      "bytes": 4030,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "J",
+      "file": "meshes/J_247.obj",
+      "bytes": 6433,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "J_Golden",
+      "file": "meshes/J_Golden_288.obj",
+      "bytes": 6451,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "K",
+      "file": "meshes/K_248.obj",
+      "bytes": 10153,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "K_Golden",
+      "file": "meshes/K_Golden_289.obj",
+      "bytes": 10177,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "L",
+      "file": "meshes/L_249.obj",
+      "bytes": 6524,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "L_Golden",
+      "file": "meshes/L_Golden_290.obj",
+      "bytes": 6556,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "M",
+      "file": "meshes/M_250.obj",
+      "bytes": 10046,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "M_Golden",
+      "file": "meshes/M_Golden_291.obj",
+      "bytes": 10090,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "Mesh",
+      "file": "meshes/Mesh_352.obj",
+      "bytes": 2490,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "N",
+      "file": "meshes/N_251.obj",
+      "bytes": 8855,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "N_Golden",
+      "file": "meshes/N_Golden_292.obj",
+      "bytes": 8894,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "NorthPole_prop",
+      "file": "meshes/NorthPole_prop_234.obj",
+      "bytes": 16108,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "O",
+      "file": "meshes/O_252.obj",
+      "bytes": 11231,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "O_Golden",
+      "file": "meshes/O_Golden_293.obj",
+      "bytes": 11292,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "OutfitMesh",
+      "file": "meshes/OutfitMesh_355.obj",
+      "bytes": 2502,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "P",
+      "file": "meshes/P_253.obj",
+      "bytes": 8825,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "P_Golden",
+      "file": "meshes/P_Golden_294.obj",
+      "bytes": 8866,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "Plane",
+      "file": "meshes/Plane_10209.obj",
+      "bytes": 13435,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "Q",
+      "file": "meshes/Q_254.obj",
+      "bytes": 13293,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "Q_Golden",
+      "file": "meshes/Q_Golden_295.obj",
+      "bytes": 13357,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "Quad",
+      "file": "meshes/Quad_10210.obj",
+      "bytes": 230,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "R",
+      "file": "meshes/R_255.obj",
+      "bytes": 8961,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "R_Golden",
+      "file": "meshes/R_Golden_296.obj",
+      "bytes": 9008,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "S",
+      "file": "meshes/S_256.obj",
+      "bytes": 13022,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "S_Golden",
+      "file": "meshes/S_Golden_297.obj",
+      "bytes": 13066,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "ScoreBooster",
+      "file": "meshes/ScoreBooster_264.obj",
+      "bytes": 43115,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "Sphere",
+      "file": "meshes/Sphere_10207.obj",
+      "bytes": 82040,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "T",
+      "file": "meshes/T_257.obj",
+      "bytes": 7954,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "T_Golden",
+      "file": "meshes/T_Golden_298.obj",
+      "bytes": 7993,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "U",
+      "file": "meshes/U_258.obj",
+      "bytes": 10756,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "U_Golden",
+      "file": "meshes/U_Golden_299.obj",
+      "bytes": 10802,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "V",
+      "file": "meshes/V_259.obj",
+      "bytes": 10174,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "V_Golden",
+      "file": "meshes/V_Golden_300.obj",
+      "bytes": 10219,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "W",
+      "file": "meshes/W_260.obj",
+      "bytes": 10322,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "W_Golden",
+      "file": "meshes/W_Golden_301.obj",
+      "bytes": 10377,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "X",
+      "file": "meshes/X_261.obj",
+      "bytes": 11103,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "X_Golden",
+      "file": "meshes/X_Golden_302.obj",
+      "bytes": 11129,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "Y",
+      "file": "meshes/Y_262.obj",
+      "bytes": 9309,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "Y_Golden",
+      "file": "meshes/Y_Golden_303.obj",
+      "bytes": 9356,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "Z",
+      "file": "meshes/Z_263.obj",
+      "bytes": 8929,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "Z_Golden",
+      "file": "meshes/Z_Golden_304.obj",
+      "bytes": 8965,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "achievementtBag",
+      "file": "meshes/achievementtBag_172.obj",
+      "bytes": 12653,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "amsterdam_flash",
+      "file": "meshes/amsterdam_flash_220.obj",
+      "bytes": 14786,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "amsterdam_phone",
+      "file": "meshes/amsterdam_phone_211.obj",
+      "bytes": 16658,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "arrow",
+      "file": "meshes/arrow_186.obj",
+      "bytes": 802,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "blocker_jump",
+      "file": "meshes/blocker_jump_108.obj",
+      "bytes": 76247,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "blocker_roll",
+      "file": "meshes/blocker_roll_109.obj",
+      "bytes": 122246,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "blocker_standard",
+      "file": "meshes/blocker_standard_107.obj",
+      "bytes": 64039,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_bigKahuna_smoothDrift_wing_L",
+      "file": "meshes/board_bigKahuna_smoothDrift_wing_L_197.obj",
+      "bytes": 9798,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_bigKahuna_smoothDrift_wing_R",
+      "file": "meshes/board_bigKahuna_smoothDrift_wing_R_209.obj",
+      "bytes": 9770,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_bigKahuna_stayLow",
+      "file": "meshes/board_bigKahuna_stayLow_181.obj",
+      "bytes": 41417,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_bouncer_base",
+      "file": "meshes/board_bouncer_base_176.obj",
+      "bytes": 47708,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_daredevil_base",
+      "file": "meshes/board_daredevil_base_169.obj",
+      "bytes": 96585,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_default_base",
+      "file": "meshes/board_default_base_164.obj",
+      "bytes": 57020,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_default_base",
+      "file": "meshes/board_default_base_165.obj",
+      "bytes": 41528,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_greatWhite_base",
+      "file": "meshes/board_greatWhite_base_177.obj",
+      "bytes": 36046,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_greatWhite_base_wings",
+      "file": "meshes/board_greatWhite_base_wings_193.obj",
+      "bytes": 7551,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_greatWhite_smoothDrift_wing_L",
+      "file": "meshes/board_greatWhite_smoothDrift_wing_L_224.obj",
+      "bytes": 12547,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_greatWhite_smoothDrift_wing_R",
+      "file": "meshes/board_greatWhite_smoothDrift_wing_R_229.obj",
+      "bytes": 12439,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_greatWhite_speedUp",
+      "file": "meshes/board_greatWhite_speedUp_206.obj",
+      "bytes": 27941,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_greatWhite_speedUp_propeller",
+      "file": "meshes/board_greatWhite_speedUp_propeller_217.obj",
+      "bytes": 13531,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_hotRod_base",
+      "file": "meshes/board_hotRod_base_178.obj",
+      "bytes": 150348,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_hotRod_thruster",
+      "file": "meshes/board_hotRod_thruster_194.obj",
+      "bytes": 20723,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_lowrider_base",
+      "file": "meshes/board_lowrider_base_160.obj",
+      "bytes": 68082,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_lumberJack",
+      "file": "meshes/board_lumberJack_187.obj",
+      "bytes": 60038,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_lumberJack_doubleJump",
+      "file": "meshes/board_lumberJack_doubleJump_168.obj",
+      "bytes": 59165,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_lumberJack_stayLow",
+      "file": "meshes/board_lumberJack_stayLow_201.obj",
+      "bytes": 48841,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_monster_speedUp",
+      "file": "meshes/board_monster_speedUp_182.obj",
+      "bytes": 45214,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_monster_superJump",
+      "file": "meshes/board_monster_superJump_198.obj",
+      "bytes": 33795,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_rioHD",
+      "file": "meshes/board_rioHD_277.obj",
+      "bytes": 127765,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_scoot_base",
+      "file": "meshes/board_scoot_base_203.obj",
+      "bytes": 57348,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_scoot_speedUp",
+      "file": "meshes/board_scoot_speedUp_173.obj",
+      "bytes": 54495,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_scoot_zapSideways",
+      "file": "meshes/board_scoot_zapSideways_190.obj",
+      "bytes": 38930,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_skullfire_doubleJump",
+      "file": "meshes/board_skullfire_doubleJump_210.obj",
+      "bytes": 46500,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_skullfire_doubleJump_thrusters",
+      "file": "meshes/board_skullfire_doubleJump_thrusters_219.obj",
+      "bytes": 31408,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_skullfire_speedUp",
+      "file": "meshes/board_skullfire_speedUp_199.obj",
+      "bytes": 54656,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_skullfire_speedUp_thrusters",
+      "file": "meshes/board_skullfire_speedUp_thrusters_183.obj",
+      "bytes": 15352,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_star_base",
+      "file": "meshes/board_star_base_179.obj",
+      "bytes": 48743,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_star_doubleJump",
+      "file": "meshes/board_star_doubleJump_195.obj",
+      "bytes": 44876,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_starterpack_01",
+      "file": "meshes/board_starterpack_01_166.obj",
+      "bytes": 195533,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_starterpack_01",
+      "file": "meshes/board_starterpack_01_314.obj",
+      "bytes": 142534,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_starterpack_hud_01",
+      "file": "meshes/board_starterpack_hud_01_212.obj",
+      "bytes": 535,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_starterpack_hud_01",
+      "file": "meshes/board_starterpack_hud_01_318.obj",
+      "bytes": 360,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_starterpack_hud_02",
+      "file": "meshes/board_starterpack_hud_02_221.obj",
+      "bytes": 1019,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_starterpack_hud_02",
+      "file": "meshes/board_starterpack_hud_02_320.obj",
+      "bytes": 669,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_starterpack_hud_03",
+      "file": "meshes/board_starterpack_hud_03_226.obj",
+      "bytes": 1512,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_starterpack_hud_03",
+      "file": "meshes/board_starterpack_hud_03_322.obj",
+      "bytes": 985,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_starterpack_hud_04",
+      "file": "meshes/board_starterpack_hud_04_231.obj",
+      "bytes": 2015,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_starterpack_hud_04",
+      "file": "meshes/board_starterpack_hud_04_324.obj",
+      "bytes": 1312,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_sunset_base",
+      "file": "meshes/board_sunset_base_175.obj",
+      "bytes": 68416,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_sunset_smoothDrift",
+      "file": "meshes/board_sunset_smoothDrift_223.obj",
+      "bytes": 68535,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_sunset_smoothDrift_FrontWing_L",
+      "file": "meshes/board_sunset_smoothDrift_FrontWing_L_228.obj",
+      "bytes": 9260,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_sunset_smoothDrift_FrontWing_R",
+      "file": "meshes/board_sunset_smoothDrift_FrontWing_R_233.obj",
+      "bytes": 9049,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_sunset_smoothDrift_wing_L",
+      "file": "meshes/board_sunset_smoothDrift_wing_L_216.obj",
+      "bytes": 7613,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_sunset_smoothDrift_wing_R",
+      "file": "meshes/board_sunset_smoothDrift_wing_R_205.obj",
+      "bytes": 7553,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_superhero_base",
+      "file": "meshes/board_superhero_base_208.obj",
+      "bytes": 65128,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_superhero_superJump",
+      "file": "meshes/board_superhero_superJump_180.obj",
+      "bytes": 37563,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_superhero_zapSideways",
+      "file": "meshes/board_superhero_zapSideways_196.obj",
+      "bytes": 33924,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_teleporter_base",
+      "file": "meshes/board_teleporter_base_170.obj",
+      "bytes": 27804,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_tokyoExtra_base",
+      "file": "meshes/board_tokyoExtra_base_167.obj",
+      "bytes": 50499,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_windGlider_base",
+      "file": "meshes/board_windGlider_base_163.obj",
+      "bytes": 45301,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "board_windGlider_wing_L",
+      "file": "meshes/board_windGlider_wing_L_200.obj",
+      "bytes": 4889,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "body",
+      "file": "meshes/body_227.obj",
+      "bytes": 1175,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "boost1",
+      "file": "meshes/boost1_337.obj",
+      "bytes": 42563,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "bush_1",
+      "file": "meshes/bush_1_153.obj",
+      "bytes": 48712,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "bush_2",
+      "file": "meshes/bush_2_152.obj",
+      "bytes": 47703,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "can_bronze",
+      "file": "meshes/can_bronze_265.obj",
+      "bytes": 70208,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "can_diamond",
+      "file": "meshes/can_diamond_351.obj",
+      "bytes": 86405,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "can_gold",
+      "file": "meshes/can_gold_267.obj",
+      "bytes": 74761,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "can_silver",
+      "file": "meshes/can_silver_266.obj",
+      "bytes": 71075,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "currency_coin",
+      "file": "meshes/currency_coin_316.obj",
+      "bytes": 7826,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "currency_key",
+      "file": "meshes/currency_key_235.obj",
+      "bytes": 45204,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "currency_key",
+      "file": "meshes/currency_key_315.obj",
+      "bytes": 38687,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "diamond",
+      "file": "meshes/diamond_331.obj",
+      "bytes": 5683,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "dog",
+      "file": "meshes/dog_70.obj",
+      "bytes": 52415,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "doubleJumper_thruster",
+      "file": "meshes/doubleJumper_thruster_274.obj",
+      "bytes": 7410,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "doubleJumper_thruster_green",
+      "file": "meshes/doubleJumper_thruster_green_273.obj",
+      "bytes": 7421,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "doubleJumpers",
+      "file": "meshes/doubleJumpers_353.obj",
+      "bytes": 43070,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "dumpster",
+      "file": "meshes/dumpster_104.obj",
+      "bytes": 111363,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "epic_end",
+      "file": "meshes/epic_end_146.obj",
+      "bytes": 528913,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "epic_mid",
+      "file": "meshes/epic_mid_145.obj",
+      "bytes": 517735,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "epic_start",
+      "file": "meshes/epic_start_144.obj",
+      "bytes": 606311,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "feather",
+      "file": "meshes/feather_350.obj",
+      "bytes": 2698,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "gates_base",
+      "file": "meshes/gates_base_147.obj",
+      "bytes": 540579,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "gates_left",
+      "file": "meshes/gates_left_150.obj",
+      "bytes": 256465,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "gates_mid",
+      "file": "meshes/gates_mid_149.obj",
+      "bytes": 262391,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "gates_right",
+      "file": "meshes/gates_right_148.obj",
+      "bytes": 255954,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "gates_sides",
+      "file": "meshes/gates_sides_151.obj",
+      "bytes": 215193,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "gold",
+      "file": "meshes/gold_330.obj",
+      "bytes": 7387,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "goldChainClock",
+      "file": "meshes/goldChainClock_329.obj",
+      "bytes": 38752,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "goldChainDollar",
+      "file": "meshes/goldChainDollar_328.obj",
+      "bytes": 45719,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "goldHeadPhones",
+      "file": "meshes/goldHeadPhones_325.obj",
+      "bytes": 23940,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "goldSkull",
+      "file": "meshes/goldSkull_338.obj",
+      "bytes": 21603,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "headstartToken",
+      "file": "meshes/headstartToken_272.obj",
+      "bytes": 81921,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "high_01_left",
+      "file": "meshes/high_01_left_112.obj",
+      "bytes": 394198,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "high_01_right",
+      "file": "meshes/high_01_right_116.obj",
+      "bytes": 391777,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "high_02_left",
+      "file": "meshes/high_02_left_113.obj",
+      "bytes": 365498,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "high_02_right",
+      "file": "meshes/high_02_right_118.obj",
+      "bytes": 448330,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "high_03_left",
+      "file": "meshes/high_03_left_114.obj",
+      "bytes": 350283,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "high_03_right",
+      "file": "meshes/high_03_right_119.obj",
+      "bytes": 410831,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "icosahedron",
+      "file": "meshes/icosahedron_10212.obj",
+      "bytes": 1000,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "lavaBubble1_mesh",
+      "file": "meshes/lavaBubble1_mesh_89.obj",
+      "bytes": 4639,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "lavaBubble2_mesh",
+      "file": "meshes/lavaBubble2_mesh_91.obj",
+      "bytes": 5044,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "lavaBurst1_mesh",
+      "file": "meshes/lavaBurst1_mesh_75.obj",
+      "bytes": 35104,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "lavaBurst2_mesh",
+      "file": "meshes/lavaBurst2_mesh_82.obj",
+      "bytes": 35114,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "lavaBurst3_mesh",
+      "file": "meshes/lavaBurst3_mesh_87.obj",
+      "bytes": 35126,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "leaf",
+      "file": "meshes/leaf_278.obj",
+      "bytes": 945,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "leaf_particle",
+      "file": "meshes/leaf_particle_71.obj",
+      "bytes": 2205,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "left_wing",
+      "file": "meshes/left_wing_222.obj",
+      "bytes": 4866,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "low_01_left",
+      "file": "meshes/low_01_left_121.obj",
+      "bytes": 287347,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "low_01_right",
+      "file": "meshes/low_01_right_123.obj",
+      "bytes": 570040,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "low_02_left",
+      "file": "meshes/low_02_left_122.obj",
+      "bytes": 242909,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "low_02_right",
+      "file": "meshes/low_02_right_125.obj",
+      "bytes": 491150,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "lp_black",
+      "file": "meshes/lp_black_327.obj",
+      "bytes": 15878,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "med_01_left",
+      "file": "meshes/med_01_left_127.obj",
+      "bytes": 253608,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "med_01_right",
+      "file": "meshes/med_01_right_133.obj",
+      "bytes": 399520,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "med_02_left",
+      "file": "meshes/med_02_left_129.obj",
+      "bytes": 297958,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "med_02_right",
+      "file": "meshes/med_02_right_135.obj",
+      "bytes": 507166,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "med_03_left",
+      "file": "meshes/med_03_left_131.obj",
+      "bytes": 203688,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "med_03_right",
+      "file": "meshes/med_03_right_136.obj",
+      "bytes": 384029,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "miniBox_Box",
+      "file": "meshes/miniBox_Box_349.obj",
+      "bytes": 12325,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "miniBox_lid",
+      "file": "meshes/miniBox_lid_348.obj",
+      "bytes": 4626,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "moneyBag",
+      "file": "meshes/moneyBag_336.obj",
+      "bytes": 26715,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "mysteryBox_base_default",
+      "file": "meshes/mysteryBox_base_default_321.obj",
+      "bytes": 167705,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "mysteryBox_base_super",
+      "file": "meshes/mysteryBox_base_super_323.obj",
+      "bytes": 167860,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "mysteryBox_default",
+      "file": "meshes/mysteryBox_default_340.obj",
+      "bytes": 203400,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "mysteryBox_lid_default",
+      "file": "meshes/mysteryBox_lid_default_317.obj",
+      "bytes": 53133,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "mysteryBox_lid_super",
+      "file": "meshes/mysteryBox_lid_super_319.obj",
+      "bytes": 53282,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "mysteryBox_super",
+      "file": "meshes/mysteryBox_super_213.obj",
+      "bytes": 291567,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "mysteryBox_super",
+      "file": "meshes/mysteryBox_super_339.obj",
+      "bytes": 203804,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "pCylinder1",
+      "file": "meshes/pCylinder1_10203.obj",
+      "bytes": 9770,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "pPlane1",
+      "file": "meshes/pPlane1_10204.obj",
+      "bytes": 14297,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "pSphere1",
+      "file": "meshes/pSphere1_10200.obj",
+      "bytes": 68531,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "pillar",
+      "file": "meshes/pillar_110.obj",
+      "bytes": 7052,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "pillars_end",
+      "file": "meshes/pillars_end_142.obj",
+      "bytes": 192302,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "pillars_mid",
+      "file": "meshes/pillars_mid_141.obj",
+      "bytes": 403540,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "pillars_start",
+      "file": "meshes/pillars_start_140.obj",
+      "bytes": 259878,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "pow",
+      "file": "meshes/pow_117.obj",
+      "bytes": 1645,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "powBoost",
+      "file": "meshes/powBoost_237.obj",
+      "bytes": 2777,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "powRevive",
+      "file": "meshes/powRevive_155.obj",
+      "bytes": 7341,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "powRing",
+      "file": "meshes/powRing_120.obj",
+      "bytes": 4716,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "powerBox",
+      "file": "meshes/powerBox_101.obj",
+      "bytes": 12289,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "powerups_2xMultiplier",
+      "file": "meshes/powerups_2xMultiplier_309.obj",
+      "bytes": 24576,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "powerups_coinMagnet",
+      "file": "meshes/powerups_coinMagnet_306.obj",
+      "bytes": 10501,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "powerups_jetpack",
+      "file": "meshes/powerups_jetpack_305.obj",
+      "bytes": 92592,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "powerups_mysteryPowerup_base",
+      "file": "meshes/powerups_mysteryPowerup_base_310.obj",
+      "bytes": 13732,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "powerups_mysteryPowerup_ring1",
+      "file": "meshes/powerups_mysteryPowerup_ring1_313.obj",
+      "bytes": 5899,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "powerups_mysteryPowerup_ring2",
+      "file": "meshes/powerups_mysteryPowerup_ring2_312.obj",
+      "bytes": 5903,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "powerups_mysteryPowerup_ring3",
+      "file": "meshes/powerups_mysteryPowerup_ring3_311.obj",
+      "bytes": 5921,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "powerups_rocketPogo",
+      "file": "meshes/powerups_rocketPogo_308.obj",
+      "bytes": 57495,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "powerups_superSneakers",
+      "file": "meshes/powerups_superSneakers_307.obj",
+      "bytes": 21165,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "pyramid",
+      "file": "meshes/pyramid_10213.obj",
+      "bytes": 237,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "ring_wing",
+      "file": "meshes/ring_wing_215.obj",
+      "bytes": 4827,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "rock01_mesh",
+      "file": "meshes/rock01_mesh_77.obj",
+      "bytes": 4959,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "rock02_mesh",
+      "file": "meshes/rock02_mesh_84.obj",
+      "bytes": 4921,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "rock03_mesh",
+      "file": "meshes/rock03_mesh_88.obj",
+      "bytes": 4936,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "rocketSkates",
+      "file": "meshes/rocketSkates_354.obj",
+      "bytes": 51599,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "roll_dust1_mesh",
+      "file": "meshes/roll_dust1_mesh_72.obj",
+      "bytes": 2800,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "shadowPlane",
+      "file": "meshes/shadowPlane_232.obj",
+      "bytes": 332,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "shadowPlane_blob",
+      "file": "meshes/shadowPlane_blob_236.obj",
+      "bytes": 342,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "soundWaveEdge1",
+      "file": "meshes/soundWaveEdge1_76.obj",
+      "bytes": 1071,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "soundWaveEdge2",
+      "file": "meshes/soundWaveEdge2_94.obj",
+      "bytes": 1056,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "soundWaveEdge3",
+      "file": "meshes/soundWaveEdge3_97.obj",
+      "bytes": 1057,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "soundWaveEdge4",
+      "file": "meshes/soundWaveEdge4_100.obj",
+      "bytes": 1049,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "soundWaveEdge5",
+      "file": "meshes/soundWaveEdge5_103.obj",
+      "bytes": 1050,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "soundWaveEdge6",
+      "file": "meshes/soundWaveEdge6_106.obj",
+      "bytes": 1049,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "speedStripes",
+      "file": "meshes/speedStripes_184.obj",
+      "bytes": 4849,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "sprayCan",
+      "file": "meshes/sprayCan_341.obj",
+      "bytes": 33255,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "star7",
+      "file": "meshes/star7_115.obj",
+      "bytes": 1366,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "steamCloud_mesh",
+      "file": "meshes/steamCloud_mesh_83.obj",
+      "bytes": 21090,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "superSneakers",
+      "file": "meshes/superSneakers_357.obj",
+      "bytes": 59133,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "tape_black",
+      "file": "meshes/tape_black_326.obj",
+      "bytes": 11305,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "toprunBronze",
+      "file": "meshes/toprunBronze_268.obj",
+      "bytes": 16142,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "toprunCheckmark",
+      "file": "meshes/toprunCheckmark_276.obj",
+      "bytes": 26268,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "toprunDiamond",
+      "file": "meshes/toprunDiamond_275.obj",
+      "bytes": 22948,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "toprunGold",
+      "file": "meshes/toprunGold_270.obj",
+      "bytes": 19758,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "toprunSilver",
+      "file": "meshes/toprunSilver_269.obj",
+      "bytes": 18302,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "unlocker_fresh",
+      "file": "meshes/unlocker_fresh_332.obj",
+      "bytes": 6603,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "unlocker_spike",
+      "file": "meshes/unlocker_spike_333.obj",
+      "bytes": 7892,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "unlocker_tricky",
+      "file": "meshes/unlocker_tricky_334.obj",
+      "bytes": 13170,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "unlocker_yutani",
+      "file": "meshes/unlocker_yutani_335.obj",
+      "bytes": 43385,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "waterDrop01_mesh",
+      "file": "meshes/waterDrop01_mesh_69.obj",
+      "bytes": 4347,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "waterDrop02_mesh",
+      "file": "meshes/waterDrop02_mesh_79.obj",
+      "bytes": 8403,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "waterDrop03_mesh",
+      "file": "meshes/waterDrop03_mesh_86.obj",
+      "bytes": 4367,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "xmas2014_blue_box",
+      "file": "meshes/xmas2014_blue_box_346.obj",
+      "bytes": 15848,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "xmas2014_blue_lid",
+      "file": "meshes/xmas2014_blue_lid_343.obj",
+      "bytes": 19902,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "xmas2014_green_box",
+      "file": "meshes/xmas2014_green_box_347.obj",
+      "bytes": 15851,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "xmas2014_green_lid",
+      "file": "meshes/xmas2014_green_lid_344.obj",
+      "bytes": 19902,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "xmas2014_red_box",
+      "file": "meshes/xmas2014_red_box_345.obj",
+      "bytes": 15855,
+      "priority": 0
+    },
+    {
+      "type": "Mesh",
+      "name": "xmas2014_red_lid",
+      "file": "meshes/xmas2014_red_lid_342.obj",
+      "bytes": 19907,
+      "priority": 0
+    },
+    {
+      "type": "Sprite",
+      "name": "Fade",
+      "file": "sprites/Fade_715.png",
+      "bytes": 105,
+      "width": 32,
+      "height": 3,
+      "priority": 0
+    },
+    {
+      "type": "Sprite",
+      "name": "UnitySplash-cube",
+      "file": "sprites/UnitySplash-cube_10404.png",
+      "bytes": 36802,
+      "width": 2048,
+      "height": 1024,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "1.91_NewYork_load_splash_v2",
+      "file": "textures/1.91_NewYork_load_splash_v2_11.png",
+      "bytes": 347426,
+      "width": 1024,
+      "height": 1024,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "EscToExit_Text",
+      "file": "textures/EscToExit_Text_10402.png",
+      "bytes": 2807,
+      "width": 267,
+      "height": 20,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "EscToExit_back",
+      "file": "textures/EscToExit_back_10401.png",
+      "bytes": 4821,
+      "width": 74,
+      "height": 71,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "Fade",
+      "file": "textures/Fade_125.png",
+      "bytes": 105,
+      "width": 32,
+      "height": 3,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "GenericMenuColors",
+      "file": "textures/GenericMenuColors_141.png",
+      "bytes": 136,
+      "width": 4,
+      "height": 4,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "Icon_coin_pouch_large_mask",
+      "file": "textures/Icon_coin_pouch_large_mask_144.png",
+      "bytes": 977,
+      "width": 52,
+      "height": 70,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "MissionsFont_small-export",
+      "file": "textures/MissionsFont_small-export_156.png",
+      "bytes": 37995,
+      "width": 256,
+      "height": 256,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "Soft",
+      "file": "textures/Soft_10001.png",
+      "bytes": 4644,
+      "width": 128,
+      "height": 128,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "UnitySplash-cube",
+      "file": "textures/UnitySplash-cube_10403.png",
+      "bytes": 36802,
+      "width": 2048,
+      "height": 1024,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "UnityWatermark-beta",
+      "file": "textures/UnityWatermark-beta_10408.png",
+      "bytes": 1490,
+      "width": 127,
+      "height": 17,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "UnityWatermark-dev",
+      "file": "textures/UnityWatermark-dev_10410.png",
+      "bytes": 1261,
+      "width": 115,
+      "height": 17,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "UnityWatermark-edu",
+      "file": "textures/UnityWatermark-edu_10409.png",
+      "bytes": 1496,
+      "width": 148,
+      "height": 17,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "UnityWatermark-proto",
+      "file": "textures/UnityWatermark-proto_10413.png",
+      "bytes": 974,
+      "width": 87,
+      "height": 13,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "UnityWatermark-small",
+      "file": "textures/UnityWatermark-small_10400.png",
+      "bytes": 6941,
+      "width": 128,
+      "height": 58,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "UnityWatermark-trial",
+      "file": "textures/UnityWatermark-trial_10407.png",
+      "bytes": 885,
+      "width": 76,
+      "height": 14,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "UnityWatermark-trial-big",
+      "file": "textures/UnityWatermark-trial-big_10406.png",
+      "bytes": 6322,
+      "width": 512,
+      "height": 94,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "UnityWatermarkPlugin-beta",
+      "file": "textures/UnityWatermarkPlugin-beta_10414.png",
+      "bytes": 915,
+      "width": 66,
+      "height": 17,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "WarningSign",
+      "file": "textures/WarningSign_10411.png",
+      "bytes": 1309,
+      "width": 64,
+      "height": 64,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "ageRestriction_characterHeader",
+      "file": "textures/ageRestriction_characterHeader_131.png",
+      "bytes": 90634,
+      "width": 512,
+      "height": 256,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "amsterdam_prop_tex",
+      "file": "textures/amsterdam_prop_tex_126.png",
+      "bytes": 139,
+      "width": 4,
+      "height": 16,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "awards_bg",
+      "file": "textures/awards_bg_118.png",
+      "bytes": 46267,
+      "width": 512,
+      "height": 512,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "board_RioHD_tex",
+      "file": "textures/board_RioHD_tex_79.png",
+      "bytes": 205,
+      "width": 16,
+      "height": 32,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "board_bigKahuna_tex",
+      "file": "textures/board_bigKahuna_tex_147.png",
+      "bytes": 1219,
+      "width": 32,
+      "height": 64,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "board_bouncer_tex",
+      "file": "textures/board_bouncer_tex_116.png",
+      "bytes": 1039,
+      "width": 32,
+      "height": 32,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "board_daredevil_tex",
+      "file": "textures/board_daredevil_tex_105.png",
+      "bytes": 877,
+      "width": 32,
+      "height": 32,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "board_default_tex",
+      "file": "textures/board_default_tex_148.png",
+      "bytes": 1024,
+      "width": 32,
+      "height": 32,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "board_greatWhite_tex",
+      "file": "textures/board_greatWhite_tex_119.png",
+      "bytes": 1127,
+      "width": 32,
+      "height": 32,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "board_hotRod_tex",
+      "file": "textures/board_hotRod_tex_98.png",
+      "bytes": 1097,
+      "width": 32,
+      "height": 32,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "board_londonExtra_tex",
+      "file": "textures/board_londonExtra_tex_102.png",
+      "bytes": 634,
+      "width": 32,
+      "height": 32,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "board_lowrider_tex",
+      "file": "textures/board_lowrider_tex_135.png",
+      "bytes": 1891,
+      "width": 64,
+      "height": 64,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "board_lumberjack_tex",
+      "file": "textures/board_lumberjack_tex_136.png",
+      "bytes": 940,
+      "width": 32,
+      "height": 32,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "board_monster_tex",
+      "file": "textures/board_monster_tex_155.png",
+      "bytes": 789,
+      "width": 32,
+      "height": 32,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "board_scoot_tex",
+      "file": "textures/board_scoot_tex_88.png",
+      "bytes": 757,
+      "width": 32,
+      "height": 32,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "board_skullfire_tex",
+      "file": "textures/board_skullfire_tex_107.png",
+      "bytes": 678,
+      "width": 32,
+      "height": 32,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "board_star_tex",
+      "file": "textures/board_star_tex_101.png",
+      "bytes": 2464,
+      "width": 64,
+      "height": 64,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "board_starterpack_tex",
+      "file": "textures/board_starterpack_tex_92.png",
+      "bytes": 3624,
+      "width": 64,
+      "height": 64,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "board_sunset_tex",
+      "file": "textures/board_sunset_tex_127.png",
+      "bytes": 905,
+      "width": 32,
+      "height": 32,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "board_superhero_tex",
+      "file": "textures/board_superhero_tex_96.png",
+      "bytes": 1019,
+      "width": 32,
+      "height": 32,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "board_teleporter_tex",
+      "file": "textures/board_teleporter_tex_124.png",
+      "bytes": 184,
+      "width": 32,
+      "height": 32,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "board_tokyoExtra_tex",
+      "file": "textures/board_tokyoExtra_tex_149.png",
+      "bytes": 976,
+      "width": 64,
+      "height": 64,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "board_windglider_tex",
+      "file": "textures/board_windglider_tex_80.png",
+      "bytes": 609,
+      "width": 32,
+      "height": 32,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "bobble",
+      "file": "textures/bobble_108.png",
+      "bytes": 968,
+      "width": 32,
+      "height": 32,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "bobbleMiami",
+      "file": "textures/bobbleMiami_83.png",
+      "bytes": 1290,
+      "width": 32,
+      "height": 32,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "box",
+      "file": "textures/box_11001.png",
+      "bytes": 183,
+      "width": 12,
+      "height": 12,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "butterfly_idleScreen_tex",
+      "file": "textures/butterfly_idleScreen_tex_130.png",
+      "bytes": 1791,
+      "width": 32,
+      "height": 64,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "button",
+      "file": "textures/button_11006.png",
+      "bytes": 220,
+      "width": 12,
+      "height": 12,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "button_active",
+      "file": "textures/button_active_11002.png",
+      "bytes": 394,
+      "width": 12,
+      "height": 12,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "button_hover",
+      "file": "textures/button_hover_11003.png",
+      "bytes": 230,
+      "width": 12,
+      "height": 12,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "button_on",
+      "file": "textures/button_on_11005.png",
+      "bytes": 232,
+      "width": 12,
+      "height": 12,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "button_on_hover",
+      "file": "textures/button_on_hover_11004.png",
+      "bytes": 241,
+      "width": 12,
+      "height": 12,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "celebration_stripe",
+      "file": "textures/celebration_stripe_67.png",
+      "bytes": 1372,
+      "width": 256,
+      "height": 16,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "char_king",
+      "file": "textures/char_king_152.png",
+      "bytes": 40091,
+      "width": 276,
+      "height": 268,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "circle_bg_mask",
+      "file": "textures/circle_bg_mask_81.png",
+      "bytes": 817,
+      "width": 100,
+      "height": 100,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "double_coins_button_mask",
+      "file": "textures/double_coins_button_mask_122.png",
+      "bytes": 595,
+      "width": 246,
+      "height": 59,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "effects_tex",
+      "file": "textures/effects_tex_74.png",
+      "bytes": 5951,
+      "width": 128,
+      "height": 64,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "emblem_halloween",
+      "file": "textures/emblem_halloween_75.png",
+      "bytes": 28582,
+      "width": 196,
+      "height": 220,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "event_bg",
+      "file": "textures/event_bg_77.png",
+      "bytes": 8367,
+      "width": 128,
+      "height": 128,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "front_icon_MyTour",
+      "file": "textures/front_icon_MyTour_139.png",
+      "bytes": 21550,
+      "width": 256,
+      "height": 128,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "front_icon_me",
+      "file": "textures/front_icon_me_145.png",
+      "bytes": 28340,
+      "width": 256,
+      "height": 256,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "front_icon_shop",
+      "file": "textures/front_icon_shop_99.png",
+      "bytes": 32623,
+      "width": 256,
+      "height": 256,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "front_icon_top_run",
+      "file": "textures/front_icon_top_run_128.png",
+      "bytes": 64406,
+      "width": 512,
+      "height": 256,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "grindsparkFX",
+      "file": "textures/grindsparkFX_60.png",
+      "bytes": 41167,
+      "width": 256,
+      "height": 256,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "horizontal_scrollbar",
+      "file": "textures/horizontal_scrollbar_11008.png",
+      "bytes": 278,
+      "width": 18,
+      "height": 15,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "horizontal_scrollbar_thumb",
+      "file": "textures/horizontal_scrollbar_thumb_11007.png",
+      "bytes": 239,
+      "width": 12,
+      "height": 12,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "horizontalslider",
+      "file": "textures/horizontalslider_11009.png",
+      "bytes": 163,
+      "width": 8,
+      "height": 7,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "hunt_prize_bg",
+      "file": "textures/hunt_prize_bg_117.png",
+      "bytes": 253,
+      "width": 128,
+      "height": 4,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "icon_00_Brody",
+      "file": "textures/icon_00_Brody_86.png",
+      "bytes": 44042,
+      "width": 256,
+      "height": 256,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "icon_01_Tagbot",
+      "file": "textures/icon_01_Tagbot_120.png",
+      "bytes": 41382,
+      "width": 256,
+      "height": 256,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "icon_02_Tasha",
+      "file": "textures/icon_02_Tasha_129.png",
+      "bytes": 45249,
+      "width": 256,
+      "height": 256,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "icon_03_Ninja",
+      "file": "textures/icon_03_Ninja_87.png",
+      "bytes": 34642,
+      "width": 256,
+      "height": 256,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "icon_04_Lucy",
+      "file": "textures/icon_04_Lucy_114.png",
+      "bytes": 47621,
+      "width": 256,
+      "height": 256,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "icon_05_KIng",
+      "file": "textures/icon_05_KIng_91.png",
+      "bytes": 43881,
+      "width": 256,
+      "height": 256,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "icon_07_Yutani",
+      "file": "textures/icon_07_Yutani_97.png",
+      "bytes": 37057,
+      "width": 256,
+      "height": 256,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "icon_08_Spike",
+      "file": "textures/icon_08_Spike_104.png",
+      "bytes": 42112,
+      "width": 256,
+      "height": 256,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "icon_09_Fresh",
+      "file": "textures/icon_09_Fresh_142.png",
+      "bytes": 36526,
+      "width": 256,
+      "height": 256,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "icon_11_Tricky",
+      "file": "textures/icon_11_Tricky_150.png",
+      "bytes": 48543,
+      "width": 256,
+      "height": 256,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "icon_friend",
+      "file": "textures/icon_friend_110.png",
+      "bytes": 1564,
+      "width": 64,
+      "height": 64,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "icon_key_cloud_mask",
+      "file": "textures/icon_key_cloud_mask_82.png",
+      "bytes": 1969,
+      "width": 88,
+      "height": 64,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "icon_mystery_box_mask",
+      "file": "textures/icon_mystery_box_mask_121.png",
+      "bytes": 2791,
+      "width": 146,
+      "height": 136,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "icon_small_mini_mysteryBox_mask",
+      "file": "textures/icon_small_mini_mysteryBox_mask_138.png",
+      "bytes": 618,
+      "width": 54,
+      "height": 52,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "icon_star",
+      "file": "textures/icon_star_103.png",
+      "bytes": 337,
+      "width": 20,
+      "height": 19,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "icon_star",
+      "file": "textures/icon_star_133.png",
+      "bytes": 598,
+      "width": 40,
+      "height": 38,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "img_char_jake",
+      "file": "textures/img_char_jake_109.png",
+      "bytes": 67287,
+      "width": 280,
+      "height": 404,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "jetpackSmoke",
+      "file": "textures/jetpackSmoke_53.png",
+      "bytes": 6515,
+      "width": 128,
+      "height": 32,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "lavaGlowingParticle",
+      "file": "textures/lavaGlowingParticle_57.png",
+      "bytes": 4573,
+      "width": 64,
+      "height": 64,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "material_effect_paintSpray",
+      "file": "textures/material_effect_paintSpray_50.png",
+      "bytes": 6156,
+      "width": 128,
+      "height": 128,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "material_effect_puff",
+      "file": "textures/material_effect_puff_94.png",
+      "bytes": 5079,
+      "width": 128,
+      "height": 128,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "mysterybox_bg",
+      "file": "textures/mysterybox_bg_111.png",
+      "bytes": 150491,
+      "width": 1024,
+      "height": 1024,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "props_tex",
+      "file": "textures/props_tex_78.png",
+      "bytes": 110392,
+      "width": 512,
+      "height": 512,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "scoreboard",
+      "file": "textures/scoreboard_89.png",
+      "bytes": 15700,
+      "width": 512,
+      "height": 256,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "selector",
+      "file": "textures/selector_85.png",
+      "bytes": 1065,
+      "width": 64,
+      "height": 64,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "shineAdditive",
+      "file": "textures/shineAdditive_84.png",
+      "bytes": 270,
+      "width": 64,
+      "height": 64,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "slider_thumb",
+      "file": "textures/slider_thumb_11011.png",
+      "bytes": 215,
+      "width": 8,
+      "height": 12,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "slider_thumb_active",
+      "file": "textures/slider_thumb_active_11010.png",
+      "bytes": 227,
+      "width": 8,
+      "height": 12,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "slidert_humb_hover",
+      "file": "textures/slidert_humb_hover_11012.png",
+      "bytes": 210,
+      "width": 8,
+      "height": 12,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "spraySplash",
+      "file": "textures/spraySplash_134.png",
+      "bytes": 2643,
+      "width": 64,
+      "height": 64,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "ssBlurred",
+      "file": "textures/ssBlurred_100.png",
+      "bytes": 147681,
+      "width": 512,
+      "height": 512,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "teleboardFX",
+      "file": "textures/teleboardFX_49.png",
+      "bytes": 87,
+      "width": 16,
+      "height": 16,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "textfield",
+      "file": "textures/textfield_11024.png",
+      "bytes": 227,
+      "width": 12,
+      "height": 12,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "textfield_hover",
+      "file": "textures/textfield_hover_11026.png",
+      "bytes": 225,
+      "width": 12,
+      "height": 12,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "textfield_on",
+      "file": "textures/textfield_on_11025.png",
+      "bytes": 235,
+      "width": 12,
+      "height": 12,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "toggle",
+      "file": "textures/toggle_11018.png",
+      "bytes": 242,
+      "width": 14,
+      "height": 14,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "toggle_active",
+      "file": "textures/toggle_active_11013.png",
+      "bytes": 260,
+      "width": 14,
+      "height": 14,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "toggle_hover",
+      "file": "textures/toggle_hover_11014.png",
+      "bytes": 259,
+      "width": 14,
+      "height": 14,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "toggle_on",
+      "file": "textures/toggle_on_11016.png",
+      "bytes": 329,
+      "width": 14,
+      "height": 14,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "toggle_on_active",
+      "file": "textures/toggle_on_active_11017.png",
+      "bytes": 345,
+      "width": 14,
+      "height": 14,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "toggle_on_hover",
+      "file": "textures/toggle_on_hover_11015.png",
+      "bytes": 347,
+      "width": 14,
+      "height": 14,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "tokyo_stripe",
+      "file": "textures/tokyo_stripe_143.png",
+      "bytes": 1733,
+      "width": 10,
+      "height": 448,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "vertical_scrollbar",
+      "file": "textures/vertical_scrollbar_11020.png",
+      "bytes": 262,
+      "width": 15,
+      "height": 18,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "vertical_scrollbar_thumb",
+      "file": "textures/vertical_scrollbar_thumb_11019.png",
+      "bytes": 223,
+      "width": 12,
+      "height": 12,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "verticalslider",
+      "file": "textures/verticalslider_11021.png",
+      "bytes": 149,
+      "width": 7,
+      "height": 8,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "video_button_tv_icon_mask",
+      "file": "textures/video_button_tv_icon_mask_106.png",
+      "bytes": 1311,
+      "width": 85,
+      "height": 104,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "welcome_pack_main_button_mask",
+      "file": "textures/welcome_pack_main_button_mask_146.png",
+      "bytes": 1013,
+      "width": 64,
+      "height": 64,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "white",
+      "file": "textures/white_58.png",
+      "bytes": 101,
+      "width": 32,
+      "height": 32,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "whiteBlob",
+      "file": "textures/whiteBlob_54.png",
+      "bytes": 1750,
+      "width": 64,
+      "height": 64,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "whitebox",
+      "file": "textures/whitebox_95.png",
+      "bytes": 80,
+      "width": 3,
+      "height": 3,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "window",
+      "file": "textures/window_11023.png",
+      "bytes": 337,
+      "width": 17,
+      "height": 27,
+      "priority": 0
+    },
+    {
+      "type": "Texture2D",
+      "name": "window_on",
+      "file": "textures/window_on_11022.png",
+      "bytes": 344,
+      "width": 17,
+      "height": 27,
+      "priority": 0
+    }
+  ],
+  "errors": [
+    "Texture2D Font_Texture: [Errno 21] Is a directory: '/tmp/iceland_webgl_5gifooyf'",
+    "Texture2D Font_Texture: [Errno 21] Is a directory: '/tmp/iceland_webgl_5gifooyf'",
+    "Texture2D Font_Texture: [Errno 21] Is a directory: '/tmp/iceland_webgl_5gifooyf'",
+    "Texture2D Font_Texture: [Errno 21] Is a directory: '/tmp/iceland_webgl_5gifooyf'",
+    "Texture2D Font_Texture: [Errno 21] Is a directory: '/tmp/iceland_webgl_5gifooyf'",
+    "Texture2D Font_Texture: [Errno 21] Is a directory: '/tmp/iceland_webgl_5gifooyf'"
+  ],
+  "note": "Export for inspection and independent viewing; not inserted into the compiled Transylvania Unity scene.",
+  "compression": "plain UnityWebData1.0",
+  "inputBytes": 27865882,
+  "uncompressedBytes": 27865882,
+  "publishedBytes": 24119609,
+  "exportedFiles": 448
+}
