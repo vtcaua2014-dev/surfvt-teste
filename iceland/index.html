@@ -39,7 +39,72 @@
         background: #b00020; color: #fff; font: 15px/1.4 sans-serif; text-align: center; border-radius: 8px;
       }
     </style>
-  <script>(function(){var P=["Build/miamiSiteBuild.data.unityweb.part0","Build/miamiSiteBuild.data.unityweb.part1","Build/miamiSiteBuild.data.unityweb.part2","Build/miamiSiteBuild.data.unityweb.part3","Build/miamiSiteBuild.data.unityweb.part4","Build/miamiSiteBuild.data.unityweb.part5","Build/miamiSiteBuild.data.unityweb.part6"];var F=window.fetch;window.fetch=function(i,o){var u=typeof i==='string'?i:(i&&i.url)||'';if(/miamiSiteBuild\.data\.unityweb(\?|#|$)/.test(u)){return Promise.all(P.map(function(p){return F(p).then(function(r){if(!r.ok)throw new Error('falha ao baixar '+p);return r.arrayBuffer();});})).then(function(b){return new Response(new Blob(b),{status:200,headers:{'Content-Type':'application/octet-stream'}});});}return F.apply(this,arguments);};})();</script>
+  <script>
+(function () {
+  "use strict";
+  // Stream 7 original data shards sequentially; never hold all 126 MB
+  // in an extra Promise.all + Blob before Unity starts.
+  var PART_COUNT = 7, SHARD_BYTES = 20971520, DATA_BYTES = 126534900;
+  var nativeFetch = window.fetch;
+  function isUnityData(input) {
+    var raw = typeof input === "string" ? input : (input && input.url) || String(input);
+    try {
+      return new URL(raw, document.baseURI).pathname.endsWith("/Build/miamiSiteBuild.data.unityweb");
+    } catch (_) { return false; }
+  }
+  function getShard(index, attempt) {
+    var file = new URL("Build/miamiSiteBuild.data.unityweb.part" + index, document.baseURI).href;
+    return nativeFetch(file, { cache: attempt > 1 ? "reload" : "no-store" })
+      .then(function (response) {
+        if (!response.ok) throw new Error("Data shard " + index + " HTTP " + response.status);
+        return response.arrayBuffer();
+      })
+      .then(function (arrayBuffer) {
+        var expected = index < PART_COUNT - 1 ? SHARD_BYTES : DATA_BYTES - (PART_COUNT - 1) * SHARD_BYTES;
+        if (arrayBuffer.byteLength !== expected) {
+          throw new Error("Data shard " + index + " incompleto: " + arrayBuffer.byteLength + "/" + expected);
+        }
+        return new Uint8Array(arrayBuffer);
+      })
+      .catch(function (error) {
+        if (attempt >= 4) throw error;
+        console.warn("[SurfVT14] Retrying Unity data shard", index, attempt, error);
+        return new Promise(function (resolve) { setTimeout(resolve, attempt * 350); })
+          .then(function () { return getShard(index, attempt + 1); });
+      });
+  }
+  window.fetch = function (input, options) {
+    if (!isUnityData(input)) return nativeFetch.apply(this, arguments);
+    var index = 0, loaded = 0;
+    var stream = new ReadableStream({
+      pull: async function (controller) {
+        if (index === PART_COUNT) {
+          if (loaded !== DATA_BYTES) controller.error(new Error("Data payload size mismatch: " + loaded));
+          else controller.close();
+          return;
+        }
+        try {
+          var bytes = await getShard(index, 1);
+          loaded += bytes.byteLength;
+          controller.enqueue(bytes);
+          index++;
+          if (index === PART_COUNT) {
+            if (loaded !== DATA_BYTES) controller.error(new Error("Unity data tamanho inválido"));
+            else controller.close();
+          }
+        } catch (error) {
+          controller.error(error);
+        }
+      }
+    }, { highWaterMark: 1 });
+    return Promise.resolve(new Response(stream, {
+      status: 200,
+      headers: { "Content-Type": "application/octet-stream",
+        "Content-Length": String(DATA_BYTES), "Cache-Control": "no-store" }
+    }));
+  };
+})();
+</script>
 <style>
 #gj-box{isolation:isolate}
 #gj-box #iceland-scene{position:absolute;inset:0;z-index:4;display:block;width:100%;height:100%;background:transparent;pointer-events:none;touch-action:none;opacity:.8}
@@ -59,6 +124,7 @@
 @media(max-width:600px){#iceland-tools{padding:8px 10px;font-size:11px;max-width:min(290px,calc(100vw - 12px));right:6px;top:6px}#iceland-tools strong{font-size:11px}#iceland-tools .iceland-links{gap:8px;margin:5px 0}#iceland-tools .iceland-note{display:none}}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.167.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.167.0/examples/jsm/"}}</script>
+<script src="iceland/wasm-recovery.js?v=wasm-preflight-v2"></script>
 </head>
   <body>
     <div id="gj-box">
@@ -142,7 +208,12 @@
         var config = {
           dataUrl: buildUrl + "/miamiSiteBuild.data.unityweb",
           frameworkUrl: buildUrl + "/miamiSiteBuild.framework.js",
-          codeUrl: buildUrl + "/miamiSiteBuild.wasm",
+          codeUrl: new URL("Build/miamiSiteBuild.wasm?version=iceland-fix-v2", document.baseURI).href,
+          locateFile: function (filename) {
+            if (filename === "build.wasm") return new URL("Build/miamiSiteBuild.wasm", document.baseURI).href;
+            return filename;
+          },
+          cacheControl: function () { return "no-store"; },
           streamingAssetsUrl: "StreamingAssets",
           companyName: "Kiloo Games",
           productName: "Subway Surf",
@@ -161,7 +232,13 @@
 
         var script = document.createElement("script");
         script.src = buildUrl + "/miamiSiteBuild.loader.js";
+        var wasmSession = null;
         script.onload = function () {
+          if (typeof createUnityInstance !== "function") {
+            showError("O carregador Unity da Transylvania não foi inicializado.");
+            if (wasmSession) wasmSession.release();
+            return;
+          }
           createUnityInstance(canvas, config, function (progress) {
             fill.style.width = (100 * progress) + "%";
           }).then(function (instance) {
@@ -169,10 +246,31 @@
             window.dispatchEvent(new Event('iceland:unity-ready'));
             loading.style.display = "none";
             canvas.focus();
-          }).catch(showError);
+          }).catch(showError).finally(function () {
+            if (wasmSession) {
+              wasmSession.release();
+              wasmSession = null;
+            }
+          });
         };
-        script.onerror = function () { showError("Não foi possível carregar o jogo. Recarregue a página."); };
-        document.body.appendChild(script);
+        script.onerror = function () {
+          if (wasmSession) wasmSession.release();
+          showError("Não foi possível baixar o carregador Unity da Transylvania.");
+        };
+        if (!window.SurfVTWasmRecovery) {
+          showError("O módulo de recuperação de WASM não foi publicado no GitHub Pages.");
+        } else {
+          window.SurfVTWasmRecovery.prepare(function (message) {
+            var label = document.getElementById("iceland-status");
+            if (label) label.textContent = message;
+          }).then(function (session) {
+            wasmSession = session;
+            document.body.appendChild(script);
+          }).catch(function (error) {
+            console.error("[SurfVT14] WASM preflight failure", error);
+            showError(error && error.message ? error.message : String(error));
+          });
+        }
       })();
     </script>
     <script type="module" src="iceland/iceland-layer.js"></script>
