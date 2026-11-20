@@ -1,0 +1,65 @@
+name: Preparar WASM Transylvania em partes para Iceland
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/prepare-transylvania-wasm-shards.yml"
+      - "scripts/prepare_transylvania_wasm_shards.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: transylvania-wasm-shards-main
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout main with Unity assets
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          fetch-depth: 1
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Verify original WASM and generate 2 MiB chunks
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/prepare_transylvania_wasm_shards.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          manifest=json.loads(Path('iceland/wasm-chunks.json').read_text())
+          assert manifest['format']=='surfvt14-transylvania-wasm-shards-v1'
+          assert len(manifest['parts'])>1
+          assert sum(p['size'] for p in manifest['parts']) == manifest['totalBytes']
+          for chunk in manifest['parts']:
+              p=Path(chunk['path'])
+              assert p.is_file() and p.stat().st_size == chunk['size'], str(p)
+          print('Validated',len(manifest['parts']),'WASM parts')
+          PY
+
+      - name: Commit chunked Unity WASM only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Build/wasm-shards/ iceland/wasm-chunks.json
+          if git diff --cached --quiet; then
+            echo "No changes in WASM shards"
+          else
+            git commit -m "Publish verified original Transylvania WASM in 2 MiB shards"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
