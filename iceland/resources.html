@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Iceland • Atlas, texturas e meshes</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,Arial,sans-serif;background:#07141c;color:#e5f7ff}body{margin:0}
+*{box-sizing:border-box}a{color:#a7eafb}.wrap{max-width:1120px;margin:auto;padding:24px}
+header{display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap}
+h1{font-size:clamp(27px,5vw,45px);margin:28px 0 12px;letter-spacing:-.055em}
+p{color:#abc8d5;line-height:1.6}.state{border:1px solid #426577;background:#142d3b;border-radius:12px;padding:14px;line-height:1.6;font-size:14px}
+.toolbar{display:flex;gap:10px;margin:20px 0;flex-wrap:wrap}
+input,select,button{font:inherit;color:#e5f8ff;border:1px solid #426478;background:#132e3d;padding:11px 14px;border-radius:10px;min-width:0}
+input{flex:1;min-width:190px}button{cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.item{border:1px solid #315363;background:#142833;border-radius:12px;overflow:hidden;min-width:0}
+.item img{width:100%;height:165px;object-fit:contain;background:#0b1b25;display:block}
+.mesh{height:165px;display:grid;place-items:center;font-size:65px;color:#87c3db;background:#10202c}
+.body{padding:14px}.name{font-size:13px;font-weight:bold;word-break:break-word;min-height:35px}
+.desc{font-size:11px;color:#a0bdc9;margin:8px 0}.body a,.body button{display:inline-block;margin:7px 7px 0 0;font-size:12px}
+#modelArea{display:none;border:1px solid #2f5869;border-radius:13px;overflow:hidden;margin:18px 0;background:#0a1923}
+#modelCanvas{display:block;width:100%;height:min(50vw,460px);min-height:260px}
+#modelText{padding:12px;margin:0}
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.167.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.167.0/examples/jsm/"}}</script>
+</head><body><main class="wrap">
+<header><b style="letter-spacing:.13em;color:#a5f0ff">SURFVT14 · ICELAND ASSET LAB</b><nav><a href="./">Voltar ao protótipo</a> · <a href="./assets.html">Manifesto original</a></nav></header>
+<h1>Recursos extraídos de Iceland</h1>
+<p>Visualize e baixe texturas, atlas e meshes exportados do pacote Unity 2019. Um arquivo OBJ isolado não inclui automaticamente o posicionamento da cena, materiais, animações ou lógica da Transylvania.</p>
+<div class="state" id="state">Consultando o manifesto da extração…</div>
+<div class="toolbar"><input id="search" placeholder="Buscar (snow, ice, train…)" aria-label="Buscar assets">
+<select id="filter" aria-label="Tipo de arquivo"><option value="">Todos</option><option value="Mesh">Meshes</option><option value="Texture2D">Texturas</option><option value="Sprite">Sprites</option><option value="Material">Materiais</option></select>
+<button id="refresh">Atualizar</button></div>
+<section id="modelArea"><canvas id="modelCanvas"></canvas><p id="modelText">Prévia 3D</p></section>
+<section id="grid" class="grid"></section>
+<p style="font-size:12px;margin-top:30px">Os assets permanecem sujeitos aos direitos e às permissões dos respectivos titulares. A extração não equivale à substituição da cena no Unity compilado.</p>
+</main>
+<script type="module">
+const state=document.getElementById('state'),grid=document.getElementById('grid');
+const search=document.getElementById('search'),filter=document.getElementById('filter');
+let assets=[],renderer,scene,object,camera,raf;
+function item(type,className,text){const el=document.createElement(type);if(className)el.className=className;if(text!==undefined)el.textContent=text;return el}
+function showAssets(){
+ grid.replaceChildren();
+ let list=assets.filter(a=>(!filter.value||a.type===filter.value)&&String(a.name).toLowerCase().includes(search.value.toLowerCase()));
+ if(!list.length){grid.append(item('p','',assets.length?'Nenhum resultado.':'Nenhum recurso extraído disponível.'));return}
+ for(const a of list.slice(0,400)){
+  const card=item('article','item'),path=String(a.file||'');
+  const url=path&&!path.startsWith('/')&&!path.includes('..')?'./extracted/'+path:'';
+  if(url&&url.endsWith('.png')){const im=item('img','');im.src=url;im.alt=a.name;im.loading='lazy';card.append(im)}
+  else card.append(item('div','mesh',a.type==='Mesh'?'◇':'▧'));
+  const body=item('div','body');body.append(item('div','name',a.name));
+  body.append(item('div','desc',a.type+' · '+(a.bytes?Math.round(a.bytes/1024)+' KiB':'referência')));
+  if(url){const link=item('a','','Baixar');link.href=url;link.download=path.split('/').pop();body.append(link)}
+  if(a.type==='Mesh'&&url){const btn=item('button','','Visualizar 3D');btn.onclick=()=>viewOBJ(url,a.name);body.append(btn)}
+  card.append(body);grid.append(card);
+ }
+}
+async function refresh(){
+ try{const r=await fetch('./extracted/manifest.json?cache='+Date.now(),{cache:'no-store'});
+ if(!r.ok)throw Error('Relatório não publicado (HTTP '+r.status+')');
+ const m=await r.json();assets=Array.isArray(m.assets)?m.assets:[];
+ state.textContent=(m.status==='extracted'?'Extração realizada. ':'Extração ainda não concluída. ')+
+ (m.exportedFiles||0)+' arquivos gerados; '+(m.rawFiles||[]).length+' entradas no Unity WebGL.'+
+ (m.errors?.length?' Erros/avisos: '+m.errors.slice(0,2).join(' | '):'');
+ }catch(e){assets=[];state.textContent='Extração pendente: '+String(e)+'. Consulte o workflow no GitHub Actions.'}
+ showAssets();
+}
+async function viewOBJ(url,name){
+ const container=document.getElementById('modelArea'),canvas=document.getElementById('modelCanvas'),txt=document.getElementById('modelText');
+ container.style.display='block';txt.textContent='Abrindo '+name;container.scrollIntoView({behavior:'smooth',block:'nearest'});
+ try{
+  const THREE=await import('three');const OBJLoader=(await import('three/addons/loaders/OBJLoader.js')).OBJLoader;
+  if(raf)cancelAnimationFrame(raf);if(renderer)renderer.dispose();
+  const w=Math.max(300,canvas.clientWidth),h=Math.max(260,canvas.clientHeight);
+  renderer=new THREE.WebGLRenderer({canvas,antialias:true});
+  renderer.setSize(w,h,false);renderer.setPixelRatio(Math.min(2,devicePixelRatio||1));
+  scene=new THREE.Scene();scene.background=new THREE.Color('#0a1a23');
+  scene.add(new THREE.HemisphereLight(0xd8f5ff,0x284455,2));
+  const sun=new THREE.DirectionalLight(0xffffff,1.8);sun.position.set(3,6,5);scene.add(sun);
+  camera=new THREE.PerspectiveCamera(50,w/h,.01,10000);
+  object=await new OBJLoader().loadAsync(url);
+  const bb=new THREE.Box3().setFromObject(object),size=bb.getSize(new THREE.Vector3()),center=bb.getCenter(new THREE.Vector3()),radius=Math.max(size.length(),.01);
+  object.position.sub(center);
+  object.traverse(o=>{if(o.isMesh)o.material=new THREE.MeshStandardMaterial({color:0x9bcad8,roughness:.8,side:THREE.DoubleSide})});
+  scene.add(object);camera.position.set(radius*.8,radius*.45,radius*.9);camera.near=Math.max(.001,radius/1000);camera.far=radius*10;camera.updateProjectionMatrix();camera.lookAt(0,0,0);
+  txt.textContent=name+' · Modelo extraído isolado (sem shaders originais)';
+  const frame=()=>{raf=requestAnimationFrame(frame);object.rotation.y+=.003;renderer.render(scene,camera)};frame();
+ }catch(e){txt.textContent='Falha ao visualizar OBJ: '+String(e)}
+}
+search.addEventListener('input',showAssets);filter.addEventListener('change',showAssets);
+document.getElementById('refresh').onclick=refresh;refresh();
+</script></body></html>
