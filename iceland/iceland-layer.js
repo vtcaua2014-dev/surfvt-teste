@@ -101,6 +101,8 @@ async function prepareLayer() {
       powerPreference: "low-power",
     });
     state.renderer = renderer;
+    // Hidden canvas has a 0x0 bounding box; unhide before sizing the renderer.
+    canvas.hidden = false;
     renderer.setClearColor(0x000000, 0);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.sortObjects = true;
@@ -182,13 +184,14 @@ async function prepareLayer() {
   } catch (error) {
     console.error("[Iceland] failed to initialize visual layer", error);
     state.failed = true;
+    canvas.hidden = true;
     setStatus(THREE_ERROR);
     toggle.disabled = false;
     toggle.textContent = "Camada indisponível";
   }
 }
 toggle.addEventListener("click", () => {
-  if (!state.ready) { setStatus("Carregando Transylvania antes de ativar Iceland…"); return; }
+  if (!state.ready) { setStatus("Aguardando o carregador Unity. Se ele falhar, a prévia Iceland pode ser ativada separadamente."); return; }
   if (state.loaded) setEnabled(!state.running);
   else prepareLayer();
 });
@@ -207,6 +210,16 @@ function unityReady() {
     setTimeout(prepareLayer, 1200);
   }
 }
+window.addEventListener("iceland:unity-failed", () => {
+  // Keep the extracted asset viewer usable even when the compiled Unity game
+  // fails to load. No claim that the Unity scene has been replaced.
+  if (!state.ready) {
+    state.ready = true;
+    toggle.disabled = false;
+    toggle.textContent = "Visualizar cenário Iceland";
+    setStatus("A Transylvania não iniciou; é possível visualizar Iceland como camada 3D separada.");
+  }
+});
 window.addEventListener("iceland:unity-ready", unityReady);
 if (window.unityInstance) unityReady();
 else { setStatus("Aguardando inicialização do carregador Transylvania…"); toggle.disabled = true; }
