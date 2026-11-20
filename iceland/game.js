@@ -23,7 +23,8 @@ let decorative = [], obstacles = [], collectible = [], activeParts = [];
 let lane = 1, playerY = 0, playerSpeedY = 0, rollTime = 0, boardTime = 0;
 let distance = 0, points = 0, coins = 0, spawnClock = 2.1;
 let lastTouch = 0, lastFrame = performance.now(), lastHud = 0;
-let maxScore = Number(localStorage.getItem("icelandRunnerBest") || 0);
+let maxScore = 0;
+try { maxScore = Number(localStorage.getItem("icelandRunnerBest") || 0) || 0; } catch {}
 let loadedMeshes = 0, loadedTextures = 0;
 const meshFiles = [
   "track", "train_standard", "train_sub", "train_cargo", "train_ramp",
