@@ -1,0 +1,302 @@
+{
+  "schemaVersion": 1,
+  "title": "Iceland × Transylvania — camada cênica experimental",
+  "runtime": "Original Transylvania Unity WebGL loader miamiSiteBuild.loader.js; Unity data, framework and wasm unchanged",
+  "source": "Iceland 2019.2.0f1, extracted from SurfVT14 WebGL package",
+  "limitation": "A camada é renderizada separadamente com Three.js; não substitui GameObjects, shaders, cenas, colisões ou câmera no runtime Unity da Transylvania.",
+  "exportedAssets": {
+    "meshes": 303,
+    "textures": 142,
+    "sprites": 3,
+    "materials": 75
+  },
+  "textures": {
+    "1.117_Iceland_environment": "textures/1.117_Iceland_environment_61.png",
+    "1.117_Iceland_trains": "textures/1.117_Iceland_trains_63.png",
+    "1.117_Iceland_train_start": "textures/1.117_Iceland_train_start_59.png",
+    "1.117_Iceland_waterReflection": "textures/1.117_Iceland_waterReflection_62.png",
+    "1.117_Iceland_scrollingLava": "textures/1.117_Iceland_scrollingLava_65.png",
+    "Snow": "textures/Snow_66.png",
+    "GenericAtlas": "textures/GenericAtlas_9.png",
+    "HighResAtlas": "textures/HighResAtlas_115.png",
+    "HighResCountriesAtlas": "textures/HighResCountriesAtlas_151.png",
+    "LowResAtlas": "textures/LowResAtlas_153.png"
+  },
+  "placements": [
+    {
+      "name": "ground",
+      "file": "meshes/ground_68.obj",
+      "position": [
+        0,
+        -0.4,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "texture": "1.117_Iceland_environment",
+      "opacity": 0.38
+    },
+    {
+      "name": "track",
+      "file": "meshes/track_90.obj",
+      "position": [
+        0,
+        -0.35,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "texture": "1.117_Iceland_environment",
+      "opacity": 0.6
+    },
+    {
+      "name": "track_gates",
+      "file": "meshes/track_gates_154.obj",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "texture": "1.117_Iceland_environment",
+      "opacity": 0.35
+    },
+    {
+      "name": "station_mid",
+      "file": "meshes/station_mid_139.obj",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.1,
+        0.08,
+        1
+      ],
+      "texture": "1.117_Iceland_environment",
+      "opacity": 0.5
+    },
+    {
+      "name": "station_start",
+      "file": "meshes/station_start_137.obj",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.1,
+        0.08,
+        1
+      ],
+      "texture": "1.117_Iceland_environment",
+      "opacity": 0.5
+    },
+    {
+      "name": "station_end",
+      "file": "meshes/station_end_138.obj",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.1,
+        0.08,
+        1
+      ],
+      "texture": "1.117_Iceland_environment",
+      "opacity": 0.5
+    },
+    {
+      "name": "pillars_mid",
+      "file": "meshes/pillars_mid_141.obj",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.012,
+        0.13,
+        1
+      ],
+      "texture": "1.117_Iceland_environment",
+      "opacity": 0.5
+    },
+    {
+      "name": "train_standard",
+      "file": "meshes/train_standard_102.obj",
+      "position": [
+        -6,
+        0,
+        80
+      ],
+      "scale": [
+        0.24,
+        0.24,
+        0.24
+      ],
+      "texture": "1.117_Iceland_trains",
+      "opacity": 0.8
+    },
+    {
+      "name": "train_cargo",
+      "file": "meshes/train_cargo_105.obj",
+      "position": [
+        6,
+        0,
+        130
+      ],
+      "scale": [
+        0.24,
+        0.24,
+        0.24
+      ],
+      "texture": "1.117_Iceland_trains",
+      "opacity": 0.8
+    },
+    {
+      "name": "train_sub",
+      "file": "meshes/train_sub_96.obj",
+      "position": [
+        0,
+        0,
+        170
+      ],
+      "scale": [
+        0.24,
+        0.24,
+        0.24
+      ],
+      "texture": "1.117_Iceland_trains",
+      "opacity": 0.8
+    },
+    {
+      "name": "train_ramp",
+      "file": "meshes/train_ramp_99.obj",
+      "position": [
+        6,
+        0,
+        35
+      ],
+      "scale": [
+        0.24,
+        0.24,
+        0.24
+      ],
+      "texture": "1.117_Iceland_train_start",
+      "opacity": 0.82
+    },
+    {
+      "name": "station_platforms",
+      "file": "meshes/station_platforms_143.obj",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.1,
+        0.1,
+        1
+      ],
+      "texture": "1.117_Iceland_environment",
+      "opacity": 0.35
+    },
+    {
+      "name": "lightSignal",
+      "file": "meshes/lightSignal_111.obj",
+      "position": [
+        -11,
+        0,
+        42
+      ],
+      "scale": [
+        0.4,
+        0.4,
+        0.4
+      ],
+      "texture": "1.117_Iceland_environment",
+      "opacity": 0.75
+    },
+    {
+      "name": "rock01_mesh",
+      "file": "meshes/rock01_mesh_77.obj",
+      "position": [
+        -17,
+        0,
+        35
+      ],
+      "scale": [
+        7,
+        7,
+        7
+      ],
+      "texture": "1.117_Iceland_environment",
+      "opacity": 0.9
+    },
+    {
+      "name": "rock02_mesh",
+      "file": "meshes/rock02_mesh_84.obj",
+      "position": [
+        17,
+        0,
+        59
+      ],
+      "scale": [
+        10,
+        10,
+        10
+      ],
+      "texture": "1.117_Iceland_environment",
+      "opacity": 0.9
+    },
+    {
+      "name": "rock03_mesh",
+      "file": "meshes/rock03_mesh_88.obj",
+      "position": [
+        -18,
+        0,
+        116
+      ],
+      "scale": [
+        13,
+        13,
+        13
+      ],
+      "texture": "1.117_Iceland_environment",
+      "opacity": 0.9
+    },
+    {
+      "name": "track_shadow_mid",
+      "file": "meshes/track_shadow_mid_93.obj",
+      "position": [
+        0,
+        -0.3,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "texture": "1.117_Iceland_environment",
+      "opacity": 0.18
+    }
+  ],
+  "animations": {
+    "maxFps": 30
+  }
+}
