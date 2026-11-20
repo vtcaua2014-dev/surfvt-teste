@@ -1,0 +1,102 @@
+name: Publish Iceland Unity data for Transylvania hybrid test
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/prepare-iceland-unity-data.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: iceland-unity-data
+  cancel-in-progress: false
+
+jobs:
+  import-iceland-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout SurfVT Teste
+        uses: actions/checkout@v4
+        with:
+          path: site
+          persist-credentials: true
+          fetch-depth: 1
+
+      - name: Checkout public Iceland source build
+        uses: actions/checkout@v4
+        with:
+          repository: vtcaua2014-dev/surfvt14
+          ref: main
+          path: iceland-source
+          lfs: true
+          persist-credentials: false
+          sparse-checkout: |
+            public/maps/iceland/build/iceland
+          sparse-checkout-cone-mode: true
+
+      - name: Copy and validate original Iceland alt.data
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, json
+          source = Path('iceland-source/public/maps/iceland/build/iceland/iceland.alt.data.unityweb')
+          dest = Path('site/iceland/Build/iceland.alt.data.unityweb')
+          if not source.is_file():
+              raise SystemExit('Iceland alt.data source file missing')
+          expected_bytes = 27865882
+          size = source.stat().st_size
+          if size != expected_bytes:
+              raise SystemExit(f'Unexpected alt.data length: {size} (expected {expected_bytes})')
+          with source.open('rb') as stream:
+              signature = stream.read(16)
+          if signature != b'UnityWebData1.0\x00':
+              raise SystemExit('Iceland alt.data not plain UnityWebData1.0')
+          dest.parent.mkdir(parents=True, exist_ok=True)
+          sha = hashlib.sha256()
+          with source.open('rb') as inp, dest.open('wb') as out:
+              while part := inp.read(4 * 1024 * 1024):
+                  out.write(part)
+                  sha.update(part)
+          metadata = {
+              'map': 'Iceland',
+              'unityVersion': '2019.2.0f1',
+              'dataFile': 'iceland.alt.data.unityweb',
+              'source': 'vtcaua2014-dev/surfvt14/public/maps/iceland/build/iceland/iceland.alt.data.unityweb',
+              'bytes': size,
+              'sha256': sha.hexdigest(),
+              'format': 'plain UnityWebData1.0',
+              'compatibleWithTransylvaniaUnity2022': False,
+              'status': 'binary-copy-verified',
+          }
+          (dest.parent / 'iceland-data.json').write_text(json.dumps(metadata, indent=2) + '\n', encoding='utf-8')
+          print('Original Iceland alt.data copied; SHA256:', sha.hexdigest(), 'bytes:', size)
+          PY
+
+      - name: Commit Iceland alt.data into GitHub Pages
+        shell: bash
+        working-directory: site
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add iceland/Build/iceland.alt.data.unityweb iceland/Build/iceland-data.json
+          if git diff --cached --quiet; then
+            echo 'Original Iceland data is already published'
+            exit 0
+          fi
+          git commit -m 'Publish byte-identical Iceland Unity 2019 alt.data for hybrid compatibility test'
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              echo 'Published Iceland alt.data'
+              exit 0
+            fi
+            sleep 4
+          done
+          echo 'Failed to push Iceland data after retries' >&2
+          exit 1
