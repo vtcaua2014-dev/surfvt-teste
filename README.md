@@ -1,3 +1,41 @@
+# Iceland × Transylvania — compilado Unity + camada visual Iceland
+
+## Protótipos ativos
+
+- **Transylvania original intacta:** https://vtcaua2014-dev.github.io/surfvt-teste/transylvania/
+- **Transylvania com camada visual Iceland:** https://vtcaua2014-dev.github.io/surfvt-teste/iceland/
+- **Iceland Unity 2019 original preservado:** https://vtcaua2014-dev.github.io/surfvt-teste/iceland/original.html
+- **Meshes e atlas Iceland extraídos:** https://vtcaua2014-dev.github.io/surfvt-teste/iceland/resources.html
+
+A página `/iceland/` reutiliza literalmente o carregador da Transylvania
+`Build/miamiSiteBuild.loader.js` junto com a build nativa `miamiSiteBuild`.
+O projeto adiciona **uma camada WebGL separada**, baseada em Three.js, que tenta
+compor 17 peças 3D extraídas do Iceland (ground, track, plataformas, estruturas
+de estação, pilares, rochas e trens), com atlases e texturas PNG originais
+ligados ao material desses modelos.
+
+- O inventário extraído da versão Iceland WebGL inclui **303 meshes OBJ,
+  142 texturas PNG e 3 sprites**, além de referências a 128 materiais.
+  O relatório original é `iceland/extracted/manifest.json`.
+- Os 17 objetos visuais do protótipo são selecionados no
+  `iceland/scene-plan.json`. A implementação está em
+  `iceland/iceland-layer.js`.
+- Em desktop, a camada é tentada após o Unity iniciar; em mobile, deve ser
+  acionada manualmente, pois dois contextos WebGL podem exceder a memória.
+- A câmera e a geometria renderizadas por Three.js **não são sincronizadas
+  diretamente com a câmera ou com os obstáculos do Unity**.
+- **Não há substituição nativa do cenário na Unity 2022 compilada**, nem
+  integração de física, colisões, shaders, GameObjects ou hierarquia de cena.
+  Isso exigiria um projeto Unity editável ou engenharia específica dos arquivos
+  e recursos da própria versão 2022.
+- Os arquivos do APK Iceland 2018 v1.85.0 são tratados em workflow separado
+  e **não** substituem automaticamente os recursos extraídos da build WebGL.
+
+**Status:** código confirmado no GitHub; execução em navegador e qualidade
+visual da composição ainda não foram validadas em partida.
+
+---
+
 # SurfVT Teste — Transylvania e Iceland
 
 ## Versões disponíveis
