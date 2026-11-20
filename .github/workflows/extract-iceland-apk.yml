@@ -1,0 +1,107 @@
+name: Extrair APK Iceland 2018 para o prototipo
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/extract-iceland-apk.yml"
+  workflow_dispatch:
+    inputs:
+      apk_url:
+        description: "Link direto HTTPS do APK Iceland (substituir se MediaFire expirar)"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  apk-assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout do projeto de testes
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Baixar o APK Iceland fornecido
+        shell: bash
+        env:
+          PROVIDED_URL: ${{ inputs.apk_url }}
+          DEFAULT_URL: "https://download1347.mediafire.com/4ig5hxiepzwgw9l1DYqJR8-LnYT5jw9jFLXH-D4nM8TMGf13b4DK7CFX-E1OlQ2c-3ZnmK4Tv2IwF05N0T7zPPtCjGrseIayjXTA02k0NI-9v5MTyby8GOvZNdsfQ2sk1vTjZ_dg7XnlMyc4dlGYG5JAW2m6Xri5LpKedVyAX4tmhw/99tqhuu6rk88lc3/Subway+Surfers+Iceland+2018+-1.85.0.apk"
+        run: |
+          set -euo pipefail
+          url="${PROVIDED_URL:-$DEFAULT_URL}"
+          if [[ "$url" != https://* ]]; then echo "Apenas URLs HTTPS sao permitidas"; exit 1; fi
+          echo "Baixando APK Iceland do MediaFire para processamento temporario."
+          curl --fail --location --show-error --silent \
+            --retry 4 --retry-all-errors --retry-delay 3 --connect-timeout 25 --max-time 540 \
+            -A "Mozilla/5.0" "$url" -o /tmp/iceland-2018.apk
+          python - <<'PY'
+          import os, zipfile
+          path='/tmp/iceland-2018.apk'
+          with zipfile.ZipFile(path) as z:
+              names=z.namelist()
+              assert 'AndroidManifest.xml' in names, 'Nao e um APK Android valido'
+              unity=[n for n in names if n.lower().startswith('assets/bin/data/')]
+              print('APK verificado:', os.stat(path).st_size, 'bytes; entradas:', len(names),
+                    'arquivos Unity:', len(unity))
+          PY
+
+      - name: Instalar ferramentas de extracao Unity
+        shell: bash
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "UnityPy>=1.20,<2" Brotli Pillow
+
+      - name: Extrair meshes e texturas do APK
+        id: export
+        continue-on-error: true
+        shell: bash
+        run: |
+          python scripts/extract_iceland.py \
+            --source /tmp/iceland-2018.apk \
+            --output iceland/extracted \
+            --max-mb 55
+
+      - name: Verificar relatorio de extracao
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f iceland/extracted/manifest.json
+          python - <<'PY'
+          import json
+          data=json.load(open('iceland/extracted/manifest.json', encoding='utf-8'))
+          print('Origem:', data.get('sourceType'))
+          print('Status:', data.get('status'))
+          print('Entradas do APK:', len(data.get('rawFiles', [])))
+          print('Exportacoes:', data.get('exportedFiles'))
+          print('Tipos Unity:', data.get('objectsByType'))
+          print('Erros:', data.get('errors', [])[:10])
+          PY
+
+      - name: Publicar relatorio e assets exportados no prototipo
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add iceland/extracted/
+          if ! git diff --cached --quiet; then
+            git commit -m "Export Iceland 2018 APK Unity meshes textures and atlas inventory"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Arquivar relatorio de extracao
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: iceland-2018-apk-extraction
+          path: iceland/extracted/manifest.json
+          if-no-files-found: warn
