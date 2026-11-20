@@ -1,34 +1,32 @@
-# Transylvania × Iceland — teste de dados Unity
+# SurfVT Teste — Transylvania e Iceland
 
-## Endereços
+## Versões disponíveis
 
-- **Transylvania original (intacta):** https://vtcaua2014-dev.github.io/surfvt-teste/transylvania/
-- **Transylvania + Iceland `alt.data` (teste híbrido):** https://vtcaua2014-dev.github.io/surfvt-teste/iceland/
-- **Iceland original (build Unity 2019):** https://surfvt14.up.railway.app/maps/iceland/index.html
-- **Meshes e texturas extraídos:** https://vtcaua2014-dev.github.io/surfvt-teste/iceland/resources.html
+- **Transylvania original**: https://vtcaua2014-dev.github.io/surfvt-teste/transylvania/
+- **Iceland Unity 2019 original no GitHub Pages**: https://vtcaua2014-dev.github.io/surfvt-teste/iceland/
+- **Arquivos extraídos do Iceland (303 meshes, 142 texturas, 3 sprites)**: https://vtcaua2014-dev.github.io/surfvt-teste/iceland/resources.html
 
-## Alteração solicitada
+## Correção do erro `Out of bounds memory access`
 
-O runner Three.js anterior (`iceland/game.js`, `iceland/play.html` e `iceland/scene-assets.json`) foi removido.
+O teste anterior carregava o pacote `iceland.alt.data.unityweb` (Unity 2019.2.0f1) com o WASM e framework compilados da Transylvania. Esse cruzamento de builds não é suportado e causou o erro de memória exibido no navegador.
 
-A página `/iceland/index.html` foi reconstruída usando o carregador da **Transylvania** e os mesmos `Build/miamiSiteBuild.loader.js`, `Build/miamiSiteBuild.framework.js` e `Build/miamiSiteBuild.wasm` do projeto.
+A rota `/iceland/` agora usa **somente o runtime original da própria build Iceland**, com:
+- `iceland/UnityLoader.2019.2.js`
+- `iceland/4399.z.js`
+- `iceland/build/iceland/iceland.alt.json` (manifesto com caminhos locais)
+- `iceland/build/shared/wasm_framework.unityweb`
+- `iceland/build/shared/wasm_code_shared.unityweb`
+- `iceland/Build/iceland.alt.data.unityweb` (binário Iceland original, 27.865.882 bytes)
 
-O `config.dataUrl` dessa página aponta para **`iceland/Build/iceland.alt.data.unityweb`**, e não para os dados da Transylvania.
+O workflow `.github/workflows/prepare-iceland-compatible-runtime.yml` copia os componentes da build pública `vtcaua2014-dev/surfvt14` para o repositório de testes. Os hashes Git dos componentes copiados conferem com os arquivos de origem.
 
-A nova automação `.github/workflows/prepare-iceland-unity-data.yml` copia esse arquivo da build pública Iceland em `vtcaua2014-dev/surfvt14`, sem modificá-lo, e salva `iceland/Build/iceland-data.json` para verificação.
+**Importante:** isso torna o conjunto de arquivos da build Iceland consistente e evita o erro provocado pela mistura das duas versões do Unity, mas não constitui um porte da jogabilidade da Transylvania. Não há teste de gameplay concluído em iOS ou desktop nesta alteração.
 
-- **Tamanho do arquivo:** 27.865.882 bytes
-- **SHA-256:** `192bd8bbf9822b696259aa288491753581531ec63bb8387965882a277f7100b0`
-- **Formato:** UnityWebData1.0 (sem compressão HTTP embutida)
-- **Origem:** Unity 2019.2.0f1
+A pasta `/transylvania/` continua com a build original e não foi alterada.
 
-### Aviso de compatibilidade
+## Extrator de recursos
 
-**O arquivo Iceland foi compilado com Unity 2019 e não é compatível, por simples troca de arquivos, com o runtime da Transylvania.** A página `/iceland/` é um teste diagnóstico que pode falhar na inicialização; não se deve descrevê-la como uma versão jogável com o cenário Iceland.
-
-Uma integração funcional exigiria reconstruir/importar a cena em um projeto compatível com a versão de destino ou utilizar o runtime completo da própria build Iceland. Os modelos e atlas extraídos permanecem em `/iceland/extracted/` para referência e análise.
-
-A página `/transylvania/` e o `index.html` original da raiz não foram alterados nesta troca.
+O workflow `.github/workflows/extract-iceland.yml` publicou 448 arquivos de modelo/textura/sprite no índice `iceland/extracted/manifest.json`. A galeria desses recursos está em `iceland/resources.html`; os modelos extraídos não são injetados na build Unity.
 
 ---
 
