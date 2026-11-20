@@ -2,7 +2,7 @@
   "map": "Iceland",
   "origin": "vtcaua2014-dev/surfvt/public/maps/iceland/build/iceland/iceland.alt.data.unityweb",
   "unityVersion": "2019.2.0f1",
-  "generatedAt": "2026-11-20T14:00:27.823857+00:00",
+  "generatedAt": "2026-11-20T15:27:49.822429+00:00",
   "status": "extracted",
   "rawFiles": [
     {
@@ -3994,16 +3994,17 @@
     }
   ],
   "errors": [
-    "Texture2D Font_Texture: [Errno 21] Is a directory: '/tmp/iceland_webgl_5gifooyf'",
-    "Texture2D Font_Texture: [Errno 21] Is a directory: '/tmp/iceland_webgl_5gifooyf'",
-    "Texture2D Font_Texture: [Errno 21] Is a directory: '/tmp/iceland_webgl_5gifooyf'",
-    "Texture2D Font_Texture: [Errno 21] Is a directory: '/tmp/iceland_webgl_5gifooyf'",
-    "Texture2D Font_Texture: [Errno 21] Is a directory: '/tmp/iceland_webgl_5gifooyf'",
-    "Texture2D Font_Texture: [Errno 21] Is a directory: '/tmp/iceland_webgl_5gifooyf'"
+    "Texture2D Font_Texture: [Errno 21] Is a directory: '/tmp/iceland_unity_b90t38o9'",
+    "Texture2D Font_Texture: [Errno 21] Is a directory: '/tmp/iceland_unity_b90t38o9'",
+    "Texture2D Font_Texture: [Errno 21] Is a directory: '/tmp/iceland_unity_b90t38o9'",
+    "Texture2D Font_Texture: [Errno 21] Is a directory: '/tmp/iceland_unity_b90t38o9'",
+    "Texture2D Font_Texture: [Errno 21] Is a directory: '/tmp/iceland_unity_b90t38o9'",
+    "Texture2D Font_Texture: [Errno 21] Is a directory: '/tmp/iceland_unity_b90t38o9'"
   ],
   "note": "Export for inspection and independent viewing; not inserted into the compiled Transylvania Unity scene.",
-  "compression": "plain UnityWebData1.0",
   "inputBytes": 27865882,
+  "sourceType": "unity-webgl-data",
+  "compression": "plain UnityWebData1.0",
   "uncompressedBytes": 27865882,
   "publishedBytes": 24119609,
   "exportedFiles": 448
