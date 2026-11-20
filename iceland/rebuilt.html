@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#0b1b27"><title>Iceland Rebuilt | SurfVT14</title>
+<base href="../">
+<style>
+:root{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:#eefaff;--ice:#abedfa}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0a1f2c}
+button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}a{color:#b1eefa;text-underline-offset:3px}[hidden]{display:none!important}
+#scene{width:100%;height:100%;display:block;touch-action:none;outline:0}
+#hud{position:fixed;left:8px;right:8px;top:max(8px,env(safe-area-inset-top));z-index:5;display:flex;justify-content:space-between;gap:8px;align-items:start;pointer-events:none}
+.stats{display:flex;flex-wrap:wrap;gap:5px;max-width:74vw}
+.stat{border:1px solid #94e0ef50;background:#082537bd;padding:8px 11px;border-radius:9px;min-width:68px;backdrop-filter:blur(8px)}
+.stat small{font-weight:800;color:#bedce6;display:block;font-size:10px;text-transform:uppercase;letter-spacing:.10em}
+.stat b{font-size:16px;letter-spacing:-.03em}
+.actions{pointer-events:auto;display:flex;gap:6px;flex-wrap:wrap;justify-content:end}
+.actions button,.touch button{border:1px solid #96e1ef85;border-radius:10px;background:#103449c9;color:#f1fbff;font-weight:750;font-size:12px;padding:10px 12px}
+#touch-controls{position:fixed;bottom:max(12px,env(safe-area-inset-bottom));left:12px;right:12px;z-index:6;display:flex;justify-content:space-between;gap:14px;pointer-events:none}
+.touch{pointer-events:auto;display:flex;gap:7px}
+.touch button{min-width:50px;height:56px;font-size:25px;touch-action:manipulation}
+.touch button.small{font-size:12px}
+#overlay,#start-screen,#load-screen,#game-over{position:fixed;inset:0;z-index:20;padding:18px;display:grid;place-items:center;background:radial-gradient(circle at 50% 20%,#28576a99,transparent 65%),#03111edb;backdrop-filter:blur(7px)}
+#overlay{z-index:15}#load-screen{z-index:25}#game-over{z-index:24}
+.panel{width:min(650px,100%);padding:clamp(24px,6vw,50px);background:linear-gradient(145deg,#0c2a3af5,#071926fa);border:1px solid #a9e4f071;border-radius:22px;box-shadow:0 28px 80px #0007}
+.eyebrow{font-size:11px;letter-spacing:.20em;font-weight:800;text-transform:uppercase;color:#9ae5f7}
+h1{font-size:clamp(55px,11vw,104px);letter-spacing:-.085em;line-height:1;margin:20px 0 4px}
+h1 em{color:#a1eaff;font-style:normal}
+h2{font-size:clamp(27px,5vw,42px);letter-spacing:-.045em}
+p{color:#c0dae5;line-height:1.55}
+.sub{font-size:clamp(14px,2vw,18px);max-width:550px}
+.buttons{margin:26px 0 18px;display:flex;flex-wrap:wrap;gap:10px}
+.play{border:1px solid #9ee8f7;border-radius:11px;background:#a2edf7;color:#0a2636;min-height:46px;padding:11px 20px;font-weight:800}
+.play.alt{background:#c2f9ff0e;color:#e8faff}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
+.pill{font-size:11px;color:#d1eaf2;border:1px solid #92ccd94f;padding:6px 10px;border-radius:100px}
+.hint{font-size:12px;color:#a8cbd6}
+.links{display:flex;gap:14px;flex-wrap:wrap;margin-top:23px}
+.links a{font-size:12px}
+#status{color:#dbfaff;font-size:12px;margin:18px 0 0;overflow-wrap:anywhere}
+.error{color:#ffb0b0!important;font-size:12px}
+.progress{height:9px;border-radius:8px;background:#173746;overflow:hidden;margin-top:20px}
+#load-progress{height:100%;width:0;background:linear-gradient(90deg,#478fa9,#c4faff)}
+#fps{position:fixed;bottom:5px;left:8px;color:#d2f4f9;font-size:10px}
+@media(max-width:640px){.panel{padding:27px 22px}.stat{padding:6px 7px;min-width:53px}.stat small{font-size:8px}.stat b{font-size:12px}.stats{gap:3px}.actions button{padding:8px 7px;font-size:10px}.touch button{width:49px;height:50px}.buttons .play{flex:1}}
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.167.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.167.0/examples/jsm/"}}</script>
+</head>
+<body>
+<canvas id="scene" aria-label="Iceland Rebuilt 3D" tabindex="0"></canvas>
+<header id="hud" hidden>
+ <div class="stats">
+  <div class="stat"><small>Pontos</small><b id="score">0</b></div>
+  <div class="stat"><small>Metros</small><b id="distance">0m</b></div>
+  <div class="stat"><small>Moedas</small><b id="coins">0</b></div>
+  <div class="stat"><small>Recorde</small><b id="best">0</b></div>
+  <div class="stat"><small>Modo</small><b id="mode-label">CLÁSSICO</b></div>
+  <div class="stat"><small>Prancha</small><b id="shield">—</b></div>
+ </div>
+ <div class="actions">
+  <button id="pause">Pausar</button><button id="restart">Reiniciar</button><button id="sound">Som ligado</button>
+ </div>
+</header>
+<div id="touch-controls" hidden>
+ <div class="touch"><button id="touch-left" aria-label="Esquerda">‹</button><button id="touch-right" aria-label="Direita">›</button></div>
+ <div class="touch"><button id="touch-down" aria-label="Rolar">↓</button><button id="touch-up" aria-label="Pular">↑</button><button class="small" id="touch-board" aria-label="Prancha">Board</button></div>
+</div>
+<div id="fps">0 FPS</div>
+<section id="start-screen">
+ <div class="panel">
+  <div class="eyebrow">SurfVT14 · World Tour · Reconstructed</div>
+  <h1>ICE<em>LAND</em></h1>
+  <p class="sub">Cenário reconstruído com meshes, trilhos, estações, trens e texturas extraídos de Iceland. Nova câmera em terceira pessoa e colisões funcionais.</p>
+  <div class="meta"><span class="pill">Assets Iceland reais</span><span class="pill">3 faixas</span><span class="pill">WebGL 3D</span></div>
+  <div class="buttons"><button class="play" id="play-classic">Jogar clássico</button><button class="play alt" id="play-nocoin">Jogar No Coin</button></div>
+  <p class="hint">PC: WASD ou setas · Espaço: prancha · P: pausar. Celular: gestos e botões; toque duplo: prancha.</p>
+  <p class="hint"><strong>Versão independente:</strong> recriação em Three.js com assets originais de Iceland. O runtime compilado da Transylvania não é modificado.</p>
+  <p id="status" role="status">Pronto para importar o cenário.</p><p class="error"></p>
+  <div class="links"><a href="./transylvania/">Transylvania original</a><a href="./iceland/original.html">Iceland Unity original</a><a href="./iceland/resources.html">Assets extraídos</a><a href="./iceland/hybrid.html">Teste anterior (camada)</a></div>
+ </div>
+</section>
+<section id="load-screen" hidden><div class="panel" style="max-width:460px">
+ <div class="eyebrow">Importando recursos 3D</div><h2>Montando Iceland</h2>
+ <p>Carregando as geometrias e texturas extraídas da build Unity.</p>
+ <div class="progress"><div id="load-progress"></div></div>
+</div></section>
+<section id="game-over" hidden><div class="panel" style="max-width:480px;text-align:center">
+ <div class="eyebrow">Fim da corrida</div><h2>Game Over</h2><p id="final-score"></p>
+ <button class="play" id="try-again">Jogar novamente</button>
+</div></section>
+<section id="overlay" hidden><div class="panel" style="max-width:410px;text-align:center">
+ <h2>Jogo pausado</h2><p>Pressione continuar para retornar à corrida.</p>
+ <button class="play" id="continue">Continuar</button>
+</div></section>
+<script type="module" src="./iceland/rebuilt-game.js?v=rebuilt-v1"></script>
+</body></html>
