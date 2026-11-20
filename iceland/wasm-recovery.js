@@ -1,153 +1,182 @@
-/* Iceland × Transylvania: integrity-checked small-part WASM transport.
- * Downloads original Transylvania WebAssembly in 2-MiB parts instead of one
- * fragile >40-MiB Pages request. No compiled Unity assets are modified.
+/* Iceland × Transylvania: verified small-file WASM transport.
+ * The source WASM is unchanged. Github Actions splits it into 2 MiB shards,
+ * which GitHub Pages can serve and clients can retry independently.
+ *
+ * The Unity loader/framework do not know about shards; this shim makes both
+ * codeUrl and Emscripten's "build.wasm" fallback see one valid WASM Response.
  */
 (function () {
   "use strict";
-  const retries = 5;
-  const partFormat = "surfvt14-transylvania-wasm-parts-v1";
-  const wasmFilename = "Build/miamiSiteBuild.wasm";
-  const manifestFilename = wasmFilename + ".parts.json";
-  const nativeFetch = window.fetch;
-  const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+  const MAX_PART_ATTEMPTS = 5;
+  const MAX_WHOLE_ATTEMPTS = 2;
+  const MIME = "application/wasm";
+  const WASM_MAGIC = [0, 97, 115, 109, 1, 0, 0, 0];
 
-  function pathOf(file) { return new URL(file, document.baseURI).href; }
-  function shortError(err) { return err && err.message ? err.message : String(err); }
-  function validWasm(bytes) {
-    return bytes.byteLength >= 1024 * 1024 &&
-      bytes[0] === 0 && bytes[1] === 97 && bytes[2] === 115 && bytes[3] === 109;
+  function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+  function fileUrl(path) { return new URL(path, document.baseURI).href; }
+  function wasmPath() { return fileUrl("Build/miamiSiteBuild.wasm"); }
+  function manifestPath() { return fileUrl("iceland/wasm-chunks.json"); }
+  function getMessage(error) { return error && error.message ? error.message : String(error); }
+
+  function hasWasmMagic(buffer) {
+    if (!buffer || buffer.byteLength < WASM_MAGIC.length) return false;
+    const bytes = buffer instanceof Uint8Array ? buffer : new Uint8Array(buffer);
+    return WASM_MAGIC.every((value, index) => bytes[index] === value);
   }
-  async function sha256(bytes) {
-    if (!crypto || !crypto.subtle) return null;
-    const hash = await crypto.subtle.digest("SHA-256", bytes);
-    return Array.from(new Uint8Array(hash), b => b.toString(16).padStart(2, "0")).join("");
+
+  function validManifest(manifest) {
+    if (!manifest || manifest.format !== "surfvt14-transylvania-wasm-shards-v1" ||
+        !Number.isSafeInteger(manifest.totalBytes) ||
+        manifest.totalBytes < 1024 * 1024 || manifest.totalBytes > 512 * 1024 * 1024 ||
+        !Array.isArray(manifest.parts) || !manifest.parts.length || manifest.parts.length > 300 ||
+        !Number.isSafeInteger(manifest.chunkSize) || manifest.chunkSize < 65536 ||
+        manifest.chunkSize > 8 * 1024 * 1024) {
+      throw new Error("Manifesto de partes WASM inválido");
+    }
+    let count = 0;
+    for (const part of manifest.parts) {
+      if (!part || typeof part.path !== "string" ||
+          !/^Build\/wasm-shards\/miamiSiteBuild\.wasm\.part\d{3}$/.test(part.path) ||
+          !Number.isSafeInteger(part.size) || part.size < 1 || part.size > manifest.chunkSize ||
+          !/^[0-9a-f]{64}$/.test(part.sha256)) {
+        throw new Error("Manifesto contém parte WASM inválida");
+      }
+      count += part.size;
+    }
+    if (count !== manifest.totalBytes) throw new Error("Manifesto WASM não soma o tamanho total");
   }
-  async function fetchBytes(url, attempts = retries) {
+
+  async function sha256(buffer) {
+    if (!self.crypto || !crypto.subtle) return null;
+    const result = await crypto.subtle.digest("SHA-256", buffer);
+    return Array.from(new Uint8Array(result),
+      byte => byte.toString(16).padStart(2, "0")).join("");
+  }
+
+  async function fetchPart(part, fetchImpl, progress, index, total) {
     let lastError;
-    for (let tryNumber = 1; tryNumber <= attempts; tryNumber++) {
-      const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), 45000);
+    for (let attempt = 1; attempt <= MAX_PART_ATTEMPTS; attempt++) {
       try {
-        const response = await nativeFetch(url, {
-          cache: "no-store", credentials: "same-origin",
-          signal: controller.signal
+        progress("Baixando WASM: parte " + (index + 1) + "/" + total +
+          " (tentativa " + attempt + "/" + MAX_PART_ATTEMPTS + ")…");
+        const response = await fetchImpl(fileUrl(part.path) +
+          "?shard=iceland-v3&r=" + attempt, {
+          cache: "no-store",
+          credentials: "same-origin"
         });
-        if (!response.ok) throw new Error("HTTP " + response.status + " (" + url + ")");
-        const contentType = response.headers.get("content-type") || "";
-        if (/text\/html/i.test(contentType)) {
-          throw new Error("O servidor devolveu HTML, não o arquivo binário: " + url);
-        }
-        return new Uint8Array(await response.arrayBuffer());
+        if (!response.ok) throw new Error("HTTP " + response.status);
+        const data = await response.arrayBuffer();
+        if (data.byteLength !== part.size) throw new Error(
+          "parte incompleta: " + data.byteLength + "/" + part.size + " bytes");
+        if (index === 0 && !hasWasmMagic(data)) throw new Error("assinatura WebAssembly inválida");
+        const actualHash = await sha256(data);
+        if (actualHash && actualHash !== part.sha256) throw new Error(
+          "SHA-256 incorreto para a parte " + (index + 1));
+        return data;
       } catch (error) {
         lastError = error;
-        console.warn("[SurfVT14] Unity WASM part retry", tryNumber, url, error);
-        if (tryNumber < attempts) await wait(tryNumber * 450);
-      } finally {
-        clearTimeout(timer);
+        console.warn("[SurfVT14] Retry WASM shard", index, attempt, error);
+        if (attempt < MAX_PART_ATTEMPTS) await sleep(300 * attempt);
       }
     }
-    throw new Error("Falha ao baixar parte WASM: " + shortError(lastError));
+    throw new Error("Falha na parte WASM " + (index + 1) + "/" + total +
+      ": " + getMessage(lastError));
   }
-  async function loadParts(onProgress) {
-    const response = await nativeFetch(pathOf(manifestFilename) + "?v=partsv1", {
+
+  async function loadFromShards(fetchImpl, progress) {
+    progress("Procurando pacote WASM dividido em arquivos menores…");
+    const response = await fetchImpl(manifestPath() + "?manifest=iceland-v3", {
       cache: "no-store", credentials: "same-origin"
     });
-    if (!response.ok) {
-      throw new Error("Partes WASM ainda não publicadas no GitHub Pages (manifesto HTTP " +
-        response.status + "). Verifique o workflow 'Publicar WASM da Transylvania em partes pequenas'.");
-    }
+    if (!response.ok) throw new Error("Partes WASM ainda não publicadas (HTTP " + response.status + ")");
     const manifest = await response.json();
-    if (manifest.format !== partFormat || !Array.isArray(manifest.parts) ||
-        !manifest.parts.length || manifest.parts.length > 100 ||
-        !Number.isSafeInteger(manifest.bytes) || manifest.bytes < 1024 * 1024) {
-      throw new Error("Manifesto de partes do WASM inválido.");
-    }
-    const blocks = [];
-    let total = 0;
+    validManifest(manifest);
+    const parts = [];
+    let length = 0;
     for (let index = 0; index < manifest.parts.length; index++) {
-      const entry = manifest.parts[index];
-      if (!/^miamiSiteBuild\.wasm\.part\d{3}$/.test(entry.file) ||
-          !Number.isSafeInteger(entry.bytes) || entry.bytes < 1 ||
-          entry.bytes > 2 * 1024 * 1024) {
-        throw new Error("Parte WASM " + index + " inválida no manifesto");
-      }
-      let block;
-      let lastError;
-      for (let attempt = 1; attempt <= 4; attempt++) {
-        try {
-          block = await fetchBytes(pathOf("Build/" + entry.file), 1);
-          if (block.length !== entry.bytes) {
-            throw new Error("Parte " + index + ": " + block.length + "/" + entry.bytes + " bytes");
-          }
-          if (entry.sha256) {
-            const digest = await sha256(block);
-            if (digest !== null && digest !== entry.sha256) {
-              throw new Error("Parte " + index + " falhou na verificação SHA-256");
-            }
-          }
-          lastError = null;
-          break;
-        } catch (error) {
-          lastError = error;
-          if (attempt < 4) await wait(attempt * 350);
+      const bytes = await fetchPart(manifest.parts[index], fetchImpl, progress,
+        index, manifest.parts.length);
+      length += bytes.byteLength;
+      parts.push(bytes);
+    }
+    if (length !== manifest.totalBytes) throw new Error("WASM reconstruído tem tamanho incorreto");
+    progress("WASM reconstruído e verificado: " + (length / 1048576).toFixed(1) + " MiB");
+    return new Blob(parts, { type: MIME });
+  }
+
+  async function loadOriginal(fetchImpl, progress) {
+    let lastError;
+    for (let attempt = 1; attempt <= MAX_WHOLE_ATTEMPTS; attempt++) {
+      try {
+        progress("Tentando WASM original da Transylvania (" + attempt + "/" +
+          MAX_WHOLE_ATTEMPTS + ")…");
+        const response = await fetchImpl(wasmPath() + "?download=iceland-fallback-v3-" + attempt, {
+          cache: "no-store", credentials: "same-origin"
+        });
+        if (!response.ok) throw new Error("HTTP " + response.status);
+        const data = await response.arrayBuffer();
+        if (data.byteLength < 1024 * 1024 || !hasWasmMagic(data)) {
+          throw new Error("Resposta não contém o WASM original (" + data.byteLength + " bytes)");
         }
+        return new Blob([data], { type: MIME });
+      } catch (error) {
+        lastError = error;
+        console.warn("[SurfVT14] Original WASM unavailable", attempt, error);
+        if (attempt < MAX_WHOLE_ATTEMPTS) await sleep(450 * attempt);
       }
-      if (lastError) throw lastError;
-      blocks.push(block);
-      total += block.byteLength;
-      onProgress("WASM Transylvania: " + (index + 1) + "/" +
-        manifest.parts.length + " partes verificadas (" +
-        Math.round(100 * total / manifest.bytes) + "%)");
     }
-    if (total !== manifest.bytes) throw new Error("Tamanho do WASM incompleto: " + total + "/" + manifest.bytes);
-    const blob = new Blob(blocks, { type: "application/wasm" });
-    const header = new Uint8Array(await blob.slice(0, 8).arrayBuffer());
-    if (!validWasmHeader(header, total)) throw new Error("WASM remontado possui cabeçalho inválido");
-    return { blob, bytes: total, sha256: manifest.sha256 };
+    throw lastError;
   }
-  function validWasmHeader(header, total) {
-    return total >= 1024 * 1024 && header[0] === 0 && header[1] === 97 &&
-      header[2] === 115 && header[3] === 109 && header[4] === 1 &&
-      header[5] === 0 && header[6] === 0 && header[7] === 0;
-  }
-  async function prepare(onProgress) {
-    let image;
+
+  async function prepare(progressFn) {
+    const progress = typeof progressFn === "function" ? progressFn : function () {};
+    const fetchImpl = window.fetch;
+    let blob;
+    let chunkError;
     try {
-      onProgress("Preparando download do WASM em blocos menores…");
-      image = await loadParts(onProgress);
+      blob = await loadFromShards(fetchImpl, progress);
     } catch (error) {
-      console.warn("[SurfVT14] Chunked WASM failed; attempting full original once", error);
-      onProgress("WASM em blocos indisponível. Tentando arquivo original…");
-      const bytes = await fetchBytes(pathOf(wasmFilename), 1).catch(originalError => {
-        throw new Error(shortError(error) + " Falha no arquivo original: " +
-          shortError(originalError));
-      });
-      if (!validWasm(bytes)) throw new Error("WASM original inválido ou incompleto (" + bytes.length + " bytes)");
-      image = { blob: new Blob([bytes], {type:"application/wasm"}), bytes: bytes.byteLength };
-    }
-    onProgress("WASM validado (" + (image.bytes / 1048576).toFixed(1) + " MiB). Iniciando Unity…");
-    const targetPath = new URL(pathOf(wasmFilename)).pathname;
-    const previousFetch = window.fetch;
-    const replacement = function (input, options) {
-      const target = typeof input === "string" ? input : (input && input.url) || String(input);
-      let requestPath = "";
-      try { requestPath = new URL(target, document.baseURI).pathname; } catch (_) {}
-      if (requestPath === targetPath || requestPath.endsWith("/build.wasm")) {
-        return Promise.resolve(new Response(image.blob, {status:200, headers:{
-          "Content-Type":"application/wasm", "Content-Length":String(image.bytes),
-          "Cache-Control":"no-store"
-        }}));
+      chunkError = error;
+      console.warn("[SurfVT14] WASM shard transport unavailable", error);
+      try {
+        blob = await loadOriginal(fetchImpl, progress);
+      } catch (originalError) {
+        throw new Error("Falha no download do WASM. Partes: " + getMessage(chunkError) +
+          ". Arquivo original: " + getMessage(originalError) +
+          ". Confira se o workflow de partes WASM concluiu no GitHub Actions.");
       }
-      return previousFetch.apply(this, arguments);
+    }
+    const wasmUrl = new URL(wasmPath());
+    const patchedFetch = function (input, options) {
+      let path = "";
+      try {
+        const target = typeof input === "string" ? input :
+          (input && input.url) || String(input);
+        path = new URL(target, document.baseURI).pathname;
+      } catch (_) {}
+      if (blob && (path === wasmUrl.pathname ||
+          path === new URL("build.wasm", document.baseURI).pathname)) {
+        return Promise.resolve(new Response(blob, {
+          status: 200, headers: {
+            "Content-Type": MIME,
+            "Content-Length": String(blob.size),
+            "Cache-Control": "no-store"
+          }
+        }));
+      }
+      return fetchImpl.apply(this, arguments);
     };
-    window.fetch = replacement;
+    window.fetch = patchedFetch;
+    progress("WASM disponível para o Unity (" + (blob.size / 1048576).toFixed(1) + " MiB)");
     return {
-      url: pathOf(wasmFilename), bytes: image.bytes,
+      url: wasmUrl.href,
+      bytes: blob.size,
       release() {
-        if (window.fetch === replacement) window.fetch = previousFetch;
-        image = null;
+        if (window.fetch === patchedFetch) window.fetch = fetchImpl;
+        blob = null;
       }
     };
   }
-  window.SurfVTWasmRecovery = { prepare, wasmPath: () => pathOf(wasmFilename) };
+
+  window.SurfVTWasmRecovery = { prepare, wasmPath, manifestPath };
 })();
