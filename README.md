@@ -1,3 +1,17 @@
+# Duas variantes de Transylvania no GitHub Pages
+
+Foram criadas duas páginas independentes que reutilizam a mesma build Unity WebGL armazenada na raiz deste repositório:
+
+- **Transylvania original:** https://vtcaua2014-dev.github.io/surfvt-teste/transylvania/
+- **Transylvania × Iceland (protótipo):** https://vtcaua2014-dev.github.io/surfvt-teste/iceland/
+
+A página de Iceland é uma **cópia funcionalmente equivalente da Transylvania**, com indicação do projeto de adaptação e links para os recursos da build Iceland. **Ainda não há troca efetiva de cenário, modelos, atlas ou texturas.** Os assets extraídos são uma etapa separada e continuam pendentes.
+
+O catálogo do Iceland foi preservado em https://vtcaua2014-dev.github.io/surfvt-teste/iceland/assets.html.
+As duas páginas apontam para os mesmos recursos `../Build/` e `../TemplateData/`; a página inicial antiga (`/index.html`) permanece inalterada.
+
+---
+
 # Transylvania WebGL — teste
 
 Versão de testes para GitHub Pages usando os arquivos da build Unity WebGL fornecidos pelo usuário.
@@ -24,6 +38,6 @@ Se o site original sair do ar ou bloquear o acesso do GitHub Actions, use o paco
 3. Selecione **main**, **/(root)** e salve.
 4. O endereço esperado é `https://vtcaua2014-dev.github.io/surfvt-teste/`.
 
-**Importante:** atualmente este repositório está privado. GitHub Pages exige uma conta/organização com plano que suporte Pages privado, ou mudança do repositório para **public**. GitHub Pages publica os arquivos do jogo para visitantes; confirme que tem autorização para redistribuição antes de tornar o repositório público.
+**Importante:** se o GitHub Pages não estiver ativado para este repositório, habilite-o em Settings → Pages. Verifique os direitos de redistribuição dos assets originais antes de disponibilizá-los publicamente. GitHub Pages publica os arquivos do jogo para visitantes; confirme que tem autorização para redistribuição antes de tornar o repositório público.
 
 A build completa ainda não foi testada em gameplay. O carregamento de aproximadamente 126 MB pode exigir muita memória em Chromebooks.
