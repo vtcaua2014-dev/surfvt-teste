@@ -1,0 +1,24 @@
+{
+  "status": "runtime-installed",
+  "unityVersion": "2019.2.0f1",
+  "dataSha256": "192bd8bbf9822b696259aa288491753581531ec63bb8387965882a277f7100b0",
+  "components": {
+    "UnityLoader.2019.2.js": {
+      "bytes": 237960,
+      "sha256": "240de87fd1113e5bc986aedc6f2be9cac8aadb88705f4f6272bc68b2c4f6dbb4"
+    },
+    "4399.z.js": {
+      "bytes": 908687,
+      "sha256": "e81b2f0990a48364c1f90169496b1c2c0bce9c20342f2413c6736de092396900"
+    },
+    "build/shared/wasm_framework.unityweb": {
+      "bytes": 521663,
+      "sha256": "8c580b1026299b5d255150f456e747dfda4c62d77fd24f56dae1feb357502522"
+    },
+    "build/shared/wasm_code_shared.unityweb": {
+      "bytes": 26477341,
+      "sha256": "4c53dbc95a29413f6452a58f0c0438f7a4bbf0310fe6473adeb7508e176b48a8"
+    }
+  },
+  "note": "Compatible original Iceland Unity loader/framework/WASM. Does NOT contain Transylvania engine."
+}
