@@ -156,6 +156,7 @@
           loading.style.display = "none";
           errorBox.textContent = msg;
           errorBox.style.display = "block";
+          window.dispatchEvent(new Event("iceland:unity-failed"));
         }
 
         var script = document.createElement("script");
