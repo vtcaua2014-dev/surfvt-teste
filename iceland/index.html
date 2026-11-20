@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#08131b">
+<meta name="description" content="Catálogo técnico dos arquivos Unity WebGL Iceland 2019.2.0f1 do SurfVT14, incluindo alt.json e links para o pacote de dados.">
+<title>Iceland · Arquivos Unity | SurfVT14</title>
+<style>
+:root{color-scheme:dark;--bg:#07131b;--card:#10232d;--card2:#132c38;--line:#2b4752;--text:#ecf9fd;--muted:#a4bec7;--accent:#93e8f3;--radius:18px}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(ellipse at 87% -13%,#28607570,transparent 43%),radial-gradient(ellipse at 1% 15%,#1d4d6677,transparent 45%),var(--bg);color:var(--text);min-height:100vh}
+a{color:inherit}button{font:inherit}
+.wrap{max-width:1080px;margin:auto;padding:28px clamp(18px,5vw,48px) 64px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.brand{font-size:14px;letter-spacing:.2em;font-weight:800;color:var(--accent)}
+.back{color:var(--muted);font-size:14px;text-decoration:none}.back:hover{text-decoration:underline;color:var(--text)}
+.hero{margin:42px 0 30px;border:1px solid #5e9cad66;border-radius:24px;min-height:280px;position:relative;overflow:hidden;padding:clamp(24px,5vw,48px);background:linear-gradient(118deg,#123346db,#071c28d5),repeating-linear-gradient(-25deg,#54879a23 0 3px,transparent 3px 58px)}
+.hero:after{content:"";position:absolute;right:-125px;bottom:-230px;width:540px;height:500px;border:1px solid #a1e7e941;transform:rotate(39deg);box-shadow:0 0 0 50px #c6f5fc06,0 0 0 100px #c6f5fc06;pointer-events:none}
+.eyebrow{font-size:12px;font-weight:750;letter-spacing:.2em;color:var(--accent);text-transform:uppercase}
+h1{font-size:clamp(48px,9vw,96px);letter-spacing:-.075em;line-height:1.1;margin:18px 0 8px}
+.subtitle{color:#c9e6ee;font-size:clamp(15px,2vw,19px);max-width:550px;line-height:1.55}
+.tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.tag{background:#e0fdff11;color:#d1f4f6;border:1px solid #87bfd242;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:600}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;background:#9becf3;color:#0c222b;border:1px solid #9becf3;border-radius:12px;padding:13px 18px;font-size:13px;font-weight:800;cursor:pointer;transition:transform .18s,background .18s}
+.btn:hover{transform:translateY(-2px);background:#cef9fc}.btn.secondary{background:#d7f6ff0d;color:#e7f9fd;border-color:#75b4c061}.btn.secondary:hover{background:#d7f6ff1d}
+section{margin-top:35px}.sectionTitle{font-size:21px;letter-spacing:-.02em;margin:0 0 14px}.desc{color:var(--muted);font-size:14px;line-height:1.65;margin:0 0 18px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.asset{padding:21px;background:linear-gradient(140deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:var(--radius);min-width:0}
+.asset .kind{font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:750;color:var(--accent)}
+.asset h3{margin:9px 0 8px;font-size:18px}.asset p{font-size:13px;line-height:1.65;color:var(--muted);margin:0}
+.asset .path{display:block;margin:16px 0 18px;background:#06131a99;border:1px solid #325362;border-radius:9px;padding:12px;font-size:11px;word-break:break-all;color:#bedbe3}
+.link{font-size:13px;color:var(--accent);text-underline-offset:4px;font-weight:700}
+.box{padding:21px;border:1px solid var(--line);background:#10242e;border-radius:var(--radius)}
+.note{padding:18px 20px;border-left:3px solid #f3c38f;background:#f3c38f0c;color:#e9d4be;font-size:13px;line-height:1.65;margin:22px 0 0}
+pre{font-size:12px;line-height:1.65;overflow:auto;padding:20px;color:#c9ecf1;background:#061118;border:1px solid #284650;border-radius:13px;max-height:400px;white-space:pre-wrap;word-break:break-word}
+.status{font-size:12px;color:var(--muted);margin:15px 0 0}
+footer{padding-top:35px;color:#8eaeba;font-size:12px;line-height:1.7}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.hero{margin-top:25px}.wrap{padding-bottom:30px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">SURFVT14 / ASSET LAB</div>
+    <a class="back" href="../">Voltar ao GitHub Pages original</a>
+  </header>
+  <div class="hero">
+    <div class="eyebrow">Arquivo técnico · Iceland</div>
+    <h1>ICELAND<span style="color:#88d9e8">.</span></h1>
+    <p class="subtitle">Manifesto real da build Unity WebGL e referências dos arquivos que podem conter o cenário da Islândia.</p>
+    <div class="tags"><span class="tag">Unity 2019.2.0f1</span><span class="tag">Subway Surfers 1.94.0</span><span class="tag">World Tour</span></div>
+    <div class="actions">
+      <a class="btn" href="./iceland.alt.json" download="iceland.alt.json">Baixar alt.json</a>
+      <a class="btn secondary" href="https://surfvt14.up.railway.app/maps/iceland/index.html" target="_blank" rel="noopener noreferrer">Abrir mapa original</a>
+    </div>
+  </div>
+  <section>
+    <h2 class="sectionTitle">Arquivos localizados</h2>
+    <p class="desc">O manifesto foi copiado do repositório SurfVT14. Os binários grandes continuam armazenados no repositório/site de origem: esta página aponta para eles, mas não os duplica.</p>
+    <div class="grid" id="assets"><div class="asset">Carregando índice de arquivos…</div></div>
+  </section>
+  <section>
+    <h2 class="sectionTitle">Manifesto Unity WebGL</h2>
+    <p class="desc">Este JSON descreve a build e os caminhos dos pacotes. Ele não contém diretamente meshes, texturas, atlas ou cenas.</p>
+    <div class="box">
+      <div class="actions" style="margin-top:0"><button class="btn secondary" id="copy" type="button">Copiar JSON</button><a class="btn secondary" href="./assets-manifest.json">Abrir índice de recursos</a></div>
+      <pre id="json">{ "status": "Carregando iceland.alt.json..." }</pre>
+      <div id="copy-status" class="status" aria-live="polite"></div>
+    </div>
+    <p class="note"><strong>Importante:</strong> o arquivo <code>iceland.alt.data.unityweb</code> é um pacote Unity compilado. Meshes, texturas, atlas e objetos da cena ainda <strong>não foram extraídos individualmente</strong> e não estão disponíveis aqui como arquivos FBX, OBJ, PNG ou WebP. Para importá-los em Unity 2022, é necessário analisar e converter o conteúdo do pacote; copiar o alt.json não transfere o cenário.</p>
+  </section>
+  <footer>
+    Catálogo técnico independente. O conteúdo original de Subway Surfers pertence aos seus respectivos titulares. Reutilização e redistribuição de assets dependem das permissões aplicáveis.
+    <p><a href="https://github.com/vtcaua2014-dev/surfvt/tree/main/public/maps/iceland" target="_blank" rel="noopener noreferrer">Pasta original no GitHub</a> · <a href="https://github.com/vtcaua2014-dev/surfvt-teste/tree/main/iceland" target="_blank" rel="noopener noreferrer">Pasta do catálogo neste GitHub Pages</a></p>
+  </footer>
+</div>
+<script>
+(async function(){
+  const grid=document.getElementById('assets');
+  const pre=document.getElementById('json');
+  try{
+    const [indexResponse,jsonResponse]=await Promise.all([fetch('./assets-manifest.json'),fetch('./iceland.alt.json')]);
+    if(!indexResponse.ok||!jsonResponse.ok)throw Error('Arquivo não encontrado no GitHub Pages.');
+    const index=await indexResponse.json();
+    const manifest=await jsonResponse.json();
+    pre.textContent=JSON.stringify(manifest,null,2);
+    grid.replaceChildren();
+    index.resources.forEach(resource=>{
+      const box=document.createElement('article');box.className='asset';
+      const category=document.createElement('div');category.className='kind';category.textContent=resource.kind;
+      const heading=document.createElement('h3');heading.textContent=resource.label;
+      const details=document.createElement('p');details.textContent=resource.details;
+      const path=document.createElement('code');path.className='path';path.textContent=resource.sourcePath||resource.path;
+      const link=document.createElement('a');link.className='link';link.href=resource.path;
+      link.textContent=resource.id==='alt-json'?'Abrir manifesto local':'Abrir arquivo na origem';
+      if(resource.id!=='alt-json'){link.target='_blank';link.rel='noopener noreferrer';}
+      box.append(category,heading,details,path,link);grid.appendChild(box);
+    });
+    document.getElementById('copy').addEventListener('click',async ()=>{
+      const status=document.getElementById('copy-status');
+      try{await navigator.clipboard.writeText(JSON.stringify(manifest,null,2));status.textContent='Manifesto copiado.'}
+      catch{status.textContent='Não foi possível copiar automaticamente; selecione o JSON acima.'}
+    });
+  }catch(error){pre.textContent=String(error);grid.textContent='Não foi possível carregar o índice. Confirme que os dois arquivos JSON foram publicados.';}
+})();
+</script>
+</body>
+</html>
