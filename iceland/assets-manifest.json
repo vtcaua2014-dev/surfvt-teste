@@ -1,0 +1,56 @@
+{
+  "title": "Iceland • Subway Surfers • SurfVT14",
+  "kind": "unity-webgl-build-resource-index",
+  "sourceRepository": "https://github.com/vtcaua2014-dev/surfvt",
+  "sourceMap": "https://surfvt14.up.railway.app/maps/iceland/index.html",
+  "unityVersion": "2019.2.0f1",
+  "productVersion": "1.94.0",
+  "notes": "Os recursos de cena/mesh/atlas/textura não foram extraídos individualmente. iceland.alt.json aponta para a build Unity WebGL e não contém assets.",
+  "resources": [
+    {
+      "id": "alt-json",
+      "label": "Iceland alt.json",
+      "kind": "Unity WebGL manifest",
+      "path": "./iceland.alt.json",
+      "available": true,
+      "extracted": true,
+      "details": "Cópia fiel do manifesto original da build de Iceland."
+    },
+    {
+      "id": "data",
+      "label": "Iceland data.unityweb",
+      "kind": "Unity data container",
+      "path": "https://surfvt14.up.railway.app/maps/iceland/build/iceland/iceland.alt.data.unityweb",
+      "sourcePath": "public/maps/iceland/build/iceland/iceland.alt.data.unityweb",
+      "available": true,
+      "extracted": false,
+      "details": "Pacote binário que pode conter modelos 3D, texturas, atlas, cenas, materiais e outros dados; conteúdo interno não analisado."
+    },
+    {
+      "id": "wasm",
+      "label": "Shared WASM",
+      "kind": "Runtime code",
+      "path": "https://surfvt14.up.railway.app/maps-shared/wasm_code_shared.unityweb",
+      "sourcePath": "public/maps-shared/wasm_code_shared.unityweb",
+      "available": true,
+      "extracted": false,
+      "details": "Código compilado WebAssembly; não é o cenário nem um atlas."
+    },
+    {
+      "id": "framework",
+      "label": "WASM framework",
+      "kind": "Runtime framework",
+      "path": "https://surfvt14.up.railway.app/maps/iceland/build/shared/wasm_framework.unityweb",
+      "sourcePath": "public/maps/iceland/build/shared/wasm_framework.unityweb",
+      "available": true,
+      "extracted": false,
+      "details": "Framework do Unity WebGL usado pela build Iceland."
+    }
+  ],
+  "extraction": {
+    "meshes": "not-extracted",
+    "textures": "not-extracted",
+    "atlases": "not-extracted",
+    "scene": "not-extracted"
+  }
+}
