@@ -1,0 +1,113 @@
+name: Importar runtime compatível de Iceland
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/prepare-iceland-compatible-runtime.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: import-iceland-runtime
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout GitHub Pages
+        uses: actions/checkout@v4
+        with:
+          path: site
+          persist-credentials: true
+
+      - name: Checkout build original pública de Iceland
+        uses: actions/checkout@v4
+        with:
+          repository: vtcaua2014-dev/surfvt14
+          ref: main
+          path: origin-build
+          lfs: true
+          persist-credentials: false
+          sparse-checkout: |
+            public/maps/iceland
+            public/maps-shared
+          sparse-checkout-cone-mode: true
+
+      - name: Instalar carregador Unity 2019 e código WebAssembly correspondente
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, shutil, hashlib
+          from pathlib import Path
+          source = Path("origin-build/public")
+          target = Path("site/iceland")
+          data = target / "Build/iceland.alt.data.unityweb"
+          if not data.exists() or data.stat().st_size != 27865882:
+              raise SystemExit("Iceland alt.data original ausente ou com tamanho incorreto")
+          # The browser loader, WebAssembly and framework must come from the
+          # SAME Unity 2019 edition as the data, never from Transylvania.
+          source_files = {
+              "maps/iceland/UnityLoader.2019.2.js": "UnityLoader.2019.2.js",
+              "maps/iceland/4399.z.js": "4399.z.js",
+              "maps/iceland/build/shared/wasm_framework.unityweb": "build/shared/wasm_framework.unityweb",
+              "maps-shared/wasm_code_shared.unityweb": "build/shared/wasm_code_shared.unityweb",
+          }
+          evidence={}
+          for source_path, dest_path in source_files.items():
+              src=source / source_path
+              dst=target / dest_path
+              if not src.is_file() or src.stat().st_size < 1000:
+                  raise SystemExit("Required Iceland runtime missing: " + str(src))
+              if src.read_bytes().startswith(b"version https://git-lfs.github.com/spec"):
+                  raise SystemExit("Git LFS not downloaded: " + str(src))
+              dst.parent.mkdir(parents=True,exist_ok=True)
+              shutil.copyfile(src,dst)
+              evidence[dest_path]={"bytes": dst.stat().st_size, "sha256": hashlib.sha256(dst.read_bytes()).hexdigest()}
+              print("COPIED", source_path,"->",dest_path,dst.stat().st_size,"bytes")
+          src_manifest=source / "maps/iceland/build/iceland/iceland.alt.json"
+          if not src_manifest.is_file():
+              raise SystemExit("Unity Iceland manifest missing")
+          manifest=json.loads(src_manifest.read_text(encoding="utf-8"))
+          if manifest.get("unityVersion")!="2019.2.0f1":
+              raise SystemExit("Unexpected Iceland Unity version")
+          manifest["dataUrl"]="../../Build/iceland.alt.data.unityweb"
+          manifest["wasmCodeUrl"]="../shared/wasm_code_shared.unityweb"
+          manifest["wasmFrameworkUrl"]="../shared/wasm_framework.unityweb"
+          target_manifest=target/"build/iceland/iceland.alt.json"
+          target_manifest.parent.mkdir(parents=True,exist_ok=True)
+          target_manifest.write_text(json.dumps(manifest,indent=2)+"\n",encoding="utf-8")
+          report={
+            "status":"runtime-installed",
+            "unityVersion":"2019.2.0f1",
+            "dataSha256":"192bd8bbf9822b696259aa288491753581531ec63bb8387965882a277f7100b0",
+            "components":evidence,
+            "note":"Compatible original Iceland Unity loader/framework/WASM. Does NOT contain Transylvania engine.",
+          }
+          (target/"build/runtime-report.json").write_text(json.dumps(report,indent=2)+"\n",encoding="utf-8")
+          print("Manifest adjusted to same-origin paths. Runtime ready for Iceland index.html.")
+          PY
+
+      - name: Publicar runtime no repositório
+        shell: bash
+        working-directory: site
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add iceland/UnityLoader.2019.2.js iceland/4399.z.js iceland/build/
+          if git diff --cached --quiet; then
+            echo "Runtime already present"
+            exit 0
+          fi
+          git commit -m "Import Iceland original Unity 2019 loader and WASM for compatible GitHub Pages"
+          for retry in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep 4
+          done
+          exit 1
