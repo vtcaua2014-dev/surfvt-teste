@@ -124,7 +124,7 @@
 @media(max-width:600px){#iceland-tools{padding:8px 10px;font-size:11px;max-width:min(290px,calc(100vw - 12px));right:6px;top:6px}#iceland-tools strong{font-size:11px}#iceland-tools .iceland-links{gap:8px;margin:5px 0}#iceland-tools .iceland-note{display:none}}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.167.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.167.0/examples/jsm/"}}</script>
-<script src="iceland/wasm-recovery.js?v=wasm-preflight-v2"></script>
+<script src="iceland/wasm-recovery.js?v=wasm-parts-v3"></script>
 </head>
   <body>
     <div id="gj-box">
@@ -143,7 +143,7 @@
       <div class="iceland-links"><a href="transylvania/">Transylvania original</a><a href="iceland/original.html">Iceland Unity original</a><a href="iceland/resources.html">Assets extraídos</a></div>
       <button type="button" id="iceland-toggle" disabled>Iniciar camada Iceland</button>
       <label>Visibilidade <input type="range" id="iceland-opacity" min="15" max="100" value="80"></label>
-      <div id="iceland-status" role="status" aria-live="polite">Carregando Transylvania…</div>
+      <div id="iceland-status" role="status" aria-live="polite">Preparando a build da Transylvania em partes verificadas…</div>
       <button id="iceland-info" type="button" aria-expanded="false" aria-controls="iceland-disclosure" style="margin-top:7px">Como funciona?</button>
       <div id="iceland-disclosure" hidden>Os meshes e atlas reais de Iceland são renderizados em uma segunda camada WebGL. O carregador, WASM, física, câmera e colisões continuam sendo da Transylvania original. Esta visualização não é uma importação nativa dos GameObjects de Iceland para Unity 2022.</div>
     </aside>
