@@ -1,0 +1,11 @@
+{
+  "map": "Iceland",
+  "unityVersion": "2019.2.0f1",
+  "dataFile": "iceland.alt.data.unityweb",
+  "source": "vtcaua2014-dev/surfvt14/public/maps/iceland/build/iceland/iceland.alt.data.unityweb",
+  "bytes": 27865882,
+  "sha256": "192bd8bbf9822b696259aa288491753581531ec63bb8387965882a277f7100b0",
+  "format": "plain UnityWebData1.0",
+  "compatibleWithTransylvaniaUnity2022": false,
+  "status": "binary-copy-verified"
+}
