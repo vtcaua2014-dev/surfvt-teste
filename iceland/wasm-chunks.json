@@ -1,0 +1,120 @@
+{
+  "format": "surfvt14-transylvania-wasm-shards-v1",
+  "source": "Build/miamiSiteBuild.wasm",
+  "totalBytes": 45171267,
+  "sha256": "41c3669eed94fb7c15ddd1a7e2a9d107db4aa4349974eff65def0789df8cd055",
+  "chunkSize": 2097152,
+  "parts": [
+    {
+      "path": "Build/wasm-shards/miamiSiteBuild.wasm.part000",
+      "size": 2097152,
+      "sha256": "66d4494b92b06938919ecc6edb6b24e2205e58383c64f65d20a6e2c3d3128a2c"
+    },
+    {
+      "path": "Build/wasm-shards/miamiSiteBuild.wasm.part001",
+      "size": 2097152,
+      "sha256": "de325288925852cf301907e340684827d56df740c0bab0727bdea40f3a2b446c"
+    },
+    {
+      "path": "Build/wasm-shards/miamiSiteBuild.wasm.part002",
+      "size": 2097152,
+      "sha256": "6439fc335bb6106ee47975a84dd4b261012b5294806655ba93d9b3d4123fea0a"
+    },
+    {
+      "path": "Build/wasm-shards/miamiSiteBuild.wasm.part003",
+      "size": 2097152,
+      "sha256": "1194502c34c7915ceb7a330198800188f7be8a5c10d9395a0d3885b87d0e6eee"
+    },
+    {
+      "path": "Build/wasm-shards/miamiSiteBuild.wasm.part004",
+      "size": 2097152,
+      "sha256": "4d1578403da532b362ffd77b43b1e33e2f9c5229417d377f4f05db6e506d7b65"
+    },
+    {
+      "path": "Build/wasm-shards/miamiSiteBuild.wasm.part005",
+      "size": 2097152,
+      "sha256": "30536024eca492f2591bbda6e72a845f884016ae95023f1ed7439ea2325205e4"
+    },
+    {
+      "path": "Build/wasm-shards/miamiSiteBuild.wasm.part006",
+      "size": 2097152,
+      "sha256": "797043472a10fd11df3bdd4bfb383356fed5bac1122fb50acc2ae36497b200eb"
+    },
+    {
+      "path": "Build/wasm-shards/miamiSiteBuild.wasm.part007",
+      "size": 2097152,
+      "sha256": "c9ee637fef0750bcd29e2f9d5b1b2b1f6a7d20fcedfd237c2599015538416bad"
+    },
+    {
+      "path": "Build/wasm-shards/miamiSiteBuild.wasm.part008",
+      "size": 2097152,
+      "sha256": "19d55ef3945386d9f4692a51fc6322a38253daa64b9c607145b1b7a0411cdd2d"
+    },
+    {
+      "path": "Build/wasm-shards/miamiSiteBuild.wasm.part009",
+      "size": 2097152,
+      "sha256": "75e7a7c9d25f1106f60c7467eaba1534a4a04159c71f1a7ca35729cf7f5dc93b"
+    },
+    {
+      "path": "Build/wasm-shards/miamiSiteBuild.wasm.part010",
+      "size": 2097152,
+      "sha256": "6067adfd38a66fe8f5182cea01d13b672928b1fe92792c0a8c9b526c5465ccf1"
+    },
+    {
+      "path": "Build/wasm-shards/miamiSiteBuild.wasm.part011",
+      "size": 2097152,
+      "sha256": "cf2a298041e70139c9801c72e099ecc61731da2cd56fd2f7eba7111ba6cd0d0f"
+    },
+    {
+      "path": "Build/wasm-shards/miamiSiteBuild.wasm.part012",
+      "size": 2097152,
+      "sha256": "03c249ddc509b02d1e5a156378af4e4b54fddcf9979d1dde85fff92cab1afcb9"
+    },
+    {
+      "path": "Build/wasm-shards/miamiSiteBuild.wasm.part013",
+      "size": 2097152,
+      "sha256": "b56c3e6706e1f16277a4f873932a0e36b198a2f2ae522df1b936876ca991d063"
+    },
+    {
+      "path": "Build/wasm-shards/miamiSiteBuild.wasm.part014",
+      "size": 2097152,
+      "sha256": "72310bc4dd403e96e7aa90662777377d92e524964988fc2507df2a6a537f8add"
+    },
+    {
+      "path": "Build/wasm-shards/miamiSiteBuild.wasm.part015",
+      "size": 2097152,
+      "sha256": "f884b38c1db8b17dfce12708867a97da4f00219f4efdcd3de15fd728130bb035"
+    },
+    {
+      "path": "Build/wasm-shards/miamiSiteBuild.wasm.part016",
+      "size": 2097152,
+      "sha256": "5f41205a5f758e231a1ece3e3ba0eb838713d1103e769a2eb8b7e20723f1b2d7"
+    },
+    {
+      "path": "Build/wasm-shards/miamiSiteBuild.wasm.part017",
+      "size": 2097152,
+      "sha256": "82886666cfc211e2266dcb667fe4e863c4e92051304286bc35bf0798a8fd777f"
+    },
+    {
+      "path": "Build/wasm-shards/miamiSiteBuild.wasm.part018",
+      "size": 2097152,
+      "sha256": "cb79a0f814e881b705f4f80ac2141a83305a86d6bf5a00261e026982fd4f3600"
+    },
+    {
+      "path": "Build/wasm-shards/miamiSiteBuild.wasm.part019",
+      "size": 2097152,
+      "sha256": "52f129a89af5d8e581c5df1f9f36dd2381bc211dff7857ed9ba7c5064cf6dded"
+    },
+    {
+      "path": "Build/wasm-shards/miamiSiteBuild.wasm.part020",
+      "size": 2097152,
+      "sha256": "1f5765f302b06fcba96a5c08d7da8ed8bc84c687491187ab7c2a3e944a2f96d7"
+    },
+    {
+      "path": "Build/wasm-shards/miamiSiteBuild.wasm.part021",
+      "size": 1131075,
+      "sha256": "ebf564841f64d2a755044dddd540940fd0bb432fc7bb7d517c8fafa5c3b5a1f6"
+    }
+  ],
+  "note": "Each shard is a contiguous slice of the exact original Unity WASM; no asset conversion."
+}
