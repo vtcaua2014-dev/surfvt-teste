@@ -13,6 +13,8 @@ import re
 import struct
 import sys
 import tempfile
+import zipfile
+import shutil
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
@@ -84,6 +86,37 @@ def unpack_webdata(raw: bytes, dest: Path) -> list[dict]:
             raise RuntimeError("Too many files inside Iceland WebGL package")
     return entries
 
+
+def unpack_unity_apk(apk_path: Path, destination: Path, report: dict) -> int:
+    """Safely unpack just Unity resource files from an APK (no executable code)."""
+    limit = 1_200_000_000
+    total = 0
+    with zipfile.ZipFile(apk_path) as archive:
+        selected = []
+        for entry in archive.infolist():
+            name = entry.filename.replace("\\", "/")
+            parts = name.split("/")
+            if entry.is_dir() or not parts or ".." in parts or name.startswith("/"):
+                continue
+            lower = name.lower()
+            is_data = lower.startswith("assets/bin/data/")
+            is_bundle = ("assetbundle" in lower or "/bundles/" in lower or lower.endswith(
+                (".unity3d", ".assetbundle", ".bundle", ".assets", ".ress", ".resource")
+            ))
+            if not (is_data or (lower.startswith("assets/") and is_bundle)):
+                continue
+            if entry.file_size > 450_000_000 or total + entry.file_size > limit:
+                continue
+            selected.append((entry, name))
+            total += entry.file_size
+        for entry, name in selected:
+            target = destination / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            with archive.open(entry) as source, target.open("wb") as output:
+                shutil.copyfileobj(source, output)
+            report["rawFiles"].append({"path": name, "bytes": entry.file_size})
+    return total
+
 def inspect_and_export(src: Path, dest: Path, limit_mb: int):
     dest.mkdir(parents=True, exist_ok=True)
     for category in ("textures", "meshes", "sprites", "materials"):
@@ -105,14 +138,25 @@ def inspect_and_export(src: Path, dest: Path, limit_mb: int):
     used = 0
     try:
         import UnityPy
-        UnityPy.config.FALLBACK_UNITY_VERSION = "2019.2.0f1"
-        raw, packing = decode_archive(src)
-        report["compression"] = packing
+        UnityPy.config.FALLBACK_UNITY_VERSION = "2018.4.0f1" if zipfile.is_zipfile(src) else "2019.2.0f1"
         report["inputBytes"] = src.stat().st_size
-        report["uncompressedBytes"] = len(raw)
-        with tempfile.TemporaryDirectory(prefix="iceland_webgl_") as temp:
+        with tempfile.TemporaryDirectory(prefix="iceland_unity_") as temp:
             unpack_dir = Path(temp)
-            report["rawFiles"] = unpack_webdata(raw, unpack_dir)
+            if zipfile.is_zipfile(src):
+                report["sourceType"] = "android-apk"
+                report["origin"] = "Subway Surfers Iceland 2018 v1.85.0 Android APK supplied by user URL"
+                report["unityVersion"] = "From Unity asset headers; 2019.2.0f1 is WebGL variant only"
+                report["compression"] = "APK ZIP"
+                report["uncompressedBytes"] = unpack_unity_apk(src, unpack_dir, report)
+                if not report["rawFiles"]:
+                    raise RuntimeError("APK does not include Unity assets/bin/Data or asset bundles. An external OBB could be required.")
+            else:
+                raw, packing = decode_archive(src)
+                report["sourceType"] = "unity-webgl-data"
+                report["compression"] = packing
+                report["uncompressedBytes"] = len(raw)
+                report["rawFiles"] = unpack_webdata(raw, unpack_dir)
+                del raw
             # Resource files and serialized scenes must share a filesystem.
             try:
                 env = UnityPy.load(str(unpack_dir))
