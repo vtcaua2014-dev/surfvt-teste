@@ -12,6 +12,21 @@ As duas páginas apontam para os mesmos recursos `../Build/` e `../TemplateData/
 
 ---
 
+## Iceland: assets efetivamente extraídos e runner 3D
+
+- `/iceland/`: **runner 3D experimental** implementado em Three.js, com 3 faixas, desvio, pulo, rolamento, obstáculo e moedas.
+- `/iceland/play.html`: link alternativo para o mesmo runner.
+- `/iceland/extracted/manifest.json`: extração concluída dos assets Iceland Unity 2019 (303 meshes OBJ, 142 texturas PNG e 3 sprites PNG, total 448 arquivos).
+- `/iceland/scene-assets.json`: referências verificadas dos modelos de trilho, trem, estações, barreiras e texturas originais utilizados no runner.
+- `/iceland/resources.html`: visualizador dos meshes/texturas reais exportados.
+- `/transylvania/`: mantém a build Unity compilada original.
+- O runner é uma **reconstrução independente** que reutiliza os meshes e atlas do Iceland. **Não é uma alteração/recompilação do WebAssembly Unity 2022 da Transylvania**, e não reproduz automaticamente todas as animações, scripts e colisões originais.
+
+A extração automatizada fica em `.github/workflows/extract-iceland.yml`. O primeiro erro era compatível com a tentativa de checkout do repositório privado `surfvt` a partir de um workflow do repositório público `surfvt-teste`; a origem passou a ser `surfvt14`, que é público e contém a build Iceland. O manifesto publicado confirma o sucesso posterior da extração.
+
+`.github/workflows/import-build.yml` também foi atualizado para reconhecer as sete partes já existentes do pacote Transylvania, em vez de baixar novamente de um host antigo. **O resultado de uma nova execução desse workflow não foi verificado neste momento.**
+
+
 # Transylvania WebGL — teste
 
 Versão de testes para GitHub Pages usando os arquivos da build Unity WebGL fornecidos pelo usuário.
