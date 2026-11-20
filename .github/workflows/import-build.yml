@@ -21,6 +21,27 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # The original seven data parts and runtime are already committed
+          # to this repository. Avoid re-downloading a deprecated external
+          # host if all required files are present and sizes are correct.
+          if test -s Build/miamiSiteBuild.loader.js &&
+             test -s Build/miamiSiteBuild.framework.js &&
+             test -s Build/miamiSiteBuild.wasm &&
+             test -s TemplateData/style.css &&
+             test -s Build/miamiSiteBuild.data.unityweb.part0 &&
+             test -s Build/miamiSiteBuild.data.unityweb.part1 &&
+             test -s Build/miamiSiteBuild.data.unityweb.part2 &&
+             test -s Build/miamiSiteBuild.data.unityweb.part3 &&
+             test -s Build/miamiSiteBuild.data.unityweb.part4 &&
+             test -s Build/miamiSiteBuild.data.unityweb.part5 &&
+             test -s Build/miamiSiteBuild.data.unityweb.part6; then
+            actual=$(wc -c Build/miamiSiteBuild.data.unityweb.part* | tail -1 | awk '{print $1}')
+            if [ "$actual" -eq 126534900 ]; then
+              echo "Transylvania: existing 7 data segments validated ($actual bytes), skipping old import URL"
+              exit 0
+            fi
+            echo "Existing segments have unexpected total size: $actual"
+          fi
           BASE="https://gjteste.vercel.app/transylvania"
           mkdir -p Build TemplateData tmp-assets
           download() {
