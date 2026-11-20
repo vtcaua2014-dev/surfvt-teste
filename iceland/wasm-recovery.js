@@ -59,7 +59,7 @@
       try {
         progress("Baixando WASM: parte " + (index + 1) + "/" + total +
           " (tentativa " + attempt + "/" + MAX_PART_ATTEMPTS + ")…");
-        const response = await fetchImpl(fileUrl(part.path) +
+        const response = await fetchImpl.call(window, fileUrl(part.path) +
           "?shard=iceland-v3&r=" + attempt, {
           cache: "no-store",
           credentials: "same-origin"
@@ -85,7 +85,7 @@
 
   async function loadFromShards(fetchImpl, progress) {
     progress("Procurando pacote WASM dividido em arquivos menores…");
-    const response = await fetchImpl(manifestPath() + "?manifest=iceland-v3", {
+    const response = await fetchImpl.call(window, manifestPath() + "?manifest=iceland-v3", {
       cache: "no-store", credentials: "same-origin"
     });
     if (!response.ok) throw new Error("Partes WASM ainda não publicadas (HTTP " + response.status + ")");
@@ -110,7 +110,7 @@
       try {
         progress("Tentando WASM original da Transylvania (" + attempt + "/" +
           MAX_WHOLE_ATTEMPTS + ")…");
-        const response = await fetchImpl(wasmPath() + "?download=iceland-fallback-v3-" + attempt, {
+        const response = await fetchImpl.call(window, wasmPath() + "?download=iceland-fallback-v3-" + attempt, {
           cache: "no-store", credentials: "same-origin"
         });
         if (!response.ok) throw new Error("HTTP " + response.status);
@@ -164,7 +164,7 @@
           }
         }));
       }
-      return fetchImpl.apply(this, arguments);
+      return fetchImpl.apply(window, arguments);
     };
     window.fetch = patchedFetch;
     progress("WASM disponível para o Unity (" + (blob.size / 1048576).toFixed(1) + " MiB)");
