@@ -29,7 +29,8 @@
     "iceland_idle_mesh": "../iceland/extracted/meshes/iceland_idle_mesh_218.obj",
     "high_01_left": "../iceland/extracted/meshes/high_01_left_112.obj",
     "low_01_left": "../iceland/extracted/meshes/low_01_left_121.obj",
-    "skyplane0x20": "../iceland/extracted/meshes/skyplane0x20_98.obj"
+    "skyplane0x20": "../iceland/extracted/meshes/skyplane0x20_98.obj",
+    "currency_coin": "../iceland/extracted/meshes/currency_coin_316.obj"
   },
   "textures": {
     "1.117_Iceland_environment": "../iceland/extracted/textures/1.117_Iceland_environment_61.png",
