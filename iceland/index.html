@@ -1,110 +1,161 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#08131b">
-<meta name="description" content="Catálogo técnico dos arquivos Unity WebGL Iceland 2019.2.0f1 do SurfVT14, incluindo alt.json e links para o pacote de dados.">
-<title>Iceland · Arquivos Unity | SurfVT14</title>
-<style>
-:root{color-scheme:dark;--bg:#07131b;--card:#10232d;--card2:#132c38;--line:#2b4752;--text:#ecf9fd;--muted:#a4bec7;--accent:#93e8f3;--radius:18px}
-*{box-sizing:border-box}
-body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(ellipse at 87% -13%,#28607570,transparent 43%),radial-gradient(ellipse at 1% 15%,#1d4d6677,transparent 45%),var(--bg);color:var(--text);min-height:100vh}
-a{color:inherit}button{font:inherit}
-.wrap{max-width:1080px;margin:auto;padding:28px clamp(18px,5vw,48px) 64px}
-.top{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
-.brand{font-size:14px;letter-spacing:.2em;font-weight:800;color:var(--accent)}
-.back{color:var(--muted);font-size:14px;text-decoration:none}.back:hover{text-decoration:underline;color:var(--text)}
-.hero{margin:42px 0 30px;border:1px solid #5e9cad66;border-radius:24px;min-height:280px;position:relative;overflow:hidden;padding:clamp(24px,5vw,48px);background:linear-gradient(118deg,#123346db,#071c28d5),repeating-linear-gradient(-25deg,#54879a23 0 3px,transparent 3px 58px)}
-.hero:after{content:"";position:absolute;right:-125px;bottom:-230px;width:540px;height:500px;border:1px solid #a1e7e941;transform:rotate(39deg);box-shadow:0 0 0 50px #c6f5fc06,0 0 0 100px #c6f5fc06;pointer-events:none}
-.eyebrow{font-size:12px;font-weight:750;letter-spacing:.2em;color:var(--accent);text-transform:uppercase}
-h1{font-size:clamp(48px,9vw,96px);letter-spacing:-.075em;line-height:1.1;margin:18px 0 8px}
-.subtitle{color:#c9e6ee;font-size:clamp(15px,2vw,19px);max-width:550px;line-height:1.55}
-.tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
-.tag{background:#e0fdff11;color:#d1f4f6;border:1px solid #87bfd242;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:600}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
-.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;background:#9becf3;color:#0c222b;border:1px solid #9becf3;border-radius:12px;padding:13px 18px;font-size:13px;font-weight:800;cursor:pointer;transition:transform .18s,background .18s}
-.btn:hover{transform:translateY(-2px);background:#cef9fc}.btn.secondary{background:#d7f6ff0d;color:#e7f9fd;border-color:#75b4c061}.btn.secondary:hover{background:#d7f6ff1d}
-section{margin-top:35px}.sectionTitle{font-size:21px;letter-spacing:-.02em;margin:0 0 14px}.desc{color:var(--muted);font-size:14px;line-height:1.65;margin:0 0 18px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.asset{padding:21px;background:linear-gradient(140deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:var(--radius);min-width:0}
-.asset .kind{font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:750;color:var(--accent)}
-.asset h3{margin:9px 0 8px;font-size:18px}.asset p{font-size:13px;line-height:1.65;color:var(--muted);margin:0}
-.asset .path{display:block;margin:16px 0 18px;background:#06131a99;border:1px solid #325362;border-radius:9px;padding:12px;font-size:11px;word-break:break-all;color:#bedbe3}
-.link{font-size:13px;color:var(--accent);text-underline-offset:4px;font-weight:700}
-.box{padding:21px;border:1px solid var(--line);background:#10242e;border-radius:var(--radius)}
-.note{padding:18px 20px;border-left:3px solid #f3c38f;background:#f3c38f0c;color:#e9d4be;font-size:13px;line-height:1.65;margin:22px 0 0}
-pre{font-size:12px;line-height:1.65;overflow:auto;padding:20px;color:#c9ecf1;background:#061118;border:1px solid #284650;border-radius:13px;max-height:400px;white-space:pre-wrap;word-break:break-word}
-.status{font-size:12px;color:var(--muted);margin:15px 0 0}
-footer{padding-top:35px;color:#8eaeba;font-size:12px;line-height:1.7}
-@media(max-width:700px){.grid{grid-template-columns:1fr}.hero{margin-top:25px}.wrap{padding-bottom:30px}}
-</style>
-</head>
-<body>
-<div class="wrap">
-  <header class="top">
-    <div class="brand">SURFVT14 / ASSET LAB</div>
-    <a class="back" href="../">Voltar ao GitHub Pages original</a>
-  </header>
-  <div class="hero">
-    <div class="eyebrow">Arquivo técnico · Iceland</div>
-    <h1>ICELAND<span style="color:#88d9e8">.</span></h1>
-    <p class="subtitle">Manifesto real da build Unity WebGL e referências dos arquivos que podem conter o cenário da Islândia.</p>
-    <div class="tags"><span class="tag">Unity 2019.2.0f1</span><span class="tag">Subway Surfers 1.94.0</span><span class="tag">World Tour</span></div>
-    <div class="actions">
-      <a class="btn" href="./iceland.alt.json" download="iceland.alt.json">Baixar alt.json</a>
-      <a class="btn secondary" href="https://surfvt14.up.railway.app/maps/iceland/index.html" target="_blank" rel="noopener noreferrer">Abrir mapa original</a>
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head><base href="../"><script>try{if(location.search!=="?original")history.replaceState(null,"",location.pathname+"?original")}catch(e){console.warn(e)}window.GJ_ORIGINAL=true;window.GJ_NOCOINSEE=false;</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="theme-color" content="#000000">
+    <title>Transylvania × Iceland · Protótipo | SurfVT Teste</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <!-- Save do site: precisam rodar antes do jogo abrir -->
+    <style>
+      html, body {
+        margin: 0; padding: 0; width: 100%; height: 100%;
+        overflow: hidden; background: #000;
+        /* celular: sem rolar, sem zoom de pinça, sem seleção, sem menu de toque longo */
+        touch-action: none; overscroll-behavior: none;
+        -webkit-user-select: none; user-select: none;
+        -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent;
+      }
+      body { position: fixed; inset: 0; }
+      /* o jogo é em pé: no celular ocupa a tela toda; em tela larga fica no meio, no máximo 3:4 */
+      #gj-box {
+        position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+        height: 100%; width: min(100%, 75vh);
+        height: 100dvh; width: min(100vw, 75dvh);
+      }
+      /* tela cheia (F11 ou botão): o jogo ocupa a tela inteira, larga */
+      body.gj-full #gj-box { width: 100vw; height: 100vh; width: 100dvw; height: 100dvh; }
+      /* computador: o jogo ocupa a janela inteira, largo (janela normal e tela cheia) */
+      body.gj-desktop #gj-box { width: 100vw; height: 100vh; width: 100dvw; height: 100dvh; }
+      #unity-canvas { display: block; width: 100%; height: 100%; background: #000; outline: none; touch-action: none; }
+      /* carregamento: o mesmo de antes (logo da Unity + barra), do TemplateData/style.css */
+      #unity-loading-bar { display: block; }
+      #gj-error {
+        display: none; position: absolute; left: 8%; right: 8%; top: 40%; padding: 14px;
+        background: #b00020; color: #fff; font: 15px/1.4 sans-serif; text-align: center; border-radius: 8px;
+      }
+
+      #iceland-dev-note{position:fixed;top:12px;left:12px;right:12px;max-width:410px;z-index:200;color:#eafcff;background:#092634ec;border:1px solid #71b8c8a6;border-radius:12px;padding:12px 14px;font:12px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;box-shadow:0 8px 26px #0007;pointer-events:auto}
+      #iceland-dev-note strong{display:block;font-size:13px;margin-bottom:5px;color:#a8edff}
+      #iceland-dev-note a{color:#aceeff;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+      #iceland-dev-note .links{margin-top:7px;display:flex;gap:14px;flex-wrap:wrap}
+      #iceland-dev-note button{position:absolute;top:6px;right:7px;border:0;background:transparent;color:#b9d4dd;font-size:18px;cursor:pointer}
+      @media(max-width:480px){#iceland-dev-note{top:6px;left:6px;right:6px;padding:8px 28px 8px 10px;font-size:11px}}
+    </style>
+  <script>(function(){var P=["Build/miamiSiteBuild.data.unityweb.part0","Build/miamiSiteBuild.data.unityweb.part1","Build/miamiSiteBuild.data.unityweb.part2","Build/miamiSiteBuild.data.unityweb.part3","Build/miamiSiteBuild.data.unityweb.part4","Build/miamiSiteBuild.data.unityweb.part5","Build/miamiSiteBuild.data.unityweb.part6"];var F=window.fetch;window.fetch=function(i,o){var u=typeof i==='string'?i:(i&&i.url)||'';if(/miamiSiteBuild\.data\.unityweb(\?|#|$)/.test(u)){return Promise.all(P.map(function(p){return F(p).then(function(r){if(!r.ok)throw new Error('falha ao baixar '+p);return r.arrayBuffer();});})).then(function(b){return new Response(new Blob(b),{status:200,headers:{'Content-Type':'application/octet-stream'}});});}return F.apply(this,arguments);};})();</script></head>
+  <body>
+
+    <aside id="iceland-dev-note" role="note">
+      <strong>ICELAND × TRANSYLVANIA — PROTÓTIPO</strong>
+      Esta versão executa a build original da Transylvania. A substituição real dos cenários, meshes, atlas e texturas por Iceland ainda não foi concluída.
+      <div class="links"><a href="iceland/assets.html">Arquivos de Iceland</a><a href="https://surfvt14.up.railway.app/maps/iceland/index.html" target="_blank" rel="noopener noreferrer">Visualizar Iceland original</a></div>
+      <button type="button" aria-label="Fechar aviso" onclick="document.getElementById('iceland-dev-note').remove()">×</button>
+    </aside>
+    <div id="gj-box">
+      <canvas id="unity-canvas" tabindex="-1"></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
+        </div>
+      </div>
+      <div id="gj-error"></div>
     </div>
-  </div>
-  <section>
-    <h2 class="sectionTitle">Arquivos localizados</h2>
-    <p class="desc">O manifesto foi copiado do repositório SurfVT14. Os binários grandes continuam armazenados no repositório/site de origem: esta página aponta para eles, mas não os duplica.</p>
-    <div class="grid" id="assets"><div class="asset">Carregando índice de arquivos…</div></div>
-  </section>
-  <section>
-    <h2 class="sectionTitle">Manifesto Unity WebGL</h2>
-    <p class="desc">Este JSON descreve a build e os caminhos dos pacotes. Ele não contém diretamente meshes, texturas, atlas ou cenas.</p>
-    <div class="box">
-      <div class="actions" style="margin-top:0"><button class="btn secondary" id="copy" type="button">Copiar JSON</button><a class="btn secondary" href="./assets-manifest.json">Abrir índice de recursos</a></div>
-      <pre id="json">{ "status": "Carregando iceland.alt.json..." }</pre>
-      <div id="copy-status" class="status" aria-live="polite"></div>
-    </div>
-    <p class="note"><strong>Importante:</strong> o arquivo <code>iceland.alt.data.unityweb</code> é um pacote Unity compilado. Meshes, texturas, atlas e objetos da cena ainda <strong>não foram extraídos individualmente</strong> e não estão disponíveis aqui como arquivos FBX, OBJ, PNG ou WebP. Para importá-los em Unity 2022, é necessário analisar e converter o conteúdo do pacote; copiar o alt.json não transfere o cenário.</p>
-  </section>
-  <footer>
-    Catálogo técnico independente. O conteúdo original de Subway Surfers pertence aos seus respectivos titulares. Reutilização e redistribuição de assets dependem das permissões aplicáveis.
-    <p><a href="https://github.com/vtcaua2014-dev/surfvt/tree/main/public/maps/iceland" target="_blank" rel="noopener noreferrer">Pasta original no GitHub</a> · <a href="https://github.com/vtcaua2014-dev/surfvt-teste/tree/main/iceland" target="_blank" rel="noopener noreferrer">Pasta do catálogo neste GitHub Pages</a></p>
-  </footer>
-</div>
-<script>
-(async function(){
-  const grid=document.getElementById('assets');
-  const pre=document.getElementById('json');
-  try{
-    const [indexResponse,jsonResponse]=await Promise.all([fetch('./assets-manifest.json'),fetch('./iceland.alt.json')]);
-    if(!indexResponse.ok||!jsonResponse.ok)throw Error('Arquivo não encontrado no GitHub Pages.');
-    const index=await indexResponse.json();
-    const manifest=await jsonResponse.json();
-    pre.textContent=JSON.stringify(manifest,null,2);
-    grid.replaceChildren();
-    index.resources.forEach(resource=>{
-      const box=document.createElement('article');box.className='asset';
-      const category=document.createElement('div');category.className='kind';category.textContent=resource.kind;
-      const heading=document.createElement('h3');heading.textContent=resource.label;
-      const details=document.createElement('p');details.textContent=resource.details;
-      const path=document.createElement('code');path.className='path';path.textContent=resource.sourcePath||resource.path;
-      const link=document.createElement('a');link.className='link';link.href=resource.path;
-      link.textContent=resource.id==='alt-json'?'Abrir manifesto local':'Abrir arquivo na origem';
-      if(resource.id!=='alt-json'){link.target='_blank';link.rel='noopener noreferrer';}
-      box.append(category,heading,details,path,link);grid.appendChild(box);
-    });
-    document.getElementById('copy').addEventListener('click',async ()=>{
-      const status=document.getElementById('copy-status');
-      try{await navigator.clipboard.writeText(JSON.stringify(manifest,null,2));status.textContent='Manifesto copiado.'}
-      catch{status.textContent='Não foi possível copiar automaticamente; selecione o JSON acima.'}
-    });
-  }catch(error){pre.textContent=String(error);grid.textContent='Não foi possível carregar o índice. Confirme que os dois arquivos JSON foram publicados.';}
-})();
-</script>
-</body>
+    <script>
+      (function () {
+        var canvas = document.getElementById("unity-canvas");
+        var fill = document.getElementById("unity-progress-bar-full");
+        var loading = document.getElementById("unity-loading-bar");
+        var errorBox = document.getElementById("gj-error");
+        var mobile = /iPhone|iPad|iPod|Android|Mobile/i.test(navigator.userAgent) ||
+          (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+        window.gjIsMobile = mobile;
+        // tem que ser antes do jogo abrir: ele se ajusta bem entre tamanhos largos, mas não de "em pé" para largo
+        if (!mobile) document.body.classList.add("gj-desktop");
+
+        // proteção: dificulta copiar/abrir o inspetor (não impede 100%, mas atrapalha quem quer roubar a build)
+        document.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+        document.addEventListener("dragstart", function (e) { e.preventDefault(); });
+        document.addEventListener("keydown", function (e) {
+          var k = e.key || "";
+          var block = e.keyCode === 123 /* F12 */
+            || ((e.ctrlKey || e.metaKey) && e.shiftKey && /^[IJCiJc]$/.test(k))   /* Ctrl/Cmd+Shift+I/J/C */
+            || ((e.ctrlKey || e.metaKey) && /^[Uu]$/.test(k) && !e.shiftKey)       /* Ctrl/Cmd+U (ver código) */
+            || ((e.ctrlKey || e.metaKey) && /^[Ss]$/.test(k));                     /* Ctrl/Cmd+S (salvar página) */
+          if (block) { e.preventDefault(); e.stopPropagation(); return false; }
+        }, true);
+        document.addEventListener("touchmove", function (e) { e.preventDefault(); }, { passive: false });
+        // devolve o foco ao jogo ao tocar/clicar (teclado volta a funcionar)
+        canvas.addEventListener("pointerdown", function () { canvas.focus(); });
+
+        // tela cheia: pela API (botão/Unity) ou pelo F11 do navegador (janela do tamanho do monitor)
+        function updateFull() {
+          var api = !!(document.fullscreenElement || document.webkitFullscreenElement);
+          // F11: a janela fica do tamanho do monitor. Compara também em pixels reais (zoom do navegador / escala
+          // do Windows mudam o innerWidth) e pela media query de tela cheia do navegador.
+          var dpr = window.devicePixelRatio || 1;
+          var f11 = !mobile && (
+            (window.innerHeight >= screen.height - 4 && window.innerWidth >= screen.width - 4) ||
+            (window.outerHeight >= screen.height - 4 && window.outerWidth >= screen.width - 4 &&
+              window.innerHeight * dpr >= window.outerHeight * dpr - 8 && window.outerHeight - window.innerHeight < 8) ||
+            (window.matchMedia && window.matchMedia("(display-mode: fullscreen)").matches));
+          document.body.classList.toggle("gj-full", api || f11);
+        }
+        // F11 no jogo: entra em tela cheia de verdade (o jogo ocupa o monitor inteiro, largo)
+        document.addEventListener("keydown", function (e) {
+          if (e.keyCode !== 122 || mobile) return;
+          e.preventDefault();
+          if (document.fullscreenElement || document.webkitFullscreenElement) {
+            (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+          } else {
+            var el = document.documentElement;
+            var p = (el.requestFullscreen || el.webkitRequestFullscreen).call(el);
+            if (p && p.catch) p.catch(function () {});
+          }
+        }, true);
+        window.addEventListener("resize", updateFull);
+        document.addEventListener("fullscreenchange", updateFull);
+        document.addEventListener("webkitfullscreenchange", updateFull);
+        updateFull();
+
+        var buildUrl = "Build";
+        var config = {
+          dataUrl: buildUrl + "/miamiSiteBuild.data.unityweb",
+          frameworkUrl: buildUrl + "/miamiSiteBuild.framework.js",
+          codeUrl: buildUrl + "/miamiSiteBuild.wasm",
+          streamingAssetsUrl: "StreamingAssets",
+          companyName: "Kiloo Games",
+          productName: "Subway Surf",
+          productVersion: "1.105.0",
+          // menos trabalho por quadro: sem anti-aliasing, e pede a placa de vídeo forte
+          webglContextAttributes: { antialias: false, preserveDrawingBuffer: false, powerPreference: "high-performance" },
+          showBanner: function (msg, type) { if (type === "error") showError(msg); else console.warn(msg); }
+        };
+
+        function showError(msg) {
+          loading.style.display = "none";
+          errorBox.textContent = msg;
+          errorBox.style.display = "block";
+        }
+
+        var script = document.createElement("script");
+        script.src = buildUrl + "/miamiSiteBuild.loader.js";
+        script.onload = function () {
+          createUnityInstance(canvas, config, function (progress) {
+            fill.style.width = (100 * progress) + "%";
+          }).then(function (instance) {
+            window.unityInstance = instance;
+            loading.style.display = "none";
+            canvas.focus();
+          }).catch(showError);
+        };
+        script.onerror = function () { showError("Não foi possível carregar o jogo. Recarregue a página."); };
+        document.body.appendChild(script);
+      })();
+    </script>
+  </body>
 </html>
