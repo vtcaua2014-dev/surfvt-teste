@@ -1,0 +1,83 @@
+name: Publicar WASM da Transylvania em partes pequenas
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/split-transylvania-wasm.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  split-wasm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          lfs: true
+          persist-credentials: true
+      - name: Verificar a build original e dividir WASM em blocos
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import json, hashlib, gzip
+          original=Path("Build/miamiSiteBuild.wasm")
+          compressed=Path("Build/miamiSiteBuild.wasm.unityweb")
+          target=Path("Build")
+          chunk_size=2*1024*1024
+          raw=original.read_bytes() if original.is_file() else b""
+          if not raw.startswith(b"\x00asm"):
+              print("Arquivo WASM simples ausente ou invalido; verificando Brotli/Gzip")
+              if not compressed.is_file():
+                  raise SystemExit("WASM original nao esta disponivel no repo")
+              packed=compressed.read_bytes()
+              if packed.startswith(b"version https://git-lfs.github.com/spec/"):
+                  raise SystemExit("Arquivo WASM comprimido ainda e ponteiro Git LFS")
+              try:
+                  import brotli
+                  raw=brotli.decompress(packed)
+              except (ImportError, ValueError, Exception):
+                  try:
+                      raw=gzip.decompress(packed)
+                  except Exception as e:
+                      raise SystemExit("Nao foi possivel descompactar o WASM: "+str(e))
+          if not raw.startswith(b"\x00asm") or len(raw)<1024*1024:
+              raise SystemExit("WASM nao contem cabecalho valido ou e pequeno demais")
+          manifest={
+              "format":"surfvt14-transylvania-wasm-parts-v1",
+              "source":"Build/miamiSiteBuild.wasm",
+              "bytes":len(raw),
+              "sha256":hashlib.sha256(raw).hexdigest(),
+              "partSize":chunk_size,
+              "parts":[]
+          }
+          for i in range(0,len(raw),chunk_size):
+              part=raw[i:i+chunk_size]
+              name="miamiSiteBuild.wasm.part"+str(i//chunk_size).zfill(3)
+              (target/name).write_bytes(part)
+              manifest["parts"].append({
+                  "file":name,"bytes":len(part),"sha256":hashlib.sha256(part).hexdigest()
+              })
+          (target/"miamiSiteBuild.wasm.parts.json").write_text(json.dumps(manifest,indent=2)+"\n")
+          print("WASM validado:",len(raw),"bytes | chunks:",len(manifest["parts"]),
+                "| sha256:",manifest["sha256"])
+          PY
+      - name: Publicar blocos no GitHub Pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Build/miamiSiteBuild.wasm.parts.json Build/miamiSiteBuild.wasm.part*
+          if git diff --cached --quiet; then
+            echo "Blocos ja existem e estao atualizados"
+          else
+            git commit -m "Publish verified small Transylvania WASM parts for GitHub Pages"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
