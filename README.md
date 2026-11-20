@@ -1,31 +1,36 @@
-# Duas variantes de Transylvania no GitHub Pages
+# Transylvania × Iceland — teste de dados Unity
 
-Foram criadas duas páginas independentes que reutilizam a mesma build Unity WebGL armazenada na raiz deste repositório:
+## Endereços
 
-- **Transylvania original:** https://vtcaua2014-dev.github.io/surfvt-teste/transylvania/
-- **Transylvania × Iceland (protótipo):** https://vtcaua2014-dev.github.io/surfvt-teste/iceland/
+- **Transylvania original (intacta):** https://vtcaua2014-dev.github.io/surfvt-teste/transylvania/
+- **Transylvania + Iceland `alt.data` (teste híbrido):** https://vtcaua2014-dev.github.io/surfvt-teste/iceland/
+- **Iceland original (build Unity 2019):** https://surfvt14.up.railway.app/maps/iceland/index.html
+- **Meshes e texturas extraídos:** https://vtcaua2014-dev.github.io/surfvt-teste/iceland/resources.html
 
-A página de Iceland é uma **cópia funcionalmente equivalente da Transylvania**, com indicação do projeto de adaptação e links para os recursos da build Iceland. **Ainda não há troca efetiva de cenário, modelos, atlas ou texturas.** Os assets extraídos são uma etapa separada e continuam pendentes.
+## Alteração solicitada
 
-O catálogo do Iceland foi preservado em https://vtcaua2014-dev.github.io/surfvt-teste/iceland/assets.html.
-As duas páginas apontam para os mesmos recursos `../Build/` e `../TemplateData/`; a página inicial antiga (`/index.html`) permanece inalterada.
+O runner Three.js anterior (`iceland/game.js`, `iceland/play.html` e `iceland/scene-assets.json`) foi removido.
+
+A página `/iceland/index.html` foi reconstruída usando o carregador da **Transylvania** e os mesmos `Build/miamiSiteBuild.loader.js`, `Build/miamiSiteBuild.framework.js` e `Build/miamiSiteBuild.wasm` do projeto.
+
+O `config.dataUrl` dessa página aponta para **`iceland/Build/iceland.alt.data.unityweb`**, e não para os dados da Transylvania.
+
+A nova automação `.github/workflows/prepare-iceland-unity-data.yml` copia esse arquivo da build pública Iceland em `vtcaua2014-dev/surfvt14`, sem modificá-lo, e salva `iceland/Build/iceland-data.json` para verificação.
+
+- **Tamanho do arquivo:** 27.865.882 bytes
+- **SHA-256:** `192bd8bbf9822b696259aa288491753581531ec63bb8387965882a277f7100b0`
+- **Formato:** UnityWebData1.0 (sem compressão HTTP embutida)
+- **Origem:** Unity 2019.2.0f1
+
+### Aviso de compatibilidade
+
+**O arquivo Iceland foi compilado com Unity 2019 e não é compatível, por simples troca de arquivos, com o runtime da Transylvania.** A página `/iceland/` é um teste diagnóstico que pode falhar na inicialização; não se deve descrevê-la como uma versão jogável com o cenário Iceland.
+
+Uma integração funcional exigiria reconstruir/importar a cena em um projeto compatível com a versão de destino ou utilizar o runtime completo da própria build Iceland. Os modelos e atlas extraídos permanecem em `/iceland/extracted/` para referência e análise.
+
+A página `/transylvania/` e o `index.html` original da raiz não foram alterados nesta troca.
 
 ---
-
-## Iceland: assets efetivamente extraídos e runner 3D
-
-- `/iceland/`: **runner 3D experimental** implementado em Three.js, com 3 faixas, desvio, pulo, rolamento, obstáculo e moedas.
-- `/iceland/play.html`: link alternativo para o mesmo runner.
-- `/iceland/extracted/manifest.json`: extração concluída dos assets Iceland Unity 2019 (303 meshes OBJ, 142 texturas PNG e 3 sprites PNG, total 448 arquivos).
-- `/iceland/scene-assets.json`: referências verificadas dos modelos de trilho, trem, estações, barreiras e texturas originais utilizados no runner.
-- `/iceland/resources.html`: visualizador dos meshes/texturas reais exportados.
-- `/transylvania/`: mantém a build Unity compilada original.
-- O runner é uma **reconstrução independente** que reutiliza os meshes e atlas do Iceland. **Não é uma alteração/recompilação do WebAssembly Unity 2022 da Transylvania**, e não reproduz automaticamente todas as animações, scripts e colisões originais.
-
-A extração automatizada fica em `.github/workflows/extract-iceland.yml`. O primeiro erro era compatível com a tentativa de checkout do repositório privado `surfvt` a partir de um workflow do repositório público `surfvt-teste`; a origem passou a ser `surfvt14`, que é público e contém a build Iceland. O manifesto publicado confirma o sucesso posterior da extração.
-
-`.github/workflows/import-build.yml` também foi atualizado para reconhecer as sete partes já existentes do pacote Transylvania, em vez de baixar novamente de um host antigo. **O resultado de uma nova execução desse workflow não foi verificado neste momento.**
-
 
 # Transylvania WebGL — teste
 
@@ -35,7 +40,7 @@ Versão de testes para GitHub Pages usando os arquivos da build Unity WebGL forn
 
 - `index.html`: página inicial e carregador das sete partes do arquivo de dados.
 - `.github/workflows/import-build.yml`: importa os recursos da build a partir do endereço público já utilizado na captura do usuário, verifica os hashes SHA-256 e grava os binários em `Build/` e `TemplateData/`.
-- A importação **não está concluída** até que esse workflow termine sem erros e crie as pastas dos recursos.
+- Os arquivos da build e as sete partes do pacote de dados já foram identificados no repositório. O funcionamento completo da build ainda requer teste no navegador.
 
 ## Como iniciar a importação dos arquivos grandes
 
@@ -55,4 +60,4 @@ Se o site original sair do ar ou bloquear o acesso do GitHub Actions, use o paco
 
 **Importante:** se o GitHub Pages não estiver ativado para este repositório, habilite-o em Settings → Pages. Verifique os direitos de redistribuição dos assets originais antes de disponibilizá-los publicamente. GitHub Pages publica os arquivos do jogo para visitantes; confirme que tem autorização para redistribuição antes de tornar o repositório público.
 
-A build completa ainda não foi testada em gameplay. O carregamento de aproximadamente 126 MB pode exigir muita memória em Chromebooks.
+A build original não foi validada em uma partida completa nesta etapa. O carregamento de aproximadamente 126 MB pode exigir muita memória em dispositivos móveis.
